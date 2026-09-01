@@ -2,11 +2,12 @@
 
 Cryptography in .NET is provided through the System.Security.Cryptography namespace and is used for data protection, integrity, and identity verification.
 
+
 ## Why It Matters
 
 In real applications, cryptography helps you:
 
-- protect sensitive data
+- protect sensitive datas
 - verify that data was not changed
 - securely store passwords
 - prove message authenticity
