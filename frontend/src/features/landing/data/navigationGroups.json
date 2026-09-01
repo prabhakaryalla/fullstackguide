@@ -1,0 +1,10 @@
+{
+  "groups": [
+    { "id": "backend", "label": "Backend", "order": 1, "childIds": ["csharp", "dotnet", "microservices"] },
+    { "id": "frontend", "label": "Frontend", "order": 2, "childIds": ["react-js", "angular"] },
+    { "id": "cloud", "label": "Cloud", "order": 3, "childIds": ["azure"] },
+    { "id": "database", "label": "Database", "order": 4, "childIds": ["sql", "cosmos"] },
+    { "id": "ai", "label": "AI", "order": 5 },
+    { "id": "others", "label": "Others", "order": 6, "childIds": ["design-patterns", "system-design", "leet-code"] }
+  ]
+}

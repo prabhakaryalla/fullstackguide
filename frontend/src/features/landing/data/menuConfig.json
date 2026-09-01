@@ -1,0 +1,16 @@
+{
+  "items": [
+    { "id": "dotnet", "label": ".NET", "order": 1 },
+    { "id": "azure", "label": "Azure", "order": 2 },
+    { "id": "csharp", "label": "C#", "order": 3 },
+    { "id": "cosmos", "label": "Cosmos", "order": 4 },
+    { "id": "react-js", "label": "React JS", "order": 5 },
+    { "id": "angular", "label": "Angular", "order": 6 },
+    { "id": "design-patterns", "label": "Design Patterns", "order": 7 },
+    { "id": "ai", "label": "AI", "order": 8 },
+    { "id": "system-design", "label": "System Design", "order": 9 },
+    { "id": "microservices", "label": "Microservices", "order": 10 },
+    { "id": "sql", "label": "SQL", "order": 11 },
+    { "id": "leet-code", "label": "Leet Code", "order": 12 }
+  ]
+}

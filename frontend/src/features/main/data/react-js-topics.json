@@ -1,0 +1,12 @@
+{
+  "menuId": "react-js",
+  "topics": [
+    {
+      "id": "react-diffing-algorithm",
+      "slug": "react-diffing-algorithm",
+      "title": "React Diffing Algorithm in Detail",
+      "markdownPath": "react-js/react-diffing-algorithm.md",
+      "complexity": "Hard"
+    }
+  ]
+}

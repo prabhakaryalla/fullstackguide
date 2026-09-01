@@ -1,0 +1,25 @@
+/speckit.specify Create a specification for a Landing Page feature using the following requirements.
+
+User Story 1, priority P1.
+
+As a user to this application, I want to see the landing page with the Top Navigation
+
+Business Rules
+
+- Top Navignation should contain title
+- Top Navigation should contain the Menus for eg NET, AZURE, C# etc
+- User can be able to click on any of these menus.
+- Top Navigation should contain a seeting at the end
+
+Acceptance Criteria
+
+Scenario 1: Successful registration
+
+Given a user enters application, he should be able to see Top Navigation with menu
+When user clicks on any menu item Coming Soon page should be displayed
+
+
+Out of Scope
+
+- Submenus which contain each topic related to that programming language
+- Viewing topic details in the Ui which is fetched from md file from local folder

@@ -1,0 +1,404 @@
+{
+  "menuId": "csharp",
+  "topics": [
+    {
+      "id": "csharp-records",
+      "slug": "csharp-records",
+      "title": "C# Records",
+      "markdownPath": "csharp/csharp-records.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "csharp-pattern-matching",
+      "slug": "csharp-pattern-matching",
+      "title": "C# Pattern Matching",
+      "markdownPath": "csharp/csharp-pattern-matching.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "solid-principles",
+      "slug": "solid-principles",
+      "title": "SOLID Principles",
+      "markdownPath": "csharp/solid-principles.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "abstract-class-constructor",
+      "slug": "why-abstract-class-needs-constructor-csharp",
+      "title": "Why Abstract Classes Need Constructors?",
+      "markdownPath": "csharp/abstract-class-constructor.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "abstract-vs-interface",
+      "slug": "difference-between-abstract-class-and-interface-csharp",
+      "title": "Difference Between Abstract Class and Interface in C#",
+      "markdownPath": "csharp/abstract-class-vs-interface.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "singleton-vs-static-classes",
+      "slug": "singleton-vs-static-classes-csharp",
+      "title": "Singleton Vs Static Classes",
+      "markdownPath": "csharp/singleton-vs-static-classes.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "boxing-and-unboxing",
+      "slug": "boxing-and-unboxing-csharp",
+      "title": "Boxing and Unboxing",
+      "markdownPath": "csharp/boxing-and-unboxing.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "friend-assembly",
+      "slug": "friend-assembly-csharp",
+      "title": "Friend Assembly",
+      "markdownPath": "csharp/friend-assembly.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "async-await-internals",
+      "slug": "async-await-internals-csharp",
+      "title": "Internals of C# Async/Await",
+      "markdownPath": "csharp/async-await-internals.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "async-void-vs-async-task",
+      "slug": "async-void-vs-async-task-csharp",
+      "title": "Async Void vs Async Task",
+      "markdownPath": "csharp/async-void-vs-async-task.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "synchronization-context-async",
+      "slug": "synchronization-context-async-csharp",
+      "title": "Role of SynchronizationContext in Async Programming",
+      "markdownPath": "csharp/synchronization-context-async.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "configureawait-false-sync-context",
+      "slug": "configureawait-false-synchronization-context-csharp",
+      "title": "How ConfigureAwait(false) Affects SynchronizationContext",
+      "markdownPath": "csharp/configureawait-false-synchronization-context.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "synchronization-context-vs-task-scheduler",
+      "slug": "synchronization-context-vs-task-scheduler-csharp",
+      "title": "SynchronizationContext vs TaskScheduler",
+      "markdownPath": "csharp/synchronization-context-vs-task-scheduler.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "thread-vs-task",
+      "slug": "difference-between-thread-and-task-csharp",
+      "title": "Difference Between Thread and Task",
+      "markdownPath": "csharp/thread-vs-task.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "thread-pooling",
+      "slug": "thread-pooling-importance-csharp",
+      "title": "What Is Thread Pooling and Why It Is Important",
+      "markdownPath": "csharp/thread-pooling-importance.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "parallel-for-vs-task-run",
+      "slug": "parallel-for-vs-task-run-csharp",
+      "title": "Difference Between Parallel.For and Task.Run",
+      "markdownPath": "csharp/parallel-for-vs-task-run.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "parallel-for-exception-handling",
+      "slug": "parallel-for-exception-handling-csharp",
+      "title": "Exceptions in Parallel.For and How to Handle Them",
+      "markdownPath": "csharp/parallel-for-exception-handling.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "task-waitall-vs-whenall",
+      "slug": "difference-between-task-waitall-and-task-whenall-csharp",
+      "title": "Difference Between Task.WaitAll and Task.WhenAll",
+      "markdownPath": "csharp/task-waitall-vs-whenall.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "di-lifetimes-singleton-scoped-transient",
+      "slug": "di-lifetimes-singleton-scoped-transient-csharp",
+      "title": "Singleton vs Scoped vs Transient in Dependency Injection",
+      "markdownPath": "csharp/di-lifetimes-singleton-scoped-transient.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "scoped-into-singleton",
+      "slug": "can-you-inject-scoped-into-singleton-csharp",
+      "title": "Can You Inject a Scoped Service into a Singleton?",
+      "markdownPath": "csharp/scoped-into-singleton.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "multiple-lifetimes-same-service",
+      "slug": "multiple-lifetimes-same-service-csharp",
+      "title": "What Happens If You Register the Same Service with Multiple Lifetimes",
+      "markdownPath": "csharp/multiple-lifetimes-same-service.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "multiple-implementations-same-interface",
+      "slug": "register-multiple-implementations-same-interface-csharp",
+      "title": "Register Multiple Implementations of the Same Interface Properly",
+      "markdownPath": "csharp/multiple-implementations-same-interface.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "lifetimes-and-thread-safety",
+      "slug": "lifetimes-affect-thread-safety-csharp",
+      "title": "How Lifetimes Affect Thread Safety of Services",
+      "markdownPath": "csharp/lifetimes-and-thread-safety.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "scoped-outside-http-scope",
+      "slug": "resolve-scoped-service-outside-http-scope-csharp",
+      "title": "Resolve a Scoped Service Outside HTTP Request Scope: What Happens",
+      "markdownPath": "csharp/scoped-outside-http-scope.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "authorization-code-flow-pkce",
+      "slug": "authorization-code-flow-pkce-csharp",
+      "title": "Authorization Code Flow with PKCE",
+      "markdownPath": "csharp/authorization-code-flow-pkce.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "id-token-vs-access-token",
+      "slug": "id-token-vs-access-token-csharp",
+      "title": "What Is ID Token and How It Differs from Access Token",
+      "markdownPath": "csharp/id-token-vs-access-token.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "access-token-vs-refresh-token",
+      "slug": "access-token-vs-refresh-token-csharp",
+      "title": "Access Token and Refresh Token",
+      "markdownPath": "csharp/access-token-vs-refresh-token.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "policy-based-authorization-internals",
+      "slug": "policy-based-authorization-internals-csharp",
+      "title": "How Policy-Based Authorization Works Internally in ASP.NET Core",
+      "markdownPath": "csharp/policy-based-authorization-internals.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "custom-authorization-requirements-handlers",
+      "slug": "custom-authorization-requirements-handlers-csharp",
+      "title": "Create Custom Authorization Requirements and Handlers",
+      "markdownPath": "csharp/custom-authorization-requirements-handlers.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "combine-authorization-policies",
+      "slug": "combine-authorization-policies-csharp",
+      "title": "How Multiple Authorization Policies Are Combined or Chained",
+      "markdownPath": "csharp/combine-authorization-policies.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "dynamic-policy-parameters",
+      "slug": "dynamic-policy-parameters-csharp",
+      "title": "Pass Parameters to Authorization Policies Dynamically at Runtime",
+      "markdownPath": "csharp/dynamic-policy-parameters.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "resource-vs-policy-authorization",
+      "slug": "resource-vs-policy-authorization-csharp",
+      "title": "Difference Between Resource-Based and Policy-Based Authorization",
+      "markdownPath": "csharp/resource-vs-policy-authorization.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "claims-transformation-with-policy-authorization",
+      "slug": "claims-transformation-with-policy-authorization-csharp",
+      "title": "Use Claims Transformation with Policy-Based Authorization",
+      "markdownPath": "csharp/claims-transformation-with-policy-authorization.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "testing-policy-based-authorization",
+      "slug": "testing-policy-based-authorization-csharp",
+      "title": "Test Policy-Based Authorization in Unit and Integration Tests",
+      "markdownPath": "csharp/testing-policy-based-authorization.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "handle-authorization-failures-custom-response",
+      "slug": "handle-authorization-failures-custom-response-csharp",
+      "title": "Handle Authorization Failures and Customize Responses in ASP.NET Core",
+      "markdownPath": "csharp/handle-authorization-failures-custom-response.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "task-vs-valuetask",
+      "slug": "difference-between-task-and-valuetask-csharp",
+      "title": "Difference Between Task and ValueTask in C#",
+      "markdownPath": "csharp/task-vs-valuetask.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "lock-vs-semaphore",
+      "slug": "difference-between-lock-and-semaphore-csharp",
+      "title": "Difference Between lock and Semaphore in C#",
+      "markdownPath": "csharp/lock-vs-semaphore.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "nth-highest-salary-using-linq",
+      "slug": "find-nth-highest-salary-using-linq-csharp",
+      "title": "Find Nth Highest Salary Using LINQ",
+      "markdownPath": "csharp/nth-highest-salary-using-linq.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "equals-null-vs-is-null",
+      "slug": "difference-between-equals-null-and-is-null-csharp",
+      "title": "Difference Between myObject == null and myObject is null",
+      "markdownPath": "csharp/equals-null-vs-is-null.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "string-equality-vs-referenceequals",
+      "slug": "string-equality-vs-referenceequals-csharp",
+      "title": "Difference Between string == and ReferenceEquals",
+      "markdownPath": "csharp/string-equality-vs-referenceequals.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "equals-vs-equality-operator-custom-class",
+      "slug": "equals-vs-equality-operator-custom-class-csharp",
+      "title": "Equals() vs == vs ReferenceEquals() for Custom Classes",
+      "markdownPath": "csharp/equals-vs-equality-operator-custom-class.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "default-value-unconstrained-generic",
+      "slug": "default-value-unconstrained-generic-csharp",
+      "title": "default(T) == null for Unconstrained Generic Types",
+      "markdownPath": "csharp/default-value-unconstrained-generic.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "struct-equality-default-behavior",
+      "slug": "struct-equality-default-behavior-csharp",
+      "title": "Default Equality Behavior of Structs",
+      "markdownPath": "csharp/struct-equality-default-behavior.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "throw-vs-throw-ex",
+      "slug": "throw-vs-throw-ex-csharp",
+      "title": "Difference Between throw; and throw ex;",
+      "markdownPath": "csharp/throw-vs-throw-ex.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "exception-filters-vs-catch-if-throw",
+      "slug": "exception-filters-vs-catch-if-throw-csharp",
+      "title": "Exception Filters (catch when) vs catch + if + throw",
+      "markdownPath": "csharp/exception-filters-vs-catch-if-throw.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "exception-swallowed-in-finally",
+      "slug": "exception-swallowed-in-finally-csharp",
+      "title": "How an Exception in finally Can Swallow the Original Exception",
+      "markdownPath": "csharp/exception-swallowed-in-finally.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "task-delay-zero-vs-task-yield",
+      "slug": "task-delay-zero-vs-task-yield-csharp",
+      "title": "Difference Between Task.Delay(0) and Task.Yield()",
+      "markdownPath": "csharp/task-delay-zero-vs-task-yield.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "closure-capturing-loop-variable",
+      "slug": "closure-capturing-loop-variable-csharp",
+      "title": "Capturing Loop Variables in Closures (foreach vs for)",
+      "markdownPath": "csharp/closure-capturing-loop-variable.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "method-hiding-new-vs-override",
+      "slug": "method-hiding-new-vs-override-csharp",
+      "title": "Method Hiding with new vs override",
+      "markdownPath": "csharp/method-hiding-new-vs-override.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "is-vs-as-vs-cast",
+      "slug": "is-vs-as-vs-cast-csharp",
+      "title": "Difference Between is, as, and Direct Cast",
+      "markdownPath": "csharp/is-vs-as-vs-cast.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "boxing-nullable-value-types",
+      "slug": "boxing-nullable-value-types-csharp",
+      "title": "Boxing Behavior of Nullable<T>",
+      "markdownPath": "csharp/boxing-nullable-value-types.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "array-covariance-runtime-exception",
+      "slug": "array-covariance-runtime-exception-csharp",
+      "title": "Array Covariance and ArrayTypeMismatchException",
+      "markdownPath": "csharp/array-covariance-runtime-exception.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "ienumerable-deferred-execution-vs-tolist",
+      "slug": "ienumerable-deferred-execution-vs-tolist-csharp",
+      "title": "Deferred Execution: IEnumerable vs ToList() in LINQ",
+      "markdownPath": "csharp/ienumerable-deferred-execution-vs-tolist.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "yield-return-deferred-exceptions",
+      "slug": "yield-return-deferred-exceptions-csharp",
+      "title": "How yield return Defers Exceptions Until Iteration",
+      "markdownPath": "csharp/yield-return-deferred-exceptions.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "modifying-collection-while-iterating",
+      "slug": "modifying-collection-while-iterating-csharp",
+      "title": "Modifying a Collection While Iterating with foreach",
+      "markdownPath": "csharp/modifying-collection-while-iterating.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "checked-unchecked-arithmetic-overflow",
+      "slug": "checked-unchecked-arithmetic-overflow-csharp",
+      "title": "checked and unchecked Arithmetic Overflow",
+      "markdownPath": "csharp/checked-unchecked-arithmetic-overflow.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "float-double-vs-decimal-precision",
+      "slug": "float-double-vs-decimal-precision-csharp",
+      "title": "float/double vs decimal Precision",
+      "markdownPath": "csharp/float-double-vs-decimal-precision.md",
+      "complexity": "Easy"
+    }
+  ]
+}

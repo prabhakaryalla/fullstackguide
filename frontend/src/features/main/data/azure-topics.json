@@ -1,0 +1,145 @@
+{
+  "menuId": "azure",
+  "topics": [
+    {
+      "id": "azure-event-hubs",
+      "slug": "azure-event-hubs",
+      "title": "Azure Event Hubs",
+      "markdownPath": "azure/azure-event-hubs.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "azure-service-bus",
+      "slug": "azure-service-bus",
+      "title": "Azure Service Bus",
+      "markdownPath": "azure/azure-service-bus.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "azure-functions",
+      "slug": "azure-functions",
+      "title": "Azure Functions",
+      "markdownPath": "azure/azure-functions.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "azure-iot-hub",
+      "slug": "azure-iot-hub",
+      "title": "Azure IoT Hub",
+      "markdownPath": "azure/azure-iot-hub.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "managed-identity-keyvault-token-exchange-architecture",
+      "slug": "managed-identity-keyvault-token-exchange-architecture-azure",
+      "title": "Underlying Architecture of OAuth 2.0 Token Exchange: App Service Managed Identity to Key Vault",
+      "markdownPath": "azure/managed-identity-keyvault-token-exchange-architecture.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "azure-managed-identity",
+      "slug": "azure-managed-identity",
+      "title": "Managed Identity",
+      "markdownPath": "azure/azure-managed-identity.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "system-assigned-vs-user-assigned-managed-identity",
+      "slug": "system-assigned-vs-user-assigned-managed-identity-azure",
+      "title": "System-Assigned Managed Identity vs User-Assigned Managed Identity",
+      "markdownPath": "azure/system-assigned-vs-user-assigned-managed-identity.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "azure-workload-identity",
+      "slug": "azure-workload-identity",
+      "title": "How Azure Workload Identity Works Behind the Scenes",
+      "markdownPath": "azure/azure-workload-identity.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "azure-basic-vs-standard-load-balancer",
+      "slug": "azure-basic-vs-standard-load-balancer",
+      "title": "Azure Basic Load Balancer vs Standard Load Balancer",
+      "markdownPath": "azure/azure-basic-vs-standard-load-balancer.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "azure-load-balancer-5-tuple-hashing",
+      "slug": "azure-load-balancer-5-tuple-hashing",
+      "title": "Azure Load Balancer 5-Tuple Hashing Algorithm",
+      "markdownPath": "azure/azure-load-balancer-5-tuple-hashing.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "blob-storage-hot-cool-archive-tiers",
+      "slug": "blob-storage-hot-cool-archive-tiers",
+      "title": "Hot vs Cool vs Archive Access Tiers in Azure Blob Storage",
+      "markdownPath": "azure/blob-storage-hot-cool-archive-tiers.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "azure-durable-functions-in-depth",
+      "slug": "azure-durable-functions-in-depth",
+      "title": "Durable Functions in Depth",
+      "markdownPath": "azure/azure-durable-functions-in-depth.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "azure-logic-apps",
+      "slug": "azure-logic-apps",
+      "title": "Logic Apps",
+      "markdownPath": "azure/azure-logic-apps.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "azure-table-storage",
+      "slug": "azure-table-storage",
+      "title": "Azure Table Storage",
+      "markdownPath": "azure/azure-table-storage.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "service-bus-queue-vs-storage-queue",
+      "slug": "service-bus-queue-vs-storage-queue",
+      "title": "Service Bus Queues vs Azure Storage Queue",
+      "markdownPath": "azure/service-bus-queue-vs-storage-queue.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "azure-network-security-group",
+      "slug": "azure-network-security-group",
+      "title": "Network Security Group",
+      "markdownPath": "azure/azure-network-security-group.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "azure-ddos-protection",
+      "slug": "azure-ddos-protection",
+      "title": "DDoS Protection",
+      "markdownPath": "azure/azure-ddos-protection.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "azure-policy",
+      "slug": "azure-policy",
+      "title": "Azure Policy",
+      "markdownPath": "azure/azure-policy.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "application-gateway-vs-load-balancer-vs-traffic-manager-vs-front-door",
+      "slug": "application-gateway-vs-load-balancer-vs-traffic-manager-vs-front-door",
+      "title": "Application Gateway vs Load Balancer vs Traffic Manager vs Front Door",
+      "markdownPath": "azure/application-gateway-vs-load-balancer-vs-traffic-manager-vs-front-door.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "privileged-identity-management",
+      "slug": "privileged-identity-management",
+      "title": "Privileged Identity Management (PIM)",
+      "markdownPath": "azure/privileged-identity-management.md",
+      "complexity": "Medium"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "menuId": "cosmos",
+  "topics": [
+    {
+      "id": "azure-cosmos-db",
+      "slug": "azure-cosmos-db",
+      "title": "Azure Cosmos DB",
+      "markdownPath": "database/azure-cosmos-db.md",
+      "complexity": "Hard"
+    }
+  ]
+}

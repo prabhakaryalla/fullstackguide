@@ -1,0 +1,12 @@
+{
+  "menuId": "microservices",
+  "topics": [
+    {
+      "id": "sidecar-pattern-for-app-config",
+      "slug": "sidecar-pattern-for-app-config-microservices",
+      "title": "How Sidecar Pattern Is Used to Access App Config Values in Depth",
+      "markdownPath": "microservices/sidecar-pattern-for-app-config.md",
+      "complexity": "Hard"
+    }
+  ]
+}

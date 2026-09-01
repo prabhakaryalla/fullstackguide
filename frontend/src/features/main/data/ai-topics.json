@@ -1,0 +1,19 @@
+{
+  "menuId": "ai",
+  "topics": [
+    {
+      "id": "spec-driven-development-github-spec-kit",
+      "slug": "spec-driven-development-github-spec-kit-ai",
+      "title": "Spec-Driven Development with GitHub Spec Kit",
+      "markdownPath": "ai/spec-driven-development-github-spec-kit.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "why-mcp-if-we-already-have-apis",
+      "slug": "why-mcp-if-we-already-have-apis-ai",
+      "title": "Why Do We Need MCP If We Already Have APIs?",
+      "markdownPath": "ai/why-mcp-if-we-already-have-apis.md",
+      "complexity": "Easy"
+    }
+  ]
+}

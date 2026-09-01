@@ -1,0 +1,89 @@
+{
+  "menuId": "system-design",
+  "topics": [
+    {
+      "id": "client-server-architecture",
+      "slug": "client-server-architecture-system-design",
+      "title": "Client-Server Architecture",
+      "markdownPath": "system-design/client-server-architecture.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "what-happens-when-you-type-google-com",
+      "slug": "what-happens-when-you-type-google-com-system-design",
+      "title": "What Happens When You Type google.com",
+      "markdownPath": "system-design/what-happens-when-you-type-google-com.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "dns-system-design",
+      "slug": "dns-system-design",
+      "title": "DNS",
+      "markdownPath": "system-design/dns-system-design.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "ip-address-system-design",
+      "slug": "ip-address-system-design",
+      "title": "IP Address",
+      "markdownPath": "system-design/ip-address-system-design.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "http-system-design",
+      "slug": "http-system-design",
+      "title": "HTTP",
+      "markdownPath": "system-design/http-system-design.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "https-system-design",
+      "slug": "https-system-design",
+      "title": "HTTPS",
+      "markdownPath": "system-design/https-system-design.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "ssl-tls-system-design",
+      "slug": "ssl-tls-system-design",
+      "title": "SSL/TLS",
+      "markdownPath": "system-design/ssl-tls-system-design.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "db-replication-system-design",
+      "slug": "db-replication-system-design",
+      "title": "DB Replication",
+      "markdownPath": "system-design/db-replication-system-design.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "db-sharding-system-design",
+      "slug": "db-sharding-system-design",
+      "title": "DB Sharding",
+      "markdownPath": "system-design/db-sharding-system-design.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "db-indexing-system-design",
+      "slug": "db-indexing-system-design",
+      "title": "DB Indexing",
+      "markdownPath": "system-design/db-indexing-system-design.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "load-balancer-system-design",
+      "slug": "load-balancer-system-design",
+      "title": "Load Balancer",
+      "markdownPath": "system-design/load-balancer-system-design.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "design-url-shortner-system-design",
+      "slug": "design-url-shortner-system-design",
+      "title": "Design URL Shortner",
+      "markdownPath": "system-design/design-url-shortner-system-design.md",
+      "complexity": "Medium"
+    }
+  ]
+}

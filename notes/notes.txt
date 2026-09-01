@@ -1,0 +1,46 @@
+Build this website using Spec Driven Development using Gitub Speckit
+
+Pre-requisites:
+1. Go to spec-kit and follow the guide (https://github.com/github/spec-kit#-get-started)
+
+
+Steps For Github Spec Kit:
+
+1. The /speckit.constitution prompt: Establishing the Development Rules
+
+use the below prompt in copilot or any llm 
+
+   I am building a web application using React which is hosted on the githubpages
+
+Help me create a GitHub Spec Kit /speckit.constitution prompt for this project.
+
+Before writing it:
+- Review the latest GitHub Spec Kit documentation to understand the purpose of the /speckit.constitution command and what belongs in a project constitution.
+- Review the latest React documentation and accepted best practices for developing web application.
+- Ask me questions to understand my project, coding standards, architecture preferences, testing strategy, UI technology, persistence layer, and team conventions.
+
+After you have enough information:
+- Create a complete /speckit.constitution prompt.
+- Include only long-term project rules that should apply to every feature.
+- Do not include feature-specific requirements.
+- Briefly explain why you included each rule.
+
+Saved output moved to: Notes/speckit-constitution-prompt.md
+
+2. The /speckit.specify prompt: Creating the Specification Document
+
+3. The /speckit.clarify command: Closing Gaps in Your Specification (optional)
+
+4. The /speckit.plan command: Creating an Implementation Plan 
+   refer to the prompt
+
+5. The /speckit.checklist command: Generating a Quality Checklist (optional)
+6. The /speckit.tasks command: Generating a task list 
+7. The /speckit.analyze command: Analyzing Your Specification (optional)
+8. The /speckit.implement command: Implementing Your Feature
+9. The /speckit.converge command: Doing one final verification check
+
+
+Second Spec
+1. Generate spec using specify
+2. Read specs/002-your-second-feature/spec.md and run /speckit.clarify on it.

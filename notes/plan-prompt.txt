@@ -1,0 +1,14 @@
+Create a technical implementation plan for the Landing Page
+feature described in the current specification.
+
+Implement this feature
+
+
+The landing page should top Navigation. 
+
+The landing page should be user friendly and should be stylish
+
+Menus names should come dynamically
+
+The tile should be Fullstack Guide
+

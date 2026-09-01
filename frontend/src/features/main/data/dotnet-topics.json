@@ -1,0 +1,47 @@
+{
+  "menuId": "dotnet",
+  "topics": [
+    {
+      "id": "dotnet-dependency-injection",
+      "slug": "dotnet-dependency-injection",
+      "title": ".NET Dependency Injection",
+      "markdownPath": "dotnet/dotnet-dependency-injection.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "dotnet-minimal-apis",
+      "slug": "dotnet-minimal-apis",
+      "title": ".NET Minimal APIs",
+      "markdownPath": "dotnet/dotnet-minimal-apis.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "dotnet-ihostedservice-vs-backgroundservice",
+      "slug": "dotnet-ihostedservice-vs-backgroundservice",
+      "title": "IHostedService vs BackgroundService in .NET Core",
+      "markdownPath": "dotnet/dotnet-ihostedservice-vs-backgroundservice.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "dotnet-options-vs-snapshot-vs-monitor",
+      "slug": "dotnet-ioptions-vs-ioptionssnapshot-vs-ioptionsmonitor",
+      "title": "IOptions vs IOptionsSnapshot vs IOptionsMonitor",
+      "markdownPath": "dotnet/dotnet-ioptions-vs-ioptionssnapshot-vs-ioptionsmonitor.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "dotnet-kestrel-vs-iis",
+      "slug": "dotnet-kestrel-vs-iis-aspnet-core",
+      "title": "Kestrel Server in ASP.NET Core vs IIS",
+      "markdownPath": "dotnet/dotnet-kestrel-vs-iis.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "dotnet-common-cryptography-methods",
+      "slug": "dotnet-common-cryptography-methods",
+      "title": "Common Cryptography Methods in .NET",
+      "markdownPath": "dotnet/dotnet-common-cryptography-methods.md",
+      "complexity": "Medium"
+    }
+  ]
+}
