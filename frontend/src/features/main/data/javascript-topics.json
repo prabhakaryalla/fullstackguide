@@ -1,0 +1,12 @@
+{
+  "menuId": "javascript",
+  "topics": [
+    {
+      "id": "javascript-cors-csrf-xss-threats",
+      "slug": "cors-csrf-xss-threats",
+      "title": "What Are the Three Different Threats: CORS, CSRF, XSS",
+      "markdownPath": "javascript/cors-csrf-xss-threats.md",
+      "complexity": "Medium"
+    }
+  ]
+}

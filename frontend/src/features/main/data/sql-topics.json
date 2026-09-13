@@ -1,0 +1,65 @@
+{
+  "menuId": "sql",
+  "topics": [
+    { "id": "sql-find-duplicate-records", "slug": "find-duplicate-records", "title": "Find Duplicate Records in a Table", "markdownPath": "sql/find-duplicate-records.md", "complexity": "Easy" },
+    { "id": "sql-second-highest-salary", "slug": "second-highest-salary", "title": "Retrieve the Second Highest Salary", "markdownPath": "sql/second-highest-salary.md", "complexity": "Easy" },
+    { "id": "sql-employees-without-department", "slug": "employees-without-department", "title": "Find Employees without a Department", "markdownPath": "sql/employees-without-department.md", "complexity": "Easy" },
+    { "id": "sql-total-revenue-per-product", "slug": "total-revenue-per-product", "title": "Calculate Total Revenue per Product", "markdownPath": "sql/total-revenue-per-product.md", "complexity": "Easy" },
+    { "id": "sql-top-3-highest-paid-employees", "slug": "top-3-highest-paid-employees", "title": "Get the Top 3 Highest-Paid Employees", "markdownPath": "sql/top-3-highest-paid-employees.md", "complexity": "Easy" },
+    { "id": "sql-employees-above-department-average", "slug": "employees-above-department-average", "title": "Employees Earning More Than Their Department Average", "markdownPath": "sql/employees-above-department-average.md", "complexity": "Medium" },
+    { "id": "sql-departments-more-than-5-employees", "slug": "departments-more-than-5-employees", "title": "Find Departments with More Than 5 Employees", "markdownPath": "sql/departments-more-than-5-employees.md", "complexity": "Easy" },
+    { "id": "sql-customers-never-placed-order", "slug": "customers-never-placed-order", "title": "Retrieve Customers Who Never Placed an Order", "markdownPath": "sql/customers-never-placed-order.md", "complexity": "Easy" },
+    { "id": "sql-total-sales-order-count-customer", "slug": "total-sales-order-count-customer", "title": "Get Total Sales and Order Count per Customer", "markdownPath": "sql/total-sales-order-count-customer.md", "complexity": "Medium" },
+    { "id": "sql-orders-last-30-days", "slug": "orders-last-30-days", "title": "Find Orders Placed in the Last 30 Days", "markdownPath": "sql/orders-last-30-days.md", "complexity": "Easy" },
+    { "id": "sql-rank-products-revenue-category", "slug": "rank-products-revenue-category", "title": "Rank Products by Revenue in Each Category", "markdownPath": "sql/rank-products-revenue-category.md", "complexity": "Hard" },
+    { "id": "sql-most-selling-product", "slug": "most-selling-product", "title": "Identify the Best-Selling Product", "markdownPath": "sql/most-selling-product.md", "complexity": "Medium" },
+    { "id": "sql-total-revenue-order-count-region", "slug": "total-revenue-order-count-region", "title": "Get Total Revenue and Order Count per Region", "markdownPath": "sql/total-revenue-order-count-region.md", "complexity": "Easy" },
+    { "id": "sql-customers-more-than-5-orders", "slug": "customers-more-than-5-orders", "title": "Count Customers with More Than 5 Orders", "markdownPath": "sql/customers-more-than-5-orders.md", "complexity": "Easy" },
+    { "id": "sql-customers-above-average-order-value", "slug": "customers-above-average-order-value", "title": "Customers with Orders Above Average Value", "markdownPath": "sql/customers-above-average-order-value.md", "complexity": "Medium" },
+    { "id": "sql-employees-hired-weekends", "slug": "employees-hired-weekends", "title": "Find Employees Hired on Weekends", "markdownPath": "sql/employees-hired-weekends.md", "complexity": "Easy" },
+    { "id": "sql-employees-salary-between-50000-100000", "slug": "employees-salary-between-50000-100000", "title": "Employees with Salary between 50,000 and 100,000", "markdownPath": "sql/employees-salary-between-50000-100000.md", "complexity": "Easy" },
+    { "id": "sql-monthly-sales-revenue-order-count", "slug": "monthly-sales-revenue-order-count", "title": "Get Monthly Sales Revenue and Order Count", "markdownPath": "sql/monthly-sales-revenue-order-count.md", "complexity": "Medium" },
+    { "id": "sql-rank-employees-salary-department", "slug": "rank-employees-salary-department", "title": "Rank Employees by Salary within Each Department", "markdownPath": "sql/rank-employees-salary-department.md", "complexity": "Medium" },
+    { "id": "sql-customers-order-every-month-2025", "slug": "customers-order-every-month-2025", "title": "Customers Who Ordered Every Month in 2025", "markdownPath": "sql/customers-order-every-month-2025.md", "complexity": "Hard" },
+    { "id": "sql-moving-average-sales-2-days", "slug": "moving-average-sales-2-days", "title": "Find the Moving Average of Sales over 2 Days", "markdownPath": "sql/moving-average-sales-2-days.md", "complexity": "Hard" },
+    { "id": "sql-first-last-order-date-customer", "slug": "first-last-order-date-customer", "title": "First and Last Order Date of Each Customer", "markdownPath": "sql/first-last-order-date-customer.md", "complexity": "Easy" },
+    { "id": "sql-product-sales-distribution", "slug": "product-sales-distribution", "title": "Show Product Sales Distribution", "markdownPath": "sql/product-sales-distribution.md", "complexity": "Medium" },
+    { "id": "sql-customers-consecutive-purchases", "slug": "customers-consecutive-purchases", "title": "Retrieve Customers with Consecutive Purchases", "markdownPath": "sql/customers-consecutive-purchases.md", "complexity": "Hard" },
+    { "id": "sql-churned-customers", "slug": "churned-customers", "title": "Find Churned Customers", "markdownPath": "sql/churned-customers.md", "complexity": "Medium" },
+    { "id": "sql-query-processing-order", "slug": "query-processing-order", "title": "Logical Processing Order of a SQL Query", "markdownPath": "sql/query-processing-order.md", "complexity": "Medium" },
+    { "id": "sql-query-optimizer-execution-plan", "slug": "query-optimizer-execution-plan", "title": "Query Optimizer and Execution Plans", "markdownPath": "sql/query-optimizer-execution-plan.md", "complexity": "Hard" },
+    { "id": "sql-covering-index", "slug": "covering-index", "title": "Covering Indexes and Index Selectivity", "markdownPath": "sql/covering-index.md", "complexity": "Hard" },
+    { "id": "sql-index-seek-scan", "slug": "index-seek-scan", "title": "Index Seek versus Index Scan", "markdownPath": "sql/index-seek-scan.md", "complexity": "Hard" },
+    { "id": "sql-acid-transactions", "slug": "acid-transactions", "title": "ACID Properties of Transactions", "markdownPath": "sql/acid-transactions.md", "complexity": "Medium" },
+    { "id": "sql-isolation-levels", "slug": "isolation-levels", "title": "Transaction Isolation Levels", "markdownPath": "sql/isolation-levels.md", "complexity": "Hard" },
+    { "id": "sql-deadlocks", "slug": "deadlocks", "title": "Database Deadlocks and Prevention", "markdownPath": "sql/deadlocks.md", "complexity": "Hard" },
+    { "id": "sql-optimistic-pessimistic-concurrency", "slug": "optimistic-pessimistic-concurrency", "title": "Optimistic versus Pessimistic Concurrency", "markdownPath": "sql/optimistic-pessimistic-concurrency.md", "complexity": "Hard" },
+    { "id": "sql-mvcc", "slug": "mvcc", "title": "Multi-Version Concurrency Control", "markdownPath": "sql/mvcc.md", "complexity": "Hard" },
+    { "id": "sql-normalization-denormalization", "slug": "normalization-denormalization", "title": "Normalization and Denormalization", "markdownPath": "sql/normalization-denormalization.md", "complexity": "Medium" },
+    { "id": "sql-cte-temp-table-table-variable", "slug": "cte-temp-table-table-variable", "title": "CTEs, Temporary Tables, and Table Variables", "markdownPath": "sql/cte-temp-table-table-variable.md", "complexity": "Hard" },
+    { "id": "sql-window-functions", "slug": "window-functions", "title": "Window Functions and Ranking", "markdownPath": "sql/window-functions.md", "complexity": "Medium" },
+    { "id": "sql-partitioning", "slug": "partitioning", "title": "Table Partitioning and Partition Pruning", "markdownPath": "sql/partitioning.md", "complexity": "Hard" },
+    { "id": "sql-sharding", "slug": "sharding", "title": "Sharding versus Partitioning", "markdownPath": "sql/sharding.md", "complexity": "Hard" },
+    { "id": "sql-replication-consistency", "slug": "replication-consistency", "title": "Replication Lag and Consistency", "markdownPath": "sql/replication-consistency.md", "complexity": "Hard" },
+    { "id": "sql-zero-downtime-migrations", "slug": "zero-downtime-migrations", "title": "Zero-Downtime Schema Migrations", "markdownPath": "sql/zero-downtime-migrations.md", "complexity": "Hard" },
+    { "id": "sql-oltp-olap", "slug": "oltp-olap", "title": "OLTP versus OLAP Database Design", "markdownPath": "sql/oltp-olap.md", "complexity": "Medium" },
+    { "id": "sql-distributed-transactions", "slug": "distributed-transactions", "title": "Distributed Transactions and Two-Phase Commit", "markdownPath": "sql/distributed-transactions.md", "complexity": "Hard" },
+    { "id": "sql-sql-injection-prevention", "slug": "sql-injection-prevention", "title": "SQL Injection Prevention", "markdownPath": "sql/sql-injection-prevention.md", "complexity": "Medium" },
+    { "id": "sql-production-query-troubleshooting", "slug": "production-query-troubleshooting", "title": "Troubleshooting a Slow Production Query", "markdownPath": "sql/production-query-troubleshooting.md", "complexity": "Hard" }
+    ,{ "id": "sql-recursive-ctes", "slug": "recursive-ctes", "title": "Recursive CTEs and Hierarchical Data", "markdownPath": "sql/recursive-ctes.md", "complexity": "Hard" }
+    ,{ "id": "sql-gaps-and-islands", "slug": "gaps-and-islands", "title": "Gaps and Islands Problems", "markdownPath": "sql/gaps-and-islands.md", "complexity": "Hard" }
+    ,{ "id": "sql-relational-division", "slug": "relational-division", "title": "Relational Division Queries", "markdownPath": "sql/relational-division.md", "complexity": "Hard" }
+    ,{ "id": "sql-null-three-valued-logic", "slug": "null-three-valued-logic", "title": "NULL and Three-Valued Logic", "markdownPath": "sql/null-three-valued-logic.md", "complexity": "Hard" }
+    ,{ "id": "sql-lateral-joins", "slug": "lateral-joins", "title": "LATERAL Joins and CROSS APPLY", "markdownPath": "sql/lateral-joins.md", "complexity": "Hard" }
+    ,{ "id": "sql-pivot-unpivot", "slug": "pivot-unpivot", "title": "PIVOT and UNPIVOT", "markdownPath": "sql/pivot-unpivot.md", "complexity": "Medium" }
+    ,{ "id": "sql-set-operators", "slug": "set-operators", "title": "SQL Set Operators", "markdownPath": "sql/set-operators.md", "complexity": "Medium" }
+    ,{ "id": "sql-join-algorithms", "slug": "join-algorithms", "title": "Nested Loop, Hash, and Merge Joins", "markdownPath": "sql/join-algorithms.md", "complexity": "Hard" }
+    ,{ "id": "sql-cardinality-estimation", "slug": "cardinality-estimation", "title": "Cardinality Estimation", "markdownPath": "sql/cardinality-estimation.md", "complexity": "Hard" }
+    ,{ "id": "sql-parameter-sniffing", "slug": "parameter-sniffing", "title": "Parameter Sniffing and Plan Cache", "markdownPath": "sql/parameter-sniffing.md", "complexity": "Hard" }
+    ,{ "id": "sql-lock-escalation", "slug": "lock-escalation", "title": "Lock Escalation", "markdownPath": "sql/lock-escalation.md", "complexity": "Hard" }
+    ,{ "id": "sql-temporal-tables", "slug": "temporal-tables", "title": "Temporal Tables and Historical Queries", "markdownPath": "sql/temporal-tables.md", "complexity": "Hard" }
+    ,{ "id": "sql-change-data-capture", "slug": "change-data-capture", "title": "Change Data Capture and Change Tracking", "markdownPath": "sql/change-data-capture.md", "complexity": "Hard" }
+    ,{ "id": "sql-row-level-security", "slug": "row-level-security", "title": "Row-Level Security", "markdownPath": "sql/row-level-security.md", "complexity": "Hard" }
+    ,{ "id": "sql-backup-disaster-recovery", "slug": "backup-disaster-recovery", "title": "Backup and Disaster Recovery", "markdownPath": "sql/backup-disaster-recovery.md", "complexity": "Hard" }
+  ]
+}

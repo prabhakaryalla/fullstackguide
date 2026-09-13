@@ -132,17 +132,23 @@ describe('Navigation persistence flow', () => {
     expect(searchInput).toHaveValue('')
   })
 
-  it.each(['/sql', '/angular'])(
-    'navigating to %s renders the existing "No topics available" empty state',
-    async (path) => {
-      renderWithFeatureRouter(path)
+  it('navigating to /sql renders the SQL topics', async () => {
+    renderWithFeatureRouter('/sql')
 
-      await waitFor(() => {
-        expect(screen.getByText('Fullstack Guide')).toBeInTheDocument()
-      })
-      expect(screen.getByText('No topics available')).toBeInTheDocument()
-    },
-  )
+    await waitFor(() => {
+      expect(screen.getByText('Fullstack Guide')).toBeInTheDocument()
+    })
+    expect(screen.getByText('Find Duplicate Records in a Table')).toBeInTheDocument()
+  })
+
+  it('navigating to /angular renders the existing "No topics available" empty state', async () => {
+    renderWithFeatureRouter('/angular')
+
+    await waitFor(() => {
+      expect(screen.getByText('Fullstack Guide')).toBeInTheDocument()
+    })
+    expect(screen.getByText('No topics available')).toBeInTheDocument()
+  })
 
   it.each([
     ['/dotnet', '.NET'],

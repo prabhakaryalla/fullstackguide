@@ -84,6 +84,174 @@
       "title": "Design URL Shortner",
       "markdownPath": "system-design/design-url-shortner-system-design.md",
       "complexity": "Medium"
+    },
+    {
+      "id": "design-rate-limiter-system-design",
+      "slug": "design-rate-limiter-system-design",
+      "title": "Design a Rate Limiter",
+      "markdownPath": "system-design/design-rate-limiter-system-design.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "design-distributed-cache-system-design",
+      "slug": "design-distributed-cache-system-design",
+      "title": "Design a Distributed Cache",
+      "markdownPath": "system-design/design-distributed-cache-system-design.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "design-chat-application-system-design",
+      "slug": "design-chat-application-system-design",
+      "title": "Design a Chat/Messaging System",
+      "markdownPath": "system-design/design-chat-application-system-design.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "design-news-feed-system-design",
+      "slug": "design-news-feed-system-design",
+      "title": "Design a News Feed System",
+      "markdownPath": "system-design/design-news-feed-system-design.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "distributed-id-generator-system-design",
+      "slug": "distributed-id-generator-system-design",
+      "title": "Distributed Unique ID Generator",
+      "markdownPath": "system-design/distributed-id-generator-system-design.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "design-video-streaming-system-design",
+      "slug": "design-video-streaming-system-design",
+      "title": "Design a Video Streaming Platform",
+      "markdownPath": "system-design/design-video-streaming-system-design.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "design-job-scheduler-system-design",
+      "slug": "design-job-scheduler-system-design",
+      "title": "Design a Distributed Job Scheduler",
+      "markdownPath": "system-design/design-job-scheduler-system-design.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "design-search-autocomplete-system-design",
+      "slug": "design-search-autocomplete-system-design",
+      "title": "Design a Search Autocomplete System",
+      "markdownPath": "system-design/design-search-autocomplete-system-design.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "design-payment-system-system-design",
+      "slug": "design-payment-system-system-design",
+      "title": "Design a Payment/Transaction System",
+      "markdownPath": "system-design/design-payment-system-system-design.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "design-instagram-feed-system-design",
+      "slug": "design-instagram-feed-system-design",
+      "title": "Design Instagram (Social Media Feed)",
+      "markdownPath": "system-design/design-instagram-feed-system-design.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "design-uber-ride-sharing-system-design",
+      "slug": "design-uber-ride-sharing-system-design",
+      "title": "Design Uber (Ride-Sharing)",
+      "markdownPath": "system-design/design-uber-ride-sharing-system-design.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "design-whatsapp-messaging-system-design",
+      "slug": "design-whatsapp-messaging-system-design",
+      "title": "Design WhatsApp (Messaging)",
+      "markdownPath": "system-design/design-whatsapp-messaging-system-design.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "design-netflix-video-streaming-system-design",
+      "slug": "design-netflix-video-streaming-system-design",
+      "title": "Design Netflix (Video Streaming)",
+      "markdownPath": "system-design/design-netflix-video-streaming-system-design.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "design-splitwise-expense-sharing-system-design",
+      "slug": "design-splitwise-expense-sharing-system-design",
+      "title": "Design Splitwise (Expense Sharing)",
+      "markdownPath": "system-design/design-splitwise-expense-sharing-system-design.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "design-google-drive-file-storage-system-design",
+      "slug": "design-google-drive-file-storage-system-design",
+      "title": "Design Google Drive (File Storage)",
+      "markdownPath": "system-design/design-google-drive-file-storage-system-design.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "design-amazon-ecommerce-system-design",
+      "slug": "design-amazon-ecommerce-system-design",
+      "title": "Design Amazon (E-Commerce)",
+      "markdownPath": "system-design/design-amazon-ecommerce-system-design.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "design-google-maps-navigation-system-design",
+      "slug": "design-google-maps-navigation-system-design",
+      "title": "Design Google Maps (Maps & Navigation)",
+      "markdownPath": "system-design/design-google-maps-navigation-system-design.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "design-food-delivery-system-design",
+      "slug": "design-food-delivery-system-design",
+      "title": "Design Food Delivery (Zomato/Swiggy)",
+      "markdownPath": "system-design/design-food-delivery-system-design.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "design-youtube-video-streaming-system-design",
+      "slug": "design-youtube-video-streaming-system-design",
+      "title": "Design YouTube (Video Streaming)",
+      "markdownPath": "system-design/design-youtube-video-streaming-system-design.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "design-slack-realtime-chat-system-design",
+      "slug": "design-slack-realtime-chat-system-design",
+      "title": "Design Slack (Real-Time Chat)",
+      "markdownPath": "system-design/design-slack-realtime-chat-system-design.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "design-realtime-location-tracking-system-design",
+      "slug": "design-realtime-location-tracking-system-design",
+      "title": "Design Real-Time Location Tracking",
+      "markdownPath": "system-design/design-realtime-location-tracking-system-design.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "design-recommendation-system-system-design",
+      "slug": "design-recommendation-system-system-design",
+      "title": "Design a Recommendation System (Netflix/YouTube)",
+      "markdownPath": "system-design/design-recommendation-system-system-design.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "design-google-search-engine-system-design",
+      "slug": "design-google-search-engine-system-design",
+      "title": "Design Google Search (Search Engine)",
+      "markdownPath": "system-design/design-google-search-engine-system-design.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "system-design-big-picture-overview",
+      "slug": "system-design-big-picture-overview",
+      "title": "System Design Big Picture (Architecture Overview)",
+      "markdownPath": "system-design/system-design-big-picture-overview.md",
+      "complexity": "Hard"
     }
   ]
 }

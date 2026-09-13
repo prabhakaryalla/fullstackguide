@@ -12,6 +12,7 @@ import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
 import CircularProgress from '@mui/material/CircularProgress'
 import { useTheme } from '@mui/material/styles'
+import useMediaQuery from '@mui/material/useMediaQuery'
 import WestRoundedIcon from '@mui/icons-material/WestRounded'
 import EastRoundedIcon from '@mui/icons-material/EastRounded'
 import MermaidBlock from '../components/MermaidBlock'
@@ -22,7 +23,9 @@ import dotnetTopics from '../data/dotnet-topics.json'
 import csharpTopics from '../data/csharp-topics.json'
 import databaseTopics from '../data/database-topics.json'
 import aiTopics from '../data/ai-topics.json'
+import javascriptTopics from '../data/javascript-topics.json'
 import reactJsTopics from '../data/react-js-topics.json'
+import sqlTopics from '../data/sql-topics.json'
 import microservicesTopics from '../data/microservices-topics.json'
 import systemDesignTopics from '../data/system-design-topics.json'
 import leetCodeTopics from '../data/leet-code-topics.json'
@@ -34,7 +37,9 @@ const topicConfigMap: Record<string, TopicConfig> = {
   csharp: csharpTopics as TopicConfig,
   cosmos: databaseTopics as TopicConfig,
   ai: aiTopics as TopicConfig,
+  javascript: javascriptTopics as TopicConfig,
   'react-js': reactJsTopics as TopicConfig,
+  sql: sqlTopics as TopicConfig,
   microservices: microservicesTopics as TopicConfig,
   'system-design': systemDesignTopics as TopicConfig,
   'leet-code': leetCodeTopics as TopicConfig,
@@ -50,6 +55,7 @@ type Status = 'loading' | 'ready' | 'unavailable'
 
 export default function TopicInfoPage() {
   const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'))
   const { menuSlug = '', topicSlug = '' } = useParams<{ menuSlug: string; topicSlug: string }>()
   const navigate = useNavigate()
   const [content, setContent] = useState<string | null>(null)
@@ -110,6 +116,39 @@ export default function TopicInfoPage() {
   useEffect(() => {
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' })
   }, [menuSlug, topicSlug])
+
+  // Let ArrowRight/ArrowLeft mirror the Next/Previous Fab buttons — desktop only
+  useEffect(() => {
+    if (isMobile) {
+      return
+    }
+
+    function handleKeyDown(event: KeyboardEvent) {
+      if (!navigationState.showControls) {
+        return
+      }
+
+      if (event.key === 'ArrowRight' && navigationState.nextEnabled && nextTopicSlug) {
+        navigate(`/${menuSlug}/${nextTopicSlug}`)
+      } else if (event.key === 'ArrowLeft' && navigationState.previousEnabled && previousTopicSlug) {
+        navigate(`/${menuSlug}/${previousTopicSlug}`)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  }, [
+    isMobile,
+    menuSlug,
+    navigate,
+    navigationState.nextEnabled,
+    navigationState.previousEnabled,
+    navigationState.showControls,
+    nextTopicSlug,
+    previousTopicSlug,
+  ])
 
   return (
     <Box sx={{ p: 3, pb: 3, maxWidth: 900, mx: 'auto', minHeight: '100%' }}>

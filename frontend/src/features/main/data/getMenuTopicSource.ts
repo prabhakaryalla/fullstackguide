@@ -4,9 +4,11 @@ import azureTopics from './azure-topics.json'
 import csharpTopics from './csharp-topics.json'
 import databaseTopics from './database-topics.json'
 import dotnetTopics from './dotnet-topics.json'
+import javascriptTopics from './javascript-topics.json'
 import leetCodeTopics from './leet-code-topics.json'
 import microservicesTopics from './microservices-topics.json'
 import reactJsTopics from './react-js-topics.json'
+import sqlTopics from './sql-topics.json'
 import systemDesignTopics from './system-design-topics.json'
 
 const topicConfigMap: Record<string, TopicConfig> = {
@@ -15,9 +17,11 @@ const topicConfigMap: Record<string, TopicConfig> = {
   csharp: csharpTopics as TopicConfig,
   cosmos: databaseTopics as TopicConfig,
   dotnet: dotnetTopics as TopicConfig,
+  javascript: javascriptTopics as TopicConfig,
   'leet-code': leetCodeTopics as TopicConfig,
   microservices: microservicesTopics as TopicConfig,
   'react-js': reactJsTopics as TopicConfig,
+  sql: sqlTopics as TopicConfig,
   'system-design': systemDesignTopics as TopicConfig,
 }
 

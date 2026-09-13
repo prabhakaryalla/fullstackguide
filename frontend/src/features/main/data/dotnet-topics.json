@@ -37,6 +37,34 @@
       "complexity": "Medium"
     },
     {
+      "id": "dotnet-hashing-vs-encryption",
+      "slug": "dotnet-hashing-vs-encryption",
+      "title": "Difference between Hashing and Encryption",
+      "markdownPath": "dotnet/dotnet-hashing-vs-encryption.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "dotnet-rsa-algorithm",
+      "slug": "dotnet-rsa-algorithm",
+      "title": "RSA (Rivest\u2013Shamir\u2013Adleman) Algorithm",
+      "markdownPath": "dotnet/dotnet-rsa-algorithm.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "dotnet-ssl-tls-overview",
+      "slug": "dotnet-ssl-tls-overview",
+      "title": "SSL/TLS Overview",
+      "markdownPath": "dotnet/dotnet-ssl-tls-overview.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "dotnet-oauth-authorization-code-pkce",
+      "slug": "dotnet-oauth-authorization-code-pkce",
+      "title": "Authorization Code Flow with PKCE (Manual Implementation)",
+      "markdownPath": "dotnet/dotnet-oauth-authorization-code-pkce.md",
+      "complexity": "Hard"
+    },
+    {
       "id": "dotnet-common-cryptography-methods",
       "slug": "dotnet-common-cryptography-methods",
       "title": "Common Cryptography Methods in .NET",
