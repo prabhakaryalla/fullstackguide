@@ -102,14 +102,8 @@ Plan for:
 
 ## Architecture Snapshot
 
-```mermaid
-flowchart LR
-    U[Users or Clients] --> LB[Azure Load Balancer]
-    LB --> VM1[Backend Instance 1]
-    LB --> VM2[Backend Instance 2]
-    LB --> VM3[Backend Instance 3]
-    NSG[NSG Rules] --> LB
-    LB --> MON[Metrics and Diagnostics]
+```archify
+diagrams/azure-standard-load-balancer.html
 ```
 
 In Standard SKU, NSG and explicit rule design become a first-class part of secure traffic flow.

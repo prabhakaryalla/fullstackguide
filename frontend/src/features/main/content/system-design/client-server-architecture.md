@@ -13,16 +13,8 @@ The client handles presentation and user interaction, while the server handles b
 
 ## Basic Flow
 
-```mermaid
-sequenceDiagram
-    participant Client
-    participant Server
-    participant Database
-
-    Client->>Server: Request (HTTP/API call)
-    Server->>Database: Read/Write data
-    Database-->>Server: Result
-    Server-->>Client: Response
+```archify
+diagrams/sd-client-server-sequence.html
 ```
 
 ## Main Components
@@ -83,11 +75,8 @@ This is the modern standard because it improves security, maintainability, and s
 
 ## Architecture Diagram
 
-```mermaid
-flowchart LR
-    C[Client Application] --> A[Application Server]
-    A --> D[Database]
-    A --> X[External Services]
+```archify
+diagrams/sd-client-server-architecture.html
 ```
 
 ## Advantages

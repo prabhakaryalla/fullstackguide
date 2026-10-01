@@ -1,0 +1,124 @@
+{
+  "menuId": "javascript-programs",
+  "topics": [
+    {
+      "id": "js-implicit-type-coercion-expressions",
+      "slug": "js-implicit-type-coercion-expressions",
+      "title": "Implicit Type Coercion in JavaScript Expressions",
+      "markdownPath": "javascript-programs/js-implicit-type-coercion-expressions.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "js-var-let-hoisting-temporal-dead-zone",
+      "slug": "js-var-let-hoisting-temporal-dead-zone",
+      "title": "var vs let Hoisting and the Temporal Dead Zone",
+      "markdownPath": "javascript-programs/js-var-let-hoisting-temporal-dead-zone.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "js-equality-and-floating-point-comparison",
+      "slug": "js-equality-and-floating-point-comparison",
+      "title": "== vs === and Floating-Point Comparison Pitfalls",
+      "markdownPath": "javascript-programs/js-equality-and-floating-point-comparison.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "js-accidental-global-variables",
+      "slug": "js-accidental-global-variables",
+      "title": "Accidental Global Variables from Chained Assignment",
+      "markdownPath": "javascript-programs/js-accidental-global-variables.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "js-array-length-truncation-side-effects",
+      "slug": "js-array-length-truncation-side-effects",
+      "title": "Array Length Truncation Side Effects",
+      "markdownPath": "javascript-programs/js-array-length-truncation-side-effects.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "js-semicolon-pitfalls-for-loop-and-asi",
+      "slug": "js-semicolon-pitfalls-for-loop-and-asi",
+      "title": "Semicolon Pitfalls: Empty for-Loop Bodies and Automatic Semicolon Insertion",
+      "markdownPath": "javascript-programs/js-semicolon-pitfalls-for-loop-and-asi.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "js-this-binding-nested-functions",
+      "slug": "js-this-binding-nested-functions",
+      "title": "this Binding in Nested Functions vs Arrow Functions",
+      "markdownPath": "javascript-programs/js-this-binding-nested-functions.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "js-function-currying-sum-example",
+      "slug": "js-function-currying-sum-example",
+      "title": "Function Currying: Implementing sum(1)(2)(3)(4)(5)(callback)",
+      "markdownPath": "javascript-programs/js-function-currying-sum-example.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "js-shallow-vs-deep-clone",
+      "slug": "js-shallow-vs-deep-clone",
+      "title": "Shallow Clone vs Deep Clone: Object.assign, Spread, JSON, and Lodash",
+      "markdownPath": "javascript-programs/js-shallow-vs-deep-clone.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "js-prototypal-inheritance-chain-lookup",
+      "slug": "js-prototypal-inheritance-chain-lookup",
+      "title": "Prototypal Inheritance and the Prototype Chain Lookup",
+      "markdownPath": "javascript-programs/js-prototypal-inheritance-chain-lookup.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "js-event-loop-settimeout-ordering",
+      "slug": "js-event-loop-settimeout-ordering",
+      "title": "JavaScript Event Loop and setTimeout Ordering",
+      "markdownPath": "javascript-programs/js-event-loop-settimeout-ordering.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "js-closures-in-loops-var-vs-let",
+      "slug": "js-closures-in-loops-var-vs-let",
+      "title": "Closures Inside Loops: var vs let with setTimeout",
+      "markdownPath": "javascript-programs/js-closures-in-loops-var-vs-let.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "js-objects-as-property-keys",
+      "slug": "js-objects-as-property-keys",
+      "title": "Using Objects as Property Keys (Implicit toString Coercion)",
+      "markdownPath": "javascript-programs/js-objects-as-property-keys.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "js-microtask-vs-macrotask-queue",
+      "slug": "js-microtask-vs-macrotask-queue",
+      "title": "Microtask vs Macrotask Queue Ordering",
+      "markdownPath": "javascript-programs/js-microtask-vs-macrotask-queue.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "js-debounce-vs-throttle",
+      "slug": "js-debounce-vs-throttle",
+      "title": "Implementing Debounce vs Throttle From Scratch",
+      "markdownPath": "javascript-programs/js-debounce-vs-throttle.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "js-array-sort-lexicographic-quirk",
+      "slug": "js-array-sort-lexicographic-quirk",
+      "title": "Array.prototype.sort()'s Default Lexicographic Sort Quirk",
+      "markdownPath": "javascript-programs/js-array-sort-lexicographic-quirk.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "js-generators-iterators-symbol-iterator",
+      "slug": "js-generators-iterators-symbol-iterator",
+      "title": "Generators, Iterators, and Symbol.iterator",
+      "markdownPath": "javascript-programs/js-generators-iterators-symbol-iterator.md",
+      "complexity": "Hard"
+    }
+  ]
+}

@@ -69,16 +69,8 @@ Implications:
 
 ## 5. High-Level Architecture
 
-```mermaid
-flowchart LR
-    Client[Client] --> API[Expense API]
-    API --> ExpenseDB[(Expense/Split DB)]
-    API --> BalanceSvc[Balance Service]
-    BalanceSvc --> BalanceDB[(Pairwise Balance Table)]
-    API --> SimplifySvc[Debt Simplification Service]
-    SimplifySvc --> BalanceDB
-    API --> NotifSvc[Notification Service]
-    NotifSvc --> Client
+```archify
+diagrams/sd-splitwise-architecture.html
 ```
 
 ## 6. Database Schema
@@ -133,11 +125,8 @@ def update_pairwise_balance(group_id, ower, owed_to, delta):
 
 Naive per-expense tracking can leave many small pairwise debts (A owes B, B owes C, C owes A) that all net out but still require multiple payments. Debt simplification finds the **minimum number of transactions** to settle everyone up.
 
-```mermaid
-flowchart LR
-    Balances["Compute each member's<br/>net balance (total owed - total owing)"] --> Split["Split into creditors<br/>(net positive) and debtors<br/>(net negative)"]
-    Split --> Greedy["Greedily match the largest<br/>debtor with the largest creditor,<br/>settle the smaller amount, repeat"]
-    Greedy --> Result[Minimal settling transaction list]
+```archify
+diagrams/sd-splitwise-debt-simplification.html
 ```
 
 ```python
@@ -169,32 +158,14 @@ This greedy approach only computes the **minimum count** of transactions (a well
 
 ## 9. Flow: Adding an Expense and Viewing Balances
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant API
-    participant BalanceSvc as Balance Service
-    participant DB
-
-    User->>API: POST /expenses (amount, split)
-    API->>DB: Insert expense + splits (transaction)
-    API->>BalanceSvc: Update pairwise balances
-    BalanceSvc->>DB: Upsert balances table
-    API-->>User: 201 Created
-
-    User->>API: GET /groups/{id}/balances
-    API->>DB: Read precomputed balances
-    DB-->>API: Pairwise balances
-    API-->>User: Balance summary
+```archify
+diagrams/sd-splitwise-expense-sequence.html
 ```
 
 ## 10. Simplification Pipeline (On-Demand vs. Precomputed)
 
-```mermaid
-flowchart LR
-    Trigger["New expense or settlement"] --> Recompute["Recompute net balances for<br/>affected group (small graph)"]
-    Recompute --> Cache[(Cached simplified<br/>transactions per group)]
-    Request["GET /simplified-debts"] --> Cache
+```archify
+diagrams/sd-splitwise-simplification-pipeline.html
 ```
 
 Since each group's balance graph is small, simplification can be recomputed synchronously on every write and cached — there's no need for an expensive background batch job here, unlike larger-scale pipelines (e.g., recommendations).

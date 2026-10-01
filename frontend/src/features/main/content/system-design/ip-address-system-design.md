@@ -87,13 +87,8 @@ Simplified flow:
 
 ## Architecture Diagram
 
-```mermaid
-flowchart LR
-    C[Client 192.168.1.10] --> R1[Local Router]
-    R1 --> ISP[ISP Router]
-    ISP --> Edge[Cloud Edge]
-    Edge --> LB[Load Balancer Public IP]
-    LB --> S[Server Private IP 10.0.2.5]
+```archify
+diagrams/sd-ipaddress-architecture.html
 ```
 
 ## NAT (Network Address Translation)

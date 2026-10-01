@@ -41,26 +41,8 @@ Think of it like a logical boundary for your messaging resources.
 
 ## Architecture (Simple View)
 
-```mermaid
-flowchart LR
-		P1[Order API] --> Q1[(Queue: orders.in)]
-		P2[Billing API] --> Q1
-
-		subgraph NS[Service Bus Namespace]
-			Q1
-			Q2[(Queue: orders.validated)]
-			Q3[(Queue: notifications)]
-			T1[(Topic: order.events)]
-			S1[Subscription: analytics-sub]
-			S2[Subscription: email-sub]
-		end
-
-		Q1 --> PR[Processor Worker]
-		PR --> Q2
-		PR --> Q3
-		PR --> T1
-		T1 --> S1
-		T1 --> S2
+```archify
+diagrams/azure-service-bus.html
 ```
 
 ---

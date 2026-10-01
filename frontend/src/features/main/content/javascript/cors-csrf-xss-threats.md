@@ -6,15 +6,8 @@ CORS is really a browser security *mechanism*, not an attack itself — but a mi
 
 ## Architecture Diagram
 
-```mermaid
-flowchart TD
-	A[User Browser] -->|Loads Page| B[Trusted Site]
-	A -->|Sends Request| C[Attacker Site]
-	B -->|Cross-Origin Fetch| D[API Server]
-	C -->|Hidden Form or Script| B
-	C -->|Injected Script| A
-	D -->|CORS Headers Decide| A
-	B -->|Reflects Untrusted Input| A
+```archify
+diagrams/js-cors-csrf-xss-architecture.html
 ```
 
 ---
@@ -219,21 +212,8 @@ Executed **inside the victim's browser**, within the **trusted site's own origin
 
 ## Where Do They Happen
 
-```mermaid
-flowchart LR
-	subgraph Browser["Victim's Browser"]
-		direction TB
-		X[XSS: script runs inside trusted origin]
-		C[CSRF: request forged, sent to trusted origin]
-	end
-	subgraph Server["Trusted Server"]
-		S[CORS headers decide if response is shared cross-origin]
-	end
-	Attacker[Attacker Site] -->|Injects script| X
-	Attacker -->|Triggers hidden request| C
-	C --> Server
-	Browser -->|Cross-origin fetch| S
-	S -->|Allow-Origin header| Attacker
+```archify
+diagrams/js-cors-csrf-xss-boundaries.html
 ```
 
 - **CORS** decisions happen at the **browser–server boundary**, enforced by the browser reading response headers from the server.

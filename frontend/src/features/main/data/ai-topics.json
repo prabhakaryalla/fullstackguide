@@ -14,6 +14,146 @@
       "title": "Why Do We Need MCP If We Already Have APIs?",
       "markdownPath": "ai/why-mcp-if-we-already-have-apis.md",
       "complexity": "Easy"
+    },
+    {
+      "id": "what-is-vector-database",
+      "slug": "what-is-vector-database-ai",
+      "title": "What is Vector Database? How do you store data as Vectors?",
+      "markdownPath": "ai/what-is-vector-database.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "what-is-embedding-in-generative-ai",
+      "slug": "what-is-embedding-in-generative-ai",
+      "title": "What is Embedding in Generative AI? How it is generated and used?",
+      "markdownPath": "ai/what-is-embedding-in-generative-ai.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "what-is-mcp-develop-mcp-server-dotnet",
+      "slug": "what-is-mcp-develop-mcp-server-dotnet-ai",
+      "title": "What is MCP? How do you develop MCP server using .NET?",
+      "markdownPath": "ai/what-is-mcp-develop-mcp-server-dotnet.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "what-is-maf-key-components-use-cases",
+      "slug": "what-is-maf-key-components-use-cases-ai",
+      "title": "What is MAF? What are its Key Components and use Cases?",
+      "markdownPath": "ai/what-is-maf-key-components-use-cases.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "vector-search-prompt-to-response-flow",
+      "slug": "vector-search-prompt-to-response-flow-ai",
+      "title": "How does Vector Search work when a user sends a prompt? Explain Complete flow from the user prompt to final response?",
+      "markdownPath": "ai/vector-search-prompt-to-response-flow.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "azure-openai-service-vs-azure-ai-foundry",
+      "slug": "azure-openai-service-vs-azure-ai-foundry-ai",
+      "title": "What is the difference between Azure Open AI service and Azure AI Foundry?",
+      "markdownPath": "ai/azure-openai-service-vs-azure-ai-foundry.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "azure-ai-foundry-major-components",
+      "slug": "azure-ai-foundry-major-components-ai",
+      "title": "Can you explain Azure AI Foundry and its major Components?",
+      "markdownPath": "ai/azure-ai-foundry-major-components.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "mcp-enterprise-implementation-considerations",
+      "slug": "mcp-enterprise-implementation-considerations-ai",
+      "title": "If you need to implement MCP in an enterprise application, what setup, security, Authentication, authorization, tools and infrastructure do you consider?",
+      "markdownPath": "ai/mcp-enterprise-implementation-considerations.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "tokens-in-generative-ai",
+      "slug": "tokens-in-generative-ai",
+      "title": "What are Tokens in Generative AI? How tokens are related to input, output, context window and cost?",
+      "markdownPath": "ai/tokens-in-generative-ai.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "ai-assisted-programming-tools-practices",
+      "slug": "ai-assisted-programming-tools-practices",
+      "title": "AI-Assisted Programming: Tools, Use Cases, and Best Practices",
+      "markdownPath": "ai/ai-assisted-programming-tools-practices.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "rag-architecture-azure-ai-search-openai",
+      "slug": "rag-architecture-azure-ai-search-openai",
+      "title": "How does RAG work on Azure using Azure AI Search and Azure OpenAI?",
+      "markdownPath": "ai/rag-architecture-azure-ai-search-openai.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "fine-tuning-vs-rag-azure-openai",
+      "slug": "fine-tuning-vs-rag-azure-openai",
+      "title": "Fine-Tuning vs RAG in Azure OpenAI: When Would You Choose Each?",
+      "markdownPath": "ai/fine-tuning-vs-rag-azure-openai.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "azure-openai-ptu-vs-pay-as-you-go",
+      "slug": "azure-openai-ptu-vs-pay-as-you-go",
+      "title": "What is Provisioned Throughput (PTU) in Azure OpenAI, and How Does It Differ From Pay-As-You-Go?",
+      "markdownPath": "ai/azure-openai-ptu-vs-pay-as-you-go.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "responsible-ai-governance-azure-openai",
+      "slug": "responsible-ai-governance-azure-openai",
+      "title": "How Do You Implement Responsible AI and Governance for Azure OpenAI?",
+      "markdownPath": "ai/responsible-ai-governance-azure-openai.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "what-is-langchain-chains-agents-memory",
+      "slug": "what-is-langchain-chains-agents-memory",
+      "title": "What is LangChain? How Do Chains, Agents, and Memory Work?",
+      "markdownPath": "ai/what-is-langchain-chains-agents-memory.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "what-is-semantic-kernel",
+      "slug": "what-is-semantic-kernel",
+      "title": "What is Semantic Kernel? How Does It Differ From LangChain?",
+      "markdownPath": "ai/what-is-semantic-kernel.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "what-is-autogen-multi-agent-orchestration",
+      "slug": "what-is-autogen-multi-agent-orchestration",
+      "title": "What is AutoGen? How Does Multi-Agent Conversation Orchestration Work?",
+      "markdownPath": "ai/what-is-autogen-multi-agent-orchestration.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "prompt-engineering-few-shot-chain-of-thought",
+      "slug": "prompt-engineering-few-shot-chain-of-thought",
+      "title": "Prompt Engineering Techniques: Few-Shot, Chain-of-Thought, and System Prompt Design",
+      "markdownPath": "ai/prompt-engineering-few-shot-chain-of-thought.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "how-function-tool-calling-works",
+      "slug": "how-function-tool-calling-works",
+      "title": "How Does Function/Tool Calling Actually Work Under the Hood?",
+      "markdownPath": "ai/how-function-tool-calling-works.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "hallucination-mitigation-evaluation",
+      "slug": "hallucination-mitigation-evaluation",
+      "title": "How Do You Detect and Mitigate Hallucinations, and Evaluate LLM/RAG Output Quality?",
+      "markdownPath": "ai/hallucination-mitigation-evaluation.md",
+      "complexity": "Hard"
     }
   ]
 }

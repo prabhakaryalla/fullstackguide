@@ -66,21 +66,8 @@ Implications:
 
 ## 5. High-Level Architecture
 
-```mermaid
-flowchart LR
-    Client[Client] --> LB[Load Balancer]
-    LB --> CatalogAPI[Catalog/Search API]
-    CatalogAPI --> SearchIndex[(Search Index,<br/>e.g. Elasticsearch)]
-    CatalogAPI --> CatalogCache[(Product Cache)]
-    LB --> CartAPI[Cart Service]
-    CartAPI --> CartDB[(Cart DB)]
-    LB --> OrderAPI[Order Service]
-    OrderAPI --> Orchestrator[Order Orchestrator<br/>Saga]
-    Orchestrator --> InventorySvc[Inventory Service]
-    InventorySvc --> InventoryDB[(Inventory DB)]
-    Orchestrator --> PaymentSvc[Payment Service]
-    Orchestrator --> FulfillmentSvc[Fulfillment/Shipping Service]
-    Orchestrator --> MQ[[Order Event Queue]]
+```archify
+diagrams/sd-amazon-architecture.html
 ```
 
 ## 6. Database Schema
@@ -130,43 +117,14 @@ This single atomic statement (optimistic concurrency via `version`, plus the `>=
 
 Placing an order touches inventory, payment, and fulfillment — three systems that can't share a single database transaction. A **Saga** coordinates them as a sequence of local transactions, each with a compensating action if a later step fails.
 
-```mermaid
-sequenceDiagram
-    participant Client
-    participant OrderAPI as Order API
-    participant Orch as Orchestrator
-    participant Inv as Inventory Svc
-    participant Pay as Payment Svc
-    participant Fulfill as Fulfillment Svc
-
-    Client->>OrderAPI: Checkout (cart, payment method)
-    OrderAPI->>Orch: Start order saga
-    Orch->>Inv: Reserve inventory (atomic decrement)
-    alt Inventory reserved
-        Orch->>Pay: Charge payment
-        alt Payment succeeds
-            Orch->>Fulfill: Create shipment
-            Orch-->>OrderAPI: Order confirmed
-        else Payment fails
-            Orch->>Inv: Compensate: release reserved inventory
-            Orch-->>OrderAPI: Order failed
-        end
-    else Insufficient stock
-        Orch-->>OrderAPI: Out of stock
-    end
-    OrderAPI-->>Client: Final order status
+```archify
+diagrams/sd-amazon-order-saga.html
 ```
 
 ## 9. Catalog Read Pipeline
 
-```mermaid
-flowchart LR
-    Update[Product create/update] --> ProductDB[(Product DB, source of truth)]
-    ProductDB --> Indexer[Async Indexer]
-    Indexer --> SearchIndex[(Search Index)]
-    Indexer --> Cache[(Read-through Cache)]
-    Browse[Client browse/search] --> SearchIndex
-    Browse --> Cache
+```archify
+diagrams/sd-amazon-catalog-indexing.html
 ```
 
 Product edits write to the source-of-truth DB, then propagate asynchronously to the search index and cache — browsing traffic never touches the transactional product DB directly, keeping catalog reads fast and isolated from write load.

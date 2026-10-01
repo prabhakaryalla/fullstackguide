@@ -33,35 +33,14 @@ The app talks locally to the sidecar over localhost or a shared volume.
 
 ## Architecture Diagram
 
-```mermaid
-flowchart LR
-    A[Main Service Container] -->|Local HTTP or gRPC| B[Config Sidecar Container]
-    B -->|mTLS or OAuth| C[Central Config Service]
-    B -->|Secrets reference lookup| D[Secrets Manager]
-    B -->|Telemetry| E[Metrics and Logs Backend]
-    B -->|Push updates or poll| C
-    A -->|Read current config| B
+```archify
+diagrams/sidecar-config-architecture.html
 ```
 
 ## Request Flow for a Config Read
 
-```mermaid
-sequenceDiagram
-    participant App as Main Service
-    participant Sidecar as Config Sidecar
-    participant Config as Config Store
-    participant Secret as Secret Store
-
-    App->>Sidecar: GET /config/payment-service
-    Sidecar->>Sidecar: Check in-memory cache
-    alt Cache miss
-        Sidecar->>Config: Fetch config document
-        Config-->>Sidecar: Config with secret references
-        Sidecar->>Secret: Resolve secret refs
-        Secret-->>Sidecar: Secret values
-        Sidecar->>Sidecar: Build normalized config and cache
-    end
-    Sidecar-->>App: Final config payload
+```archify
+diagrams/sidecar-config-sequence.html
 ```
 
 ## Refresh and Change Propagation
@@ -82,19 +61,8 @@ There are two common refresh strategies.
 
 ## Refresh Lifecycle Diagram
 
-```mermaid
-flowchart TD
-    A[Start Sidecar] --> B[Load Last Known Config]
-    B --> C[Serve Local Reads]
-    C --> D{Refresh Trigger}
-    D -->|Timer| E[Poll Config Store]
-    D -->|Event| F[Receive Config Update]
-    E --> G{Version Changed?}
-    G -->|No| C
-    G -->|Yes| H[Fetch and Validate]
-    F --> H
-    H --> I[Atomically Swap Active Config]
-    I --> C
+```archify
+diagrams/sidecar-refresh-lifecycle.html
 ```
 
 ## Config Safety Patterns
@@ -141,14 +109,8 @@ In Kubernetes, this often pairs with workload identity so sidecar obtains tokens
 
 ## Azure-Oriented Deployment Picture
 
-```mermaid
-flowchart LR
-    A[Pod: App Container] --> B[Pod: Config Sidecar]
-    B --> C[Azure App Configuration]
-    B --> D[Azure Key Vault]
-    B --> E[Managed Identity or Workload Identity]
-    E --> C
-    E --> D
+```archify
+diagrams/sidecar-azure-deployment.html
 ```
 
 ## Operational Metrics You Should Track

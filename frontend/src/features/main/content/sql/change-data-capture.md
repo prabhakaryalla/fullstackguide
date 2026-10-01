@@ -28,6 +28,16 @@ A consumer connects with a logical replication slot (for example, via `pg_recvlo
 
 Consumers should store a checkpoint, process changes in order where required, and make processing idempotent. Retention and cleanup must account for slow consumers.
 
+## Ordering and Delivery Guarantees
+
+- **Ordering**: changes are typically delivered **in commit order per source** (e.g. per table, or per replication slot) — but if you fan out to multiple parallel consumers, you can easily lose that ordering unless you explicitly partition work by a key (e.g. by primary key or aggregate ID) so all changes for the same entity go to the same consumer/partition in order.
+- **At-least-once, not exactly-once, by default**: most CDC systems guarantee a change will be delivered at least once — if a consumer crashes after processing a change but before committing its checkpoint, it will see that same change again on restart. True exactly-once delivery generally isn't provided by the transport layer itself; you build it at the consumer by making processing **idempotent** (e.g. using the change's LSN/sequence number as a natural dedup key, or an upsert instead of an insert).
+- **Can a fast consumer "get ahead"?** No — a consumer can only advance as fast as it processes and checkpoints; it cannot skip ahead of unprocessed changes. It *can*, however, fall behind if it's slower than the rate of change generation, which is why monitoring consumer lag (distance between the latest change and the consumer's checkpoint) matters operationally, same as replication lag.
+
+## When CDC Is Overkill
+
+For simple cases — e.g. maintaining a single denormalized summary column, or triggering one straightforward downstream action — a plain database **trigger** that writes directly to an audit/outbox table can be simpler to operate than standing up a full CDC pipeline (Debezium, a replication slot, a message broker) with its own infrastructure, monitoring, and failure modes. Reach for CDC when you need to reliably stream changes to **multiple independent external consumers**, need minimal impact on the source table's write path (CDC reads the transaction log, not the table itself), or need to feed a data pipeline/search index/cache that must reflect every change without polling.
+
 ## Tricky / Follow-up Questions
 
 **Q: What happens if a consumer fails after processing but before saving its checkpoint?**

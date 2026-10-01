@@ -28,14 +28,8 @@ Build a service like the one behind the Stripe or GitHub API that:
 
 ## 4. High-Level Architecture
 
-```mermaid
-flowchart LR
-    C[Client] --> LB[Load Balancer]
-    LB --> GW[API Gateway]
-    GW --> RL[Rate Limiter Service]
-    RL --> Store[(Shared Counter Store<br/>Redis / Memcached)]
-    GW -->|allowed| API[Backend API]
-    GW -->|blocked - 429| C
+```archify
+diagrams/sd-ratelimiter-architecture.html
 ```
 
 Real systems usually place the rate limiter as a lightweight check inside the API gateway, backed by a fast, shared, in-memory store like Redis so every gateway node sees the same counters.
@@ -69,27 +63,8 @@ Updates must be atomic (e.g., a Redis Lua script or `INCR` + `EXPIRE`) to avoid 
 
 ## 7. Request Flow
 
-```mermaid
-sequenceDiagram
-    participant Client
-    participant Gateway as API Gateway
-    participant Limiter as Rate Limiter
-    participant Redis as Shared Counter Store
-    participant API as Backend
-
-    Client->>Gateway: Request
-    Gateway->>Limiter: Check quota for clientId
-    Limiter->>Redis: Atomic incr/consume token
-    alt Within limit
-        Redis-->>Limiter: allowed
-        Limiter-->>Gateway: OK
-        Gateway->>API: Forward request
-        API-->>Client: 200 Response
-    else Limit exceeded
-        Redis-->>Limiter: denied
-        Limiter-->>Gateway: reject
-        Gateway-->>Client: 429 Too Many Requests + Retry-After
-    end
+```archify
+diagrams/sd-ratelimiter-request-flow-sequence.html
 ```
 
 ## 8. Distributed Rate Limiting Challenges

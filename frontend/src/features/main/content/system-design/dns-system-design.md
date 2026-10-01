@@ -34,22 +34,8 @@ Final source of truth for a domain's DNS records.
 
 ## Resolution Flow
 
-```mermaid
-sequenceDiagram
-    participant Client
-    participant Rec as Recursive Resolver
-    participant Root as Root DNS
-    participant TLD as TLD DNS
-    participant Auth as Authoritative DNS
-
-    Client->>Rec: Query A record for example.com
-    Rec->>Root: Where is .com?
-    Root-->>Rec: TLD server info
-    Rec->>TLD: Where is example.com?
-    TLD-->>Rec: Authoritative server info
-    Rec->>Auth: Query A example.com
-    Auth-->>Rec: IP address + TTL
-    Rec-->>Client: IP address + TTL
+```archify
+diagrams/sd-dns-resolution-sequence.html
 ```
 
 ## Common DNS Record Types

@@ -56,11 +56,38 @@ Real-world example: anti-replay stops an attacker from re-submitting a captured 
 | **Server** | Presents its certificate (public key + identity), proves ownership of the matching private key, encrypts/decrypts application data with the client |
 | **Certificate Authority (CA)** | A trusted third party that verifies a server's identity and signs its certificate, forming the root of trust that lets clients trust servers they've never directly interacted with |
 
-```mermaid
-flowchart LR
-    CA[Certificate Authority] -- issues & signs certificate --> Server
-    Client -- verifies certificate chain --> CA
-    Client <-- encrypted, integrity-checked traffic --> Server
+```archify
+diagrams/dotnet-ssl-tls-trust.html
+```
+
+## Practical ASP.NET Core Configuration
+
+```csharp
+// Program.cs — configure Kestrel to require HTTPS with a specific certificate
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(443, listenOptions =>
+    {
+        listenOptions.UseHttps("certificate.pfx", builder.Configuration["CertPassword"]);
+    });
+});
+
+// Redirect any plain HTTP request to HTTPS
+app.UseHttpsRedirection();
+app.UseHsts(); // tells browsers to only ever use HTTPS for this domain going forward
+```
+
+```csharp
+// Custom certificate validation (e.g. for a private CA in an internal environment) —
+// only override the default validation logic when you have a specific, understood reason to.
+var handler = new HttpClientHandler
+{
+    ServerCertificateCustomValidationCallback = (message, cert, chain, errors) =>
+    {
+        // Validate against your own trusted root instead of the OS default store
+        return errors == System.Net.Security.SslPolicyErrors.None;
+    }
+};
 ```
 
 ## Common Mistakes to Avoid

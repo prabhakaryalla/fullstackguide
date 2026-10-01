@@ -38,18 +38,8 @@ Symmetric crypto is used for speed after secure key agreement.
 
 ## Handshake Simplified
 
-```mermaid
-sequenceDiagram
-    participant Client
-    participant Server
-
-    Client->>Server: ClientHello (supported versions/ciphers)
-    Server-->>Client: ServerHello + Certificate
-    Client->>Client: Verify cert chain + domain name
-    Client->>Server: Key exchange completion
-    Note over Client,Server: Shared session keys established
-    Client-->>Server: Encrypted application data
-    Server-->>Client: Encrypted application data
+```archify
+diagrams/sd-ssltls-handshake-sequence.html
 ```
 
 ## Certificates and PKI
@@ -84,13 +74,8 @@ If validation fails, secure clients should fail the connection.
 
 - internal APIs secured with TLS or mTLS
 
-```mermaid
-flowchart LR
-    User[Client] -->|TLS| Edge[CDN / WAF]
-    Edge -->|TLS| LB[Load Balancer]
-    LB -->|mTLS| SVC1[Service A]
-    SVC1 -->|mTLS| SVC2[Service B]
-    SVC2 -->|TLS| DB[(Managed DB)]
+```archify
+diagrams/sd-ssltls-layers.html
 ```
 
 ## TLS Termination Strategy

@@ -29,32 +29,18 @@ Design a system like a Redis Cluster or Memcached pool that:
 
 ## 4. High-Level Architecture
 
-```mermaid
-flowchart LR
-    App[Application Servers] --> Client[Cache Client Library]
-    Client -->|consistent hashing| N1[(Cache Node 1)]
-    Client -->|consistent hashing| N2[(Cache Node 2)]
-    Client -->|consistent hashing| N3[(Cache Node 3)]
-    N1 -.replica.-> N1R[(Replica 1)]
-    N2 -.replica.-> N2R[(Replica 2)]
-    N3 -.replica.-> N3R[(Replica 3)]
-    App --> DB[(Primary Database)]
-```
+The client library (or a proxy layer) decides which node owns a key and routes requests directly there — this is what makes the cache "distributed" rather than a single shared instance. This diagram is interactive ([Archify](https://github.com/tt-a1i/archify)): pan/zoom, click a node to trace its connections, and switch between the curated views (request path, replication, database fallback) using the panel inside the frame.
 
-The client library (or a proxy layer) decides which node owns a key and routes requests directly there — this is what makes the cache "distributed" rather than a single shared instance.
+```archify
+diagrams/distributed-cache-architecture.html
+```
 
 ## 5. Consistent Hashing
 
 Instead of `hash(key) % N` (which reshuffles almost everything when N changes), consistent hashing places both nodes and keys on a hash ring:
 
-```mermaid
-flowchart TB
-    subgraph Ring["Hash Ring"]
-        direction LR
-        A((Node A)) --> B((Node B)) --> C((Node C)) --> A
-    end
-    K1[Key: user:123] -.maps clockwise to.-> A
-    K2[Key: user:456] -.maps clockwise to.-> B
+```archify
+diagrams/sd-consistent-hashing-ring.html
 ```
 
 - Each key maps clockwise to the nearest node on the ring.
@@ -79,21 +65,8 @@ Redis and Memcached both default to approximate LRU for performance reasons (exa
 
 ## 8. Cache Miss / Read Flow
 
-```mermaid
-sequenceDiagram
-    participant App
-    participant Cache
-    participant DB
-
-    App->>Cache: GET user:123
-    alt Cache hit
-        Cache-->>App: cached value
-    else Cache miss
-        Cache-->>App: nil
-        App->>DB: query user:123
-        DB-->>App: value
-        App->>Cache: SET user:123 (with TTL)
-    end
+```archify
+diagrams/sd-cache-miss-read-flow.html
 ```
 
 ## 9. The Thundering Herd / Cache Stampede Problem

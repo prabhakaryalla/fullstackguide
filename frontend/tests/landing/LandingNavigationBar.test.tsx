@@ -1,12 +1,14 @@
 import { screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { axe, toHaveNoViolations } from 'jest-axe'
-import { describe, it, expect, vi } from 'vitest'
+import { afterEach, describe, it, expect, vi } from 'vitest'
 import type { ComponentProps } from 'react'
-import { MemoryRouter } from 'react-router-dom'
+import { MemoryRouter, useLocation } from 'react-router-dom'
 import LandingNavigationBar from '../../src/features/landing/components/LandingNavigationBar'
 import type { TopNavigationGroupView } from '../../src/features/landing/model/types'
 import { renderWithThemeMode } from '../testUtils/renderWithThemeMode'
+import ActiveInterviewProvider from '../../src/features/interview-builder/context/ActiveInterviewContext'
+import { ACTIVE_INTERVIEW_STORAGE_KEY } from '../../src/features/interview-builder/data/activeInterviewStorage'
 
 expect.extend(toHaveNoViolations)
 
@@ -21,21 +23,33 @@ const groups: TopNavigationGroupView[] = [
   },
 ]
 
+function LocationDisplay() {
+  const location = useLocation()
+  return <div data-testid="location">{location.pathname}</div>
+}
+
 function renderNavigationBar(props: Partial<ComponentProps<typeof LandingNavigationBar>> = {}) {
   return renderWithThemeMode(
-    <MemoryRouter>
-      <LandingNavigationBar
-        groups={groups}
-        activeGroupId={null}
-        onHomeSelect={vi.fn()}
-        onSelect={vi.fn()}
-        {...props}
-      />
-    </MemoryRouter>,
+    <ActiveInterviewProvider>
+      <MemoryRouter>
+        <LandingNavigationBar
+          groups={groups}
+          activeGroupId={null}
+          onHomeSelect={vi.fn()}
+          onSelect={vi.fn()}
+          {...props}
+        />
+        <LocationDisplay />
+      </MemoryRouter>
+    </ActiveInterviewProvider>,
   )
 }
 
 describe('LandingNavigationBar', () => {
+  afterEach(() => {
+    window.localStorage.clear()
+  })
+
   it('exposes banner and navigation landmarks', () => {
     renderNavigationBar()
 
@@ -43,12 +57,12 @@ describe('LandingNavigationBar', () => {
     expect(screen.getByRole('navigation', { name: /topic navigation/i })).toBeInTheDocument()
   })
 
-  it('renders the Fullstack Guide title', () => {
+  it('renders the FS Guide title', () => {
     renderNavigationBar()
-    expect(screen.getByText('Fullstack Guide')).toBeInTheDocument()
+    expect(screen.getByText('FS Guide')).toBeInTheDocument()
   })
 
-  it('navigates home when Fullstack Guide is clicked', async () => {
+  it('navigates home when FS Guide is clicked', async () => {
     const user = userEvent.setup()
     const handleHomeSelect = vi.fn()
 
@@ -96,6 +110,14 @@ describe('LandingNavigationBar', () => {
     expect(await axe(container)).toHaveNoViolations()
   })
 
+  it('renders a "Browse by Tags" control that navigates to /tags', async () => {
+    const user = userEvent.setup()
+    renderNavigationBar()
+
+    await user.click(screen.getByRole('button', { name: /browse by tags/i }))
+    expect(screen.getByTestId('location')).toHaveTextContent('/tags')
+  })
+
   // Skipped: tabbing onto a parent group with a submenu (e.g. "Backend") opens it and
   // MUI's MenuList autofocuses its first item, so focus does not stay on the trigger button
   // as this test (written for the pre-refactor flat menu) expects. Covered instead by the
@@ -138,6 +160,31 @@ describe('LandingNavigationBar', () => {
     expect(screen.getByRole('button', { name: /switch to (dark|light) theme/i })).toHaveClass(
       'MuiIconButton-colorInherit',
     )
+  })
+
+  it('disables the "Go to live interview" button when no interview is in progress', () => {
+    renderNavigationBar()
+    expect(screen.getByRole('button', { name: /go to live interview/i })).toBeDisabled()
+  })
+
+  it('enables "Go to live interview" and jumps straight to the stored run URL when an interview is in progress', async () => {
+    const user = userEvent.setup()
+    window.localStorage.setItem(
+      ACTIVE_INTERVIEW_STORAGE_KEY,
+      JSON.stringify({
+        search: 'menus=azure&items=azure:azure-service-bus&at=1',
+        currentIndex: 1,
+        totalQuestions: 2,
+        updatedAt: Date.now(),
+      }),
+    )
+    renderNavigationBar()
+
+    const button = screen.getByRole('button', { name: /go to live interview/i })
+    expect(button).toBeEnabled()
+
+    await user.click(button)
+    expect(screen.getByTestId('location')).toHaveTextContent('/interview-builder/run')
   })
 })
 

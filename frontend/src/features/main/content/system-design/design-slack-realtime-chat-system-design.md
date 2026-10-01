@@ -67,18 +67,8 @@ Real-time traffic runs over a persistent WebSocket connection; logical operation
 
 ## 5. High-Level Architecture
 
-```mermaid
-flowchart LR
-    Client[Client] --> GW[WebSocket Gateway]
-    GW --> ChannelRouter[Channel Fan-out Router]
-    ChannelRouter --> PresenceStore[(Presence/Session Store<br/>user_id -> gateway node)]
-    ChannelRouter --> MsgStore[(Message Store,<br/>durable, partitioned by channel)]
-    ChannelRouter --> SearchIndexer[Async Search Indexer]
-    SearchIndexer --> SearchIndex[(Inverted Search Index)]
-    Client -->|search query| SearchAPI[Search API]
-    SearchAPI --> SearchIndex
-    Client -->|file upload| FileSvc[File Service]
-    FileSvc --> ObjStore[(Object Storage)]
+```archify
+diagrams/sd-slack-architecture.html
 ```
 
 ## 6. Database Schema
@@ -109,49 +99,24 @@ flowchart LR
 
 ## 7. Channel Fan-out Flow
 
-```mermaid
-sequenceDiagram
-    participant Sender
-    participant GW as Gateway
-    participant Router as Channel Router
-    participant Presence as Presence Store
-    participant MsgStore as Message Store
-    participant Member as Other Channel Members
-
-    Sender->>GW: send(clientMsgId, channelId, text)
-    GW->>Router: Route message
-    Router->>MsgStore: Persist message (durable write)
-    Router->>Presence: Lookup gateway nodes for all online channel members
-    par Fan-out to each online member
-        Router->>Member: Push message over their WebSocket
-    end
-    Router-->>GW: Ack to sender
+```archify
+diagrams/sd-slack-fanout-sequence.html
 ```
 
 Because channel sizes are moderate (unlike a social-feed celebrity account), the router can fan out live pushes directly to every currently-connected member rather than needing a precomputed inbox/pull-hybrid model.
 
 ## 8. Search Indexing Pipeline
 
-```mermaid
-flowchart LR
-    NewMessage[New message persisted] --> IndexQueue[[Indexing Queue]]
-    IndexQueue --> Tokenizer[Tokenize + normalize text]
-    Tokenizer --> InvertedIndex[(Inverted Index:<br/>token -> message postings)]
-    SearchQuery["Search: 'deploy tuesday'"] --> QueryPlanner[Tokenize query,<br/>intersect posting lists]
-    QueryPlanner --> InvertedIndex
-    InvertedIndex --> RankedResults[Rank by relevance + recency]
+```archify
+diagrams/sd-slack-search-indexing.html
 ```
 
 Indexing happens asynchronously after the message is durably stored, so sending a message never waits on search-index updates — search results simply lag live messages by a very short delay.
 
 ## 9. Presence & Multi-Device Sync
 
-```mermaid
-flowchart LR
-    Connect[Client connects] --> GW[WebSocket Gateway]
-    GW --> Presence[(Presence Store:<br/>user online, which gateway node)]
-    Disconnect[Client disconnects/times out] --> Presence
-    Presence --> Broadcast[Broadcast presence change<br/>to relevant channels' members]
+```archify
+diagrams/sd-slack-presence-sync.html
 ```
 
 Presence uses the same connection-gateway + session-store pattern as other real-time messaging systems (see Design WhatsApp), with presence changes broadcast to channel members who have that user in a shared channel.

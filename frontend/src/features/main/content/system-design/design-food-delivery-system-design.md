@@ -67,21 +67,8 @@ Implications:
 
 ## 5. High-Level Architecture
 
-```mermaid
-flowchart LR
-    Customer[Customer App] --> API[Order API]
-    Restaurant[Restaurant App] --> API
-    API --> OrderDB[(Order DB)]
-    API --> MenuCache[(Restaurant/Menu Cache)]
-    API --> MatchSvc[Delivery Matching Service]
-    MatchSvc --> GeoIndex[(Delivery Partner<br/>Geo Index)]
-    DeliveryPartner[Delivery Partner App] -->|location pings| GeoIndex
-    API --> ETASvc[ETA Service]
-    ETASvc --> PrepTimeModel[Kitchen Prep Time Estimator]
-    ETASvc --> TravelTimeModel[Travel Time Estimator]
-    API --> NotifSvc[Notification Service]
-    NotifSvc --> Customer
-    NotifSvc --> DeliveryPartner
+```archify
+diagrams/sd-food-delivery-architecture.html
 ```
 
 ## 6. Database Schema
@@ -113,55 +100,24 @@ flowchart LR
 
 ## 7. Order State Machine
 
-```mermaid
-stateDiagram-v2
-    [*] --> Placed
-    Placed --> Accepted: restaurant accepts
-    Placed --> Cancelled: restaurant rejects / timeout
-    Accepted --> Preparing
-    Preparing --> ReadyForPickup
-    ReadyForPickup --> PickedUp: delivery partner collects
-    PickedUp --> Delivered
-    Accepted --> Cancelled: customer/restaurant cancels
+```archify
+diagrams/sd-food-delivery-lifecycle.html
 ```
 
 Each transition is driven by an explicit event (restaurant action, partner action, or system timeout), and every state change is recorded so both the customer and delivery partner apps can subscribe to live updates.
 
 ## 8. Delivery Partner Matching Flow
 
-```mermaid
-sequenceDiagram
-    participant Restaurant
-    participant API
-    participant MatchSvc as Matching Service
-    participant GeoIndex as Geo Index
-    participant Partner
-
-    Restaurant->>API: Order marked "ready_for_pickup" (or nearing ready)
-    API->>MatchSvc: Find delivery partner
-    MatchSvc->>GeoIndex: Nearby available partners (low current_load preferred)
-    GeoIndex-->>MatchSvc: Candidate list
-    MatchSvc->>Partner: Offer delivery (with timeout)
-    alt Partner accepts
-        Partner-->>MatchSvc: Accept
-        MatchSvc->>API: Assigned
-        API-->>Restaurant: Partner assigned
-    else Decline/timeout
-        MatchSvc->>Partner: Offer to next candidate
-    end
+```archify
+diagrams/sd-food-delivery-matching.html
 ```
 
 Matching is often triggered slightly **before** food is fully ready (based on the prep-time estimate), so the delivery partner arrives close to pickup-ready time instead of waiting idle at the restaurant.
 
 ## 9. Composite ETA Pipeline
 
-```mermaid
-flowchart LR
-    OrderPlaced[Order placed] --> PrepEstimate["Estimate prep time<br/>(restaurant avg + current kitchen load)"]
-    PrepEstimate --> MatchTiming["Trigger partner matching<br/>~X min before food is ready"]
-    MatchTiming --> TravelEstimate["Estimate travel time<br/>(routing engine, live traffic)"]
-    TravelEstimate --> CompositeETA["Total ETA = max(prep_remaining, partner_arrival)<br/>+ travel_time_to_customer"]
-    CompositeETA --> Customer[Shown to customer,<br/>refined as order progresses]
+```archify
+diagrams/sd-food-delivery-eta.html
 ```
 
 Unlike ride-sharing (where ETA is purely a travel-time problem), food delivery ETA blends a variable kitchen-side estimate with a variable travel-side estimate, and re-estimates continuously as the order moves through its state machine.

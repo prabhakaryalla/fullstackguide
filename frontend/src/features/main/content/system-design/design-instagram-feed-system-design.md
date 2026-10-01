@@ -68,20 +68,8 @@ Implications:
 
 ## 5. High-Level Architecture
 
-```mermaid
-flowchart LR
-    Client[Mobile/Web Client] --> LB[Load Balancer]
-    LB --> API[Post/Follow/Feed API]
-    API --> PostDB[(Post Metadata DB)]
-    API --> GraphDB[(Social Graph DB<br/>followers/following)]
-    API --> ObjStore[(Object Storage<br/>images/video)]
-    ObjStore --> CDN[CDN]
-    API --> FanoutSvc[Fan-out Service]
-    FanoutSvc --> MQ[[Message Queue]]
-    MQ --> FeedWorkers[Fan-out Workers]
-    FeedWorkers --> FeedCache[(Feed Inbox Cache<br/>per user, e.g. Redis)]
-    Client -->|feed read| API
-    API --> FeedCache
+```archify
+diagrams/sd-instagram-architecture.html
 ```
 
 ## 6. Database Schema
@@ -126,14 +114,8 @@ Feed is computed at read time by merging recent posts from all followed accounts
 
 ### Hybrid Approach (used in practice)
 
-```mermaid
-flowchart TB
-    NewPost[New Post Created] --> Check{Author has<br/>huge follower count?}
-    Check -->|No, regular user| Push[Fan-out on write:<br/>push post_id to every<br/>follower's feed_inbox]
-    Check -->|Yes, celebrity| Skip[Skip push fan-out]
-    Read[Client requests feed] --> Merge[Merge:<br/>precomputed feed_inbox<br/>+ live pull from celebrities followed]
-    Push -.-> Merge
-    Skip -.-> Merge
+```archify
+diagrams/sd-instagram-hybrid-fanout.html
 ```
 
 - Regular accounts: fan-out on write (cheap, since follower counts are small).
@@ -142,12 +124,8 @@ flowchart TB
 
 ## 8. Feed Ranking Pipeline
 
-```mermaid
-flowchart LR
-    Candidates[Candidate posts<br/>from feed_inbox + celebrity pull] --> Features[Feature extraction:<br/>recency, affinity, engagement]
-    Features --> Ranker[Ranking model<br/>ML-scored or weighted formula]
-    Ranker --> Sorted[Sorted feed page]
-    Sorted --> Client
+```archify
+diagrams/sd-instagram-feed-ranking.html
 ```
 
 A simple, interview-friendly ranking score:
@@ -162,27 +140,8 @@ Real systems replace the weighted formula with a learned ranking model, but the 
 
 ## 9. Flow: Posting and Feed Read
 
-```mermaid
-sequenceDiagram
-    participant Author
-    participant API
-    participant MQ as Queue
-    participant Worker as Fan-out Worker
-    participant Inbox as Feed Inbox Cache
-    participant Viewer
-
-    Author->>API: POST /posts (media, caption)
-    API->>MQ: Enqueue fan-out job (post_id, author_id)
-    API-->>Author: 201 Created
-    MQ->>Worker: Deliver job
-    Worker->>Worker: Fetch follower list (skip if celebrity)
-    Worker->>Inbox: Push post_id into each follower's inbox
-
-    Viewer->>API: GET /feed
-    API->>Inbox: Read viewer's precomputed inbox
-    API->>API: Merge with any followed celebrities (pull)
-    API->>API: Rank and paginate
-    API-->>Viewer: Feed page
+```archify
+diagrams/sd-instagram-posting-feed-sequence.html
 ```
 
 ## 10. Key Components

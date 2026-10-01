@@ -153,6 +153,37 @@ Goal: perform final verification and append any missing work.
 
 Converge helps ensure implementation coverage is complete by comparing built work with planned/spec artifacts.
 
+## Concrete Example: A Minimal spec.md
+
+```markdown
+# Feature: Export Order History as CSV
+
+## User Outcome
+As a customer, I can download my last 12 months of orders as a CSV file.
+
+## Functional Requirements
+- FR-1: Export must include order date, order ID, total, and status.
+- FR-2: Export limited to orders belonging to the authenticated user.
+- FR-3: Empty result set still returns a valid CSV with headers only.
+
+## Constraints
+- Must reuse the existing /api/orders authorization middleware.
+- Response size capped at 10,000 rows per request.
+```
+
+Even a small, concrete spec like this is enough to drive a meaningful `/speckit.plan` — the point isn't length, it's making the requirements and constraints explicit and testable rather than living only in a conversation or ticket title.
+
+## Decision Guide: Which Optional Steps to Skip
+
+- **Skip `/speckit.clarify`** only when the feature is small and requirements are already unambiguous (e.g. a well-understood bug fix or a tiny, fully-specified endpoint) — run it whenever multiple reasonable interpretations of the requirement exist.
+- **Skip `/speckit.checklist`** for low-risk, low-visibility internal tooling — keep it for anything user-facing or with compliance/security implications, where a definition-of-done checklist catches gaps before they become expensive to fix.
+- **Never skip `/speckit.analyze`** on a multi-person or multi-week feature — the cost of catching a spec/plan/tasks inconsistency before implementation is far lower than catching it mid-implementation.
+- **Never skip `/speckit.converge`** — it's the step that catches partially-implemented requirements, and skipping it is how "done" work quietly ships with missing edge cases.
+
+## Handling Invalidated Assumptions Mid-Sprint
+
+If an assumption the spec was built on turns out to be wrong partway through implementation (e.g. a downstream API doesn't support a field the plan assumed was available), don't silently patch around it in code — go back to the spec: update `spec.md` to reflect the new reality, re-run `/speckit.plan` (or at least manually reconcile `plan.md`) so the artifacts and the code stay in sync, and only then continue `/speckit.implement`. Treating the spec as a living document that gets updated when reality changes — rather than a one-time upfront document — is what keeps SDD's traceability benefit intact instead of the artifacts silently drifting out of date from the actual shipped behavior.
+
 ## Example: This Project as an SDD Reference
 
 In this repository, feature folders under specs/ follow the SDD lifecycle pattern, for example:

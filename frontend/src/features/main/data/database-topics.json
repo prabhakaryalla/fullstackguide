@@ -7,6 +7,27 @@
       "title": "Azure Cosmos DB",
       "markdownPath": "database/azure-cosmos-db.md",
       "complexity": "Hard"
+    },
+    {
+      "id": "nosql-vs-sql",
+      "slug": "nosql-vs-sql",
+      "title": "NoSQL vs SQL: When to Choose Which",
+      "markdownPath": "database/nosql-vs-sql.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "mongodb-fundamentals-document-indexing",
+      "slug": "mongodb-fundamentals-document-indexing",
+      "title": "MongoDB Fundamentals: Document Model and Indexing",
+      "markdownPath": "database/mongodb-fundamentals-document-indexing.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "polyglot-persistence-database-choice",
+      "slug": "polyglot-persistence-database-choice",
+      "title": "Polyglot Persistence: Choosing the Right Database Per Workload",
+      "markdownPath": "database/polyglot-persistence-database-choice.md",
+      "complexity": "Hard"
     }
   ]
 }

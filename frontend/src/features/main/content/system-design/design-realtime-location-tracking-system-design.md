@@ -64,17 +64,8 @@ Implications:
 
 ## 5. High-Level Architecture
 
-```mermaid
-flowchart LR
-    Device[Tracked Device] --> IngestGW[Ingestion Gateway<br/>WebSocket/MQTT]
-    IngestGW --> Stream[[Location Event Stream,<br/>e.g. Kafka, partitioned by entity_id]]
-    Stream --> LiveFanout[Live Fan-out Service<br/>Pub/Sub]
-    LiveFanout --> SubGW[Subscriber Gateway]
-    SubGW --> Subscriber[Subscriber Client]
-    Stream --> GeofenceSvc[Geofence Evaluation Service]
-    GeofenceSvc --> AlertQueue[[Alert Queue]]
-    Stream --> HistoryWriter[History Writer]
-    HistoryWriter --> HistoryStore[(Time-Series / History Store,<br/>with downsampling)]
+```archify
+diagrams/sd-realtime-location-architecture.html
 ```
 
 ## 6. Database Schema
@@ -102,32 +93,16 @@ flowchart LR
 
 ## 7. Ingestion & Fan-out Pipeline
 
-```mermaid
-flowchart LR
-    Ping[Device location ping] --> IngestGW[Ingestion Gateway]
-    IngestGW --> Partition["Publish to stream,<br/>partitioned by entity_id<br/>(preserves per-entity order)"]
-    Partition --> CurrentLoc[(Update current_location<br/>in-memory store)]
-    Partition --> Fanout[Fan-out to live subscribers<br/>of this entity_id]
-    Partition --> Geofence[Evaluate geofence rules]
-    Partition --> HistoryAsync[Async write to history store]
+```archify
+diagrams/sd-realtime-location-ingestion-pipeline.html
 ```
 
 Partitioning the event stream by `entity_id` guarantees that updates for a single device are processed in order, while different devices are processed fully in parallel across partitions — this is the key structural decision enabling both ordering correctness and horizontal scale.
 
 ## 8. Live Subscription Flow
 
-```mermaid
-sequenceDiagram
-    participant Subscriber
-    participant SubGW as Subscriber Gateway
-    participant PubSub as Live Fan-out (Pub/Sub)
-    participant Device
-
-    Subscriber->>SubGW: subscribe(entityId)
-    SubGW->>PubSub: Register interest in entityId's topic
-    Device->>PubSub: Publish new location (via ingestion pipeline)
-    PubSub-->>SubGW: Push update for entityId
-    SubGW-->>Subscriber: Live location update
+```archify
+diagrams/sd-realtime-location-subscription-sequence.html
 ```
 
 Using a pub/sub topic per entity (rather than polling) keeps subscriber-facing latency low and avoids wasteful repeated queries for entities that haven't moved.
@@ -150,14 +125,8 @@ Geofence checks compare the previous and new position against each relevant shap
 
 ## 10. Historical Query & Retention Pipeline
 
-```mermaid
-flowchart LR
-    RawWrites[Raw location writes] --> RecentStore[(Full-resolution store,<br/>e.g. last 24-48h)]
-    RecentStore --> Downsample[Scheduled downsampling job]
-    Downsample --> LongTermStore[(Downsampled long-term store,<br/>e.g. 1 point/minute)]
-    Query["GET /entities/{id}/history"] --> Router{Time range<br/>within recent window?}
-    Router -->|Yes| RecentStore
-    Router -->|No| LongTermStore
+```archify
+diagrams/sd-realtime-location-history-pipeline.html
 ```
 
 Downsampling older data trades path granularity for bounded long-term storage cost — most historical-replay use cases don't need full per-second resolution for data from weeks ago.

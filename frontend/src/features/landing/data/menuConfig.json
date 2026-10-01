@@ -2,16 +2,20 @@
   "items": [
     { "id": "dotnet", "label": ".NET", "order": 1 },
     { "id": "azure", "label": "Azure", "order": 2 },
-    { "id": "csharp", "label": "C#", "order": 3 },
-    { "id": "cosmos", "label": "Cosmos", "order": 4 },
-    { "id": "react-js", "label": "React JS", "order": 5 },
-    { "id": "angular", "label": "Angular", "order": 6 },
-    { "id": "javascript", "label": "JavaScript", "order": 7 },
-    { "id": "design-patterns", "label": "Design Patterns", "order": 8 },
-    { "id": "ai", "label": "AI", "order": 9 },
-    { "id": "system-design", "label": "System Design", "order": 10 },
-    { "id": "microservices", "label": "Microservices", "order": 11 },
-    { "id": "sql", "label": "SQL", "order": 12 },
-    { "id": "leet-code", "label": "Leet Code", "order": 13 }
+    { "id": "aws", "label": "AWS", "order": 3 },
+    { "id": "csharp", "label": "C#", "order": 4 },
+    { "id": "csharp-programs", "label": "C# Programs", "order": 5 },
+    { "id": "cosmos", "label": "Cosmos", "order": 6 },
+    { "id": "react-js", "label": "React JS", "order": 7 },
+    { "id": "angular", "label": "Angular", "order": 8 },
+    { "id": "javascript", "label": "JavaScript", "order": 9 },
+    { "id": "javascript-programs", "label": "JavaScript Programs", "order": 10 },
+    { "id": "design-patterns", "label": "Design Patterns", "order": 11 },
+    { "id": "ai", "label": "AI", "order": 12 },
+    { "id": "system-design", "label": "System Design", "order": 13 },
+    { "id": "microservices", "label": "Microservices", "order": 14 },
+    { "id": "sql", "label": "SQL", "order": 15 },
+    { "id": "sql-programs", "label": "SQL Programs", "order": 16 },
+    { "id": "leet-code", "label": "Leet Code", "order": 17 }
   ]
 }

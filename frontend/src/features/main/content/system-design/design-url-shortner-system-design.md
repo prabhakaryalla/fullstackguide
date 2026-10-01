@@ -32,17 +32,8 @@ Build a service like bit.ly or tinyurl that supports:
 
 ## 4. High-Level Architecture
 
-```mermaid
-flowchart LR
-    U[User] --> DNS[DNS / CDN]
-    DNS --> LB[Load Balancer]
-    LB --> API[URL Shortener API]
-    API --> C[(Cache)]
-    API --> DB[(Primary DB)]
-    API --> KGS[Key Generation Service]
-    API --> Q[Event Queue]
-    Q --> ANA[Analytics Processor]
-    ANA --> ADW[(Analytics Store)]
+```archify
+diagrams/sd-urlshortener-architecture.html
 ```
 
 Core path:
@@ -153,25 +144,8 @@ For medium design, Auto-Increment + Base62 is acceptable with notes on predictab
 
 ## 8. Redirect Flow
 
-```mermaid
-sequenceDiagram
-    participant Client
-    participant Edge as CDN/LB
-    participant API as Redirect Service
-    participant Cache
-    participant DB
-
-    Client->>Edge: GET /abc123
-    Edge->>API: Forward request
-    API->>Cache: Lookup abc123
-    alt Cache hit
-        Cache-->>API: long URL
-    else Cache miss
-        API->>DB: Query short_code
-        DB-->>API: long URL
-        API->>Cache: Populate cache
-    end
-    API-->>Client: 301 Redirect Location: long URL
+```archify
+diagrams/sd-urlshortener-redirect-sequence.html
 ```
 
 This path must be optimized for high QPS.

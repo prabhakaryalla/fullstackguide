@@ -20,12 +20,8 @@ With a load balancer:
 
 ## Core Flow
 
-```mermaid
-flowchart LR
-    U[Users] --> LB[Load Balancer]
-    LB --> A1[App Server 1]
-    LB --> A2[App Server 2]
-    LB --> A3[App Server 3]
+```archify
+diagrams/sd-loadbalancer-core-flow.html
 ```
 
 The load balancer receives requests and forwards each one using a balancing algorithm.
@@ -99,18 +95,8 @@ If backend is unhealthy:
 - it is removed from rotation
 - traffic is sent only to healthy instances
 
-```mermaid
-sequenceDiagram
-    participant LB as Load Balancer
-    participant S1 as Server 1
-    participant S2 as Server 2
-
-    LB->>S1: Health check
-    S1-->>LB: 200 OK
-    LB->>S2: Health check
-    S2--xLB: Timeout/Failure
-    Note over LB: Mark S2 unhealthy
-    LB->>S1: Route user requests
+```archify
+diagrams/sd-loadbalancer-healthcheck-sequence.html
 ```
 
 Health checks are critical for automatic self-healing.
@@ -154,12 +140,8 @@ L7 load balancers can enable:
 - canary rollout (5% to new version)
 - blue-green switchovers
 
-```mermaid
-flowchart TB
-    C[Client Request] --> LB[L7 Load Balancer]
-    LB -->|/api| API[API Service]
-    LB -->|/assets| CDN[Static Service/CDN]
-    LB -->|/admin| ADM[Admin Service]
+```archify
+diagrams/sd-loadbalancer-routing.html
 ```
 
 ## Global vs Regional Load Balancing

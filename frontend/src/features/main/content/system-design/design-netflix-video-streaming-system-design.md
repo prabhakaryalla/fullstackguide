@@ -63,19 +63,8 @@ Implications:
 
 ## 5. High-Level Architecture
 
-```mermaid
-flowchart LR
-    Studio[Content Ingestion] --> RawStore[(Raw Video Storage)]
-    RawStore --> Queue[[Transcoding Job Queue]]
-    Queue --> Workers[Transcoding Workers<br/>parallel chunks]
-    Workers --> Processed[(Processed Renditions +<br/>Manifests)]
-    Processed --> Origin[Origin Storage]
-    Origin --> CDN[CDN / Open Connect<br/>edge caches inside ISPs]
-    Client[Client Device] --> CDN
-    Client --> API[Playback/Metadata API]
-    API --> ProgressDB[(Watch Progress DB)]
-    API --> RecoSvc[Recommendation Service]
-    RecoSvc --> RecoCache[(Precomputed Recommendations)]
+```archify
+diagrams/sd-netflix-architecture.html
 ```
 
 ## 6. Database Schema
@@ -103,15 +92,8 @@ flowchart LR
 
 ## 7. Transcoding Pipeline
 
-```mermaid
-flowchart LR
-    Raw[Raw Master File] --> Split[Split into chunks]
-    Split --> Parallel[Transcode chunks in parallel<br/>across many workers]
-    Parallel --> Encode["Encode each chunk into every<br/>target resolution/bitrate"]
-    Encode --> Package[Package into segments +<br/>HLS/DASH manifest]
-    Package --> QC[Automated quality check]
-    QC --> Publish[Publish to origin storage]
-    Publish --> CDN[Pre-warm CDN caches<br/>for anticipated demand]
+```archify
+diagrams/sd-netflix-transcoding-pipeline.html
 ```
 
 - Splitting a single film into many chunks lets hundreds of workers transcode it in parallel instead of one worker processing it serially — this is what makes turnaround for a 2-hour film take minutes, not hours.
@@ -119,32 +101,16 @@ flowchart LR
 
 ## 8. Adaptive Bitrate Streaming (ABR)
 
-```mermaid
-sequenceDiagram
-    participant Player
-    participant CDN
-
-    Player->>CDN: GET manifest.m3u8
-    CDN-->>Player: List of available renditions + segment URLs
-    loop Every few seconds
-        Player->>Player: Measure recent download throughput/buffer health
-        Player->>CDN: GET next segment at chosen bitrate
-        CDN-->>Player: Video segment (a few seconds long)
-        Player->>Player: Decode + buffer; adjust bitrate for next segment if needed
-    end
+```archify
+diagrams/sd-netflix-abr-sequence.html
 ```
 
 Video is split into short segments (e.g., 2-10 seconds) at each bitrate. The player's ABR algorithm picks the best segment quality for the *next* fetch based on current network throughput and buffer level — so quality can smoothly step down under congestion instead of stalling playback.
 
 ## 9. Personalization Pipeline
 
-```mermaid
-flowchart LR
-    ViewEvents[[View/Interaction Events]] --> Batch[Batch ML Training<br/>collaborative + content-based]
-    Batch --> Model[(Trained Ranking Model)]
-    Model --> Precompute[Precompute per-user<br/>recommendation rows]
-    Precompute --> RecoCache[(Recommendations Cache)]
-    Client[Homepage Request] --> RecoCache
+```archify
+diagrams/sd-netflix-personalization-pipeline.html
 ```
 
 Recommendations are computed offline/asynchronously in batch and cached; homepage loads simply read the precomputed cache, keeping page load fast regardless of how expensive the underlying ML ranking is.

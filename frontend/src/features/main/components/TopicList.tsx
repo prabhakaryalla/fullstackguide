@@ -10,13 +10,29 @@ interface TopicListProps {
   topics: Topic[]
   onTopicClick: (topic: Topic) => void
   emptyMessage?: string
+  isTopicCompleted?: (topic: Topic) => boolean
+  isTopicBookmarked?: (topic: Topic) => boolean
+  onToggleBookmark?: (topic: Topic) => void
+  onRemove?: (topic: Topic) => void
+  getSnippet?: (topic: Topic) => string | undefined
+  getTags?: (topic: Topic) => string[] | undefined
 }
 
 const INITIAL_RENDER_BATCH = 120
 const RENDER_BATCH_INCREMENT = 120
 const LARGE_LIST_THRESHOLD = 300
 
-export default function TopicList({ topics, onTopicClick, emptyMessage = 'No topics available' }: TopicListProps) {
+export default function TopicList({
+  topics,
+  onTopicClick,
+  emptyMessage = 'No topics available',
+  isTopicCompleted,
+  isTopicBookmarked,
+  onToggleBookmark,
+  onRemove,
+  getSnippet,
+  getTags,
+}: TopicListProps) {
   const [renderedCount, setRenderedCount] = useState(INITIAL_RENDER_BATCH)
   const loadMoreRef = useRef<HTMLDivElement | null>(null)
 
@@ -66,7 +82,16 @@ export default function TopicList({ topics, onTopicClick, emptyMessage = 'No top
       <Grid container spacing={2}>
         {renderedTopics.map((topic) => (
           <Grid key={topic.id} size={{ xs: 12, sm: 6, md: 4 }}>
-            <TopicCard topic={topic} onClick={onTopicClick} />
+            <TopicCard
+              topic={topic}
+              onClick={onTopicClick}
+              completed={isTopicCompleted?.(topic)}
+              bookmarked={isTopicBookmarked?.(topic)}
+              onToggleBookmark={onToggleBookmark}
+              onRemove={onRemove}
+              snippet={getSnippet?.(topic)}
+              tags={getTags?.(topic)}
+            />
           </Grid>
         ))}
       </Grid>

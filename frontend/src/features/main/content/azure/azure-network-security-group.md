@@ -83,14 +83,8 @@ Always confirm current subscription and regional limits from Azure service limit
 
 ## Architecture Diagram
 
-```mermaid
-flowchart LR
-    Internet[Internet] --> LB[Azure Load Balancer]
-    LB --> Subnet[Subnet with NSG]
-    Subnet --> VM1[VM or App Instance]
-    Subnet --> VM2[VM or App Instance]
-    NSG[NSG Rules] --> Subnet
-    NICNSG[NIC NSG Optional] --> VM1
+```archify
+diagrams/azure-nsg.html
 ```
 
 ## Inbound Security Strategy

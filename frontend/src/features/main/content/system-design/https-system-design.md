@@ -29,17 +29,8 @@ Applications still use HTTP semantics (methods, headers, status codes), but the 
 4. Key exchange establishes shared session keys.
 5. Encrypted application data starts.
 
-```mermaid
-sequenceDiagram
-    participant C as Client
-    participant S as Server
-
-    C->>S: ClientHello
-    S-->>C: ServerHello + Certificate
-    C->>C: Validate certificate + hostname
-    C->>S: Key exchange messages
-    C-->>S: Encrypted HTTP request
-    S-->>C: Encrypted HTTP response
+```archify
+diagrams/sd-https-handshake-sequence.html
 ```
 
 ## Certificates and Trust
@@ -64,11 +55,8 @@ In many architectures, TLS terminates at:
 
 Then traffic may continue as TLS or internal HTTP depending on security requirements.
 
-```mermaid
-flowchart LR
-    U[User Browser] -->|HTTPS| CDN[CDN Edge TLS]
-    CDN -->|HTTPS| LB[Load Balancer TLS]
-    LB -->|HTTP or HTTPS| APP[Application Service]
+```archify
+diagrams/sd-https-termination.html
 ```
 
 ## Key System Design Decisions

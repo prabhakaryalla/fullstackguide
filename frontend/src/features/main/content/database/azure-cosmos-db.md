@@ -155,6 +155,20 @@ Supported join-like behavior:
 - Within a single item (for nested arrays/objects).
 - Across multiple items in the same container (with query patterns), but not true cross-container relational joins.
 
+## 10b) Embed vs. Reference: When Do You Denormalize?
+
+Because there are no cross-container joins, modeling in Cosmos DB is really a tradeoff between **embedding** (denormalizing related data into one item) and **referencing** (storing an ID and doing a second lookup) — the opposite default instinct from relational modeling.
+
+| Embed related data when | Reference (store an ID) instead when |
+|---|---|
+| The related data is read together **almost every time** (e.g. an order's line items) | The related entity is large, updated independently, and read separately (e.g. a full customer profile referenced from many orders) |
+| The related data doesn't grow unbounded (a handful of line items, not years of event history) | The related data grows unbounded over time (would blow past the **2 MB per-item size limit**) |
+| The related data changes together with the parent (same write, same consistency needs) | Multiple different parents point to the same shared entity, and you want to update it once, not in every place it's embedded |
+
+**Concrete example:** an `Order` item should embed its `LineItems` (always read/written together, bounded size) but should **reference** the `CustomerId` rather than embedding the full customer profile (the customer is shared across many orders, updated independently of any single order, and embedding it everywhere means updating a customer's address requires rewriting every order document that copied it).
+
+The practical consequence: Cosmos DB modeling intentionally trades some data duplication (a customer's name might be copied into an order for display purposes) for read performance (one point-read instead of two), accepting that duplicated fields become **eventually consistent copies** that need an explicit update strategy (e.g. a change-feed-driven fan-out) if the source changes.
+
 ## 11) Transactions in Cosmos DB
 
 Transactions are scoped to:
@@ -229,6 +243,14 @@ From highest consistency (lower performance) to lowest consistency (higher perfo
 4. **Consistent Prefix**: preserves write order, may be behind latest.
 5. **Eventual**: fastest, may return older values temporarily.
 
+### Which One to Pick (Common Follow-Up)
+
+- **Strong** costs the most latency/RU and is only offered when all regions are in the same Azure region-pair set (not available across all multi-region write configurations) — pick it only when correctness genuinely cannot tolerate staleness (e.g. a financial ledger balance).
+- **Session** is the default and the right choice for ~90% of applications: a user always reads their own writes immediately (their own cart, their own profile update), while other users may briefly see slightly stale data — this matches how most apps are actually used and perceived.
+- **Bounded Staleness** is the middle ground when you need a hard, quantifiable staleness guarantee (e.g. "never more than 5 seconds or 100 versions behind") without paying Strong's full latency cost — common in regulated/audited systems that need a provable staleness bound rather than "eventually."
+- **Eventual**/**Consistent Prefix** are for read-heavy, latency-sensitive, low-stakes data (view counts, "likes", recommendation feeds) where a slightly stale read is invisible to the user experience and the RU/latency savings matter more than freshness.
+- **Interview follow-up to expect:** "does a stronger consistency level anywhere replace the need for the ETag/`IfMatchEtag` optimistic-concurrency check?" — no: consistency levels control read staleness across replicas/regions, while ETag concurrency control prevents two concurrent **writers** from silently overwriting each other's update to the same item. They solve different problems and are used together.
+
 So a user reading from secondary region may or may not see latest value immediately, depending on selected consistency level.
 
 ## 16) CAP Theorem: Where Cosmos DB Fits
@@ -253,24 +275,8 @@ Simple way to remember:
 
 ## 17) Simple Architecture Diagram
 
-```mermaid
-flowchart LR
-    A[Users / Apps] --> B[API Layer]
-    B --> C[Cosmos DB Account]
-
-    C --> D1[Primary Region]
-    C --> D2[Secondary Region]
-
-    D1 --> E1[Database]
-    E1 --> F1[Container: Orders]
-    F1 --> G1[Logical Partition: city = Bengaluru]
-    F1 --> G2[Logical Partition: city = Chennai]
-    F1 --> G3[Logical Partition: city = Mumbai]
-
-    D2 --> E2[Read Replica]
-
-    H[RU/s or Autoscale] --> F1
-    I[Monitoring: 429, RU, Hot Partitions] --> F1
+```archify
+diagrams/cosmos-db-architecture.html
 ```
 
 ## 18) Real-World Example: E-commerce Orders

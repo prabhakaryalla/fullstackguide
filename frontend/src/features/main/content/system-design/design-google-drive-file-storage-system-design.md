@@ -65,16 +65,8 @@ Implications:
 
 ## 5. High-Level Architecture
 
-```mermaid
-flowchart LR
-    Client[Sync Client / Web] --> API[Metadata API]
-    API --> MetaDB[(Metadata DB<br/>files, folders, permissions)]
-    Client -->|chunked upload| BlockSvc[Block/Chunk Service]
-    BlockSvc --> DedupIndex[(Chunk Hash Index)]
-    BlockSvc --> BlobStore[(Blob Storage,<br/>content-addressed)]
-    API --> Notify[Change Notification Service]
-    Notify --> OtherDevices[Other Devices]
-    BlobStore --> CDN[CDN for downloads]
+```archify
+diagrams/sd-google-drive-architecture.html
 ```
 
 ## 6. Database Schema
@@ -139,36 +131,14 @@ Only chunks that changed between versions need to be re-uploaded — a small edi
 
 ## 8. Delta Sync Flow
 
-```mermaid
-sequenceDiagram
-    participant Client
-    participant API
-    participant ChangeFeed as Sync Log
-    participant Blob as Blob Storage
-
-    Client->>API: GET /changes?since=cursor
-    API->>ChangeFeed: Fetch changes after cursor
-    ChangeFeed-->>API: List of changed file metadata
-    API-->>Client: Deltas + new cursor
-    loop For each changed file
-        Client->>Client: Compare local chunk hashes vs. new version's chunk list
-        Client->>Blob: Download only missing/changed chunks
-        Client->>Client: Reassemble file locally
-    end
-    Client->>Client: Update local cursor
+```archify
+diagrams/sd-google-drive-delta-sync.html
 ```
 
 ## 9. Upload / Commit Pipeline
 
-```mermaid
-flowchart LR
-    Start[Client starts upload session] --> ChunkUpload[Upload chunks<br/>resumable, parallel]
-    ChunkUpload --> DedupCheck{Chunk hash<br/>already stored?}
-    DedupCheck -->|Yes| SkipUpload[Skip upload,<br/>increment ref_count]
-    DedupCheck -->|No| StoreChunk[Store new chunk in blob storage]
-    SkipUpload --> Commit[Commit: create file_version<br/>with ordered chunk list]
-    StoreChunk --> Commit
-    Commit --> Notify[Notify other devices via sync log]
+```archify
+diagrams/sd-google-drive-upload-pipeline.html
 ```
 
 Resumable, chunked uploads mean a dropped connection only requires re-uploading the last incomplete chunk, not restarting the entire file.

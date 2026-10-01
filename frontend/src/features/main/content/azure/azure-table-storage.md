@@ -60,15 +60,8 @@ This is effectively a point read.
 
 ## Architecture View
 
-```mermaid
-flowchart LR
-    A[Application] --> B[Azure Table Storage Service]
-    B --> P1[Partition A]
-    B --> P2[Partition B]
-    B --> P3[Partition C]
-    P1 --> E1[Entity PK+RK]
-    P2 --> E2[Entity PK+RK]
-    P3 --> E3[Entity PK+RK]
+```archify
+diagrams/azure-table-storage.html
 ```
 
 ## Designing Good Keys

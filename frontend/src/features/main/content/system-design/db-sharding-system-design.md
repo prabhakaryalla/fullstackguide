@@ -23,12 +23,8 @@ Instead of storing all rows in one database:
 - route each record to a shard based on that key
 - query only the relevant shard when possible
 
-```mermaid
-flowchart LR
-    APP[Application] --> RT[Shard Router]
-    RT --> S1[(Shard 1)]
-    RT --> S2[(Shard 2)]
-    RT --> S3[(Shard 3)]
+```archify
+diagrams/sd-db-sharding-routing.html
 ```
 
 ## Common Sharding Strategies
@@ -124,22 +120,8 @@ Approaches:
 - pre-aggregated data stores
 - ETL to analytical systems
 
-```mermaid
-sequenceDiagram
-    participant C as Client
-    participant R as Query Router
-    participant S1 as Shard 1
-    participant S2 as Shard 2
-    participant S3 as Shard 3
-
-    C->>R: Global query
-    R->>S1: Subquery
-    R->>S2: Subquery
-    R->>S3: Subquery
-    S1-->>R: Partial result
-    S2-->>R: Partial result
-    S3-->>R: Partial result
-    R-->>C: Merged result
+```archify
+diagrams/sd-db-sharding-scatter-gather.html
 ```
 
 ## Transactions in a Sharded System
@@ -196,16 +178,8 @@ Production systems usually combine both:
 - sharding for horizontal partitioning
 - replication per shard for availability/read scaling
 
-```mermaid
-flowchart TB
-    subgraph A[Shard A]
-      A1[(Primary A)] --> A2[(Replica A1)]
-      A1 --> A3[(Replica A2)]
-    end
-    subgraph B[Shard B]
-      B1[(Primary B)] --> B2[(Replica B1)]
-      B1 --> B3[(Replica B2)]
-    end
+```archify
+diagrams/sd-db-sharding-plus-replication.html
 ```
 
 ## Operational Concerns

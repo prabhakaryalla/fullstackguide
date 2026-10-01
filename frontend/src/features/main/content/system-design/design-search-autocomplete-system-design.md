@@ -26,14 +26,8 @@ Design a system that:
 
 ## 4. High-Level Architecture
 
-```mermaid
-flowchart LR
-    User[User typing] -->|debounced keystrokes| Client[Client]
-    Client --> API[Autocomplete API]
-    API --> Trie[(In-Memory Trie Service)]
-    Logs[(Search Query Logs)] --> Agg[Offline Aggregation Job]
-    Agg -->|top queries + frequency| Builder[Trie Builder]
-    Builder -->|periodic rebuild/update| Trie
+```archify
+diagrams/sd-autocomplete-architecture.html
 ```
 
 The read path (typing → suggestions) is fully separated from the write path (logs → aggregated frequencies → rebuilt trie), so live typing never waits on expensive analytics.
@@ -42,29 +36,16 @@ The read path (typing → suggestions) is fully separated from the write path (l
 
 A trie (prefix tree) stores each character of a query along a path from the root, letting prefix lookups run in time proportional to the prefix length rather than scanning all queries:
 
-```mermaid
-flowchart TB
-    Root((root)) --> S((s))
-    S --> SY((sy))
-    SY --> SYS((sys))
-    SYS --> SYST((syst))
-    SYST -->|"top-K cached here"| Suggestions["system design (500)<br/>system32 (120)<br/>systemic (40)"]
+```archify
+diagrams/sd-autocomplete-trie-structure.html
 ```
 
 At each trie node, the top-K most frequent completions are precomputed and cached, so a lookup for a prefix is a direct node traversal plus reading a small cached list — no scanning required at query time.
 
 ## 6. Query Flow
 
-```mermaid
-sequenceDiagram
-    participant Client
-    participant API as Autocomplete API
-    participant Trie as Trie Service (in-memory)
-
-    Client->>API: GET /suggest?q=syst
-    API->>Trie: Traverse to node "syst"
-    Trie-->>API: Precomputed top-K list
-    API-->>Client: ["system design", "system32", "systemic"]
+```archify
+diagrams/sd-autocomplete-query-sequence.html
 ```
 
 Clients typically debounce keystrokes (wait ~100-200ms after the last keypress) to avoid firing a request on every single character.

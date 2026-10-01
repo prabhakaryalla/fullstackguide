@@ -1,0 +1,47 @@
+{
+  "menuId": "sql-programs",
+  "topics": [
+    {
+      "id": "sql-count-function-edge-cases",
+      "slug": "sql-count-function-edge-cases",
+      "title": "COUNT() Function: NULLs, DISTINCT, and Common Pitfalls",
+      "markdownPath": "sql-programs/sql-count-function-edge-cases.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "sql-order-by-null-sorting",
+      "slug": "sql-order-by-null-sorting",
+      "title": "ORDER BY and NULL Sorting Behavior",
+      "markdownPath": "sql-programs/sql-order-by-null-sorting.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "sql-null-handling-in-practice",
+      "slug": "sql-null-handling-in-practice",
+      "title": "NULL Handling in Practice: IS NULL, GROUP BY, NULLIF vs COALESCE",
+      "markdownPath": "sql-programs/sql-null-handling-in-practice.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "sql-team-standings-played-won-lost-points",
+      "slug": "sql-team-standings-played-won-lost-points",
+      "title": "Compute Team Standings: Played, Won, Lost, Points",
+      "markdownPath": "sql-programs/sql-team-standings-played-won-lost-points.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "sql-order-tasks-by-custom-priority",
+      "slug": "sql-order-tasks-by-custom-priority",
+      "title": "Order Tasks by a Custom Priority Sequence",
+      "markdownPath": "sql-programs/sql-order-tasks-by-custom-priority.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "sql-subject-wise-scores-pivot",
+      "slug": "sql-subject-wise-scores-pivot",
+      "title": "Subject-Wise Scores: PIVOT vs Conditional Aggregation",
+      "markdownPath": "sql-programs/sql-subject-wise-scores-pivot.md",
+      "complexity": "Medium"
+    }
+  ]
+}

@@ -1,7 +1,16 @@
-import { describe, it, expect } from 'vitest'
+import { describe, it, expect, beforeAll, afterAll, vi } from 'vitest'
 import { screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { renderWithFeatureRouter } from './renderWithRouter'
+import { stubContentIndexFetch } from '../testUtils/stubContentIndexFetch'
+
+beforeAll(() => {
+  stubContentIndexFetch()
+})
+
+afterAll(() => {
+  vi.unstubAllGlobals()
+})
 
 describe('Navigation persistence flow', () => {
   it('keeps top navigation visible while navigating landing -> main -> topic info', async () => {
@@ -9,7 +18,7 @@ describe('Navigation persistence flow', () => {
     renderWithFeatureRouter('/')
 
     await waitFor(() => {
-      expect(screen.getByText('Fullstack Guide')).toBeInTheDocument()
+      expect(screen.getByText('FS Guide')).toBeInTheDocument()
     })
 
     await user.hover(screen.getByRole('button', { name: 'Cloud' }))
@@ -19,14 +28,14 @@ describe('Navigation persistence flow', () => {
     await waitFor(() => {
       expect(screen.getByRole('heading', { name: 'Azure' })).toBeInTheDocument()
     })
-    expect(screen.getByText('Fullstack Guide')).toBeInTheDocument()
+    expect(screen.getByText('FS Guide')).toBeInTheDocument()
 
     await user.click(screen.getByText('Azure Event Hubs'))
 
     await waitFor(() => {
       expect(screen.getByText(/Back to azure/i)).toBeInTheDocument()
     })
-    expect(screen.getByText('Fullstack Guide')).toBeInTheDocument()
+    expect(screen.getByText('FS Guide')).toBeInTheDocument()
   })
 
   it('keeps top navigation visible for unknown menu slug and empty topic states', async () => {
@@ -36,14 +45,14 @@ describe('Navigation persistence flow', () => {
       expect(screen.getByText('Topic area unavailable')).toBeInTheDocument()
     })
     expect(screen.getByText('No topics available')).toBeInTheDocument()
-    expect(screen.getByText('Fullstack Guide')).toBeInTheDocument()
+    expect(screen.getByText('FS Guide')).toBeInTheDocument()
   })
 
   it('keeps top navigation visible on fallback route', async () => {
     renderWithFeatureRouter('/this/path/does-not-exist')
 
     await waitFor(() => {
-      expect(screen.getByText('Fullstack Guide')).toBeInTheDocument()
+      expect(screen.getByText('FS Guide')).toBeInTheDocument()
     })
     expect(screen.getByRole('button', { name: /switch to (dark|light) theme/i })).toBeInTheDocument()
   })
@@ -53,7 +62,7 @@ describe('Navigation persistence flow', () => {
     renderWithFeatureRouter('/')
 
     await waitFor(() => {
-      expect(screen.getByText('Fullstack Guide')).toBeInTheDocument()
+      expect(screen.getByText('FS Guide')).toBeInTheDocument()
     })
 
     await user.click(screen.getByRole('button', { name: 'Switch to dark theme' }))
@@ -74,7 +83,7 @@ describe('Navigation persistence flow', () => {
     renderWithFeatureRouter('/')
 
     await waitFor(() => {
-      expect(screen.getByText('Fullstack Guide')).toBeInTheDocument()
+      expect(screen.getByText('FS Guide')).toBeInTheDocument()
     })
 
     await user.hover(screen.getByRole('button', { name: 'Backend' }))
@@ -103,7 +112,7 @@ describe('Navigation persistence flow', () => {
     renderWithFeatureRouter('/')
 
     await waitFor(() => {
-      expect(screen.getByText('Fullstack Guide')).toBeInTheDocument()
+      expect(screen.getByText('FS Guide')).toBeInTheDocument()
     })
 
     await user.type(screen.getByRole('textbox', { name: /search all topics/i }), 'azure{Enter}')
@@ -136,7 +145,7 @@ describe('Navigation persistence flow', () => {
     renderWithFeatureRouter('/sql')
 
     await waitFor(() => {
-      expect(screen.getByText('Fullstack Guide')).toBeInTheDocument()
+      expect(screen.getByText('FS Guide')).toBeInTheDocument()
     })
     expect(screen.getByText('Find Duplicate Records in a Table')).toBeInTheDocument()
   })
@@ -145,7 +154,7 @@ describe('Navigation persistence flow', () => {
     renderWithFeatureRouter('/angular')
 
     await waitFor(() => {
-      expect(screen.getByText('Fullstack Guide')).toBeInTheDocument()
+      expect(screen.getByText('FS Guide')).toBeInTheDocument()
     })
     expect(screen.getByText('No topics available')).toBeInTheDocument()
   })
@@ -165,6 +174,6 @@ describe('Navigation persistence flow', () => {
     await waitFor(() => {
       expect(screen.getByRole('heading', { name: heading })).toBeInTheDocument()
     })
-    expect(screen.getByText('Fullstack Guide')).toBeInTheDocument()
+    expect(screen.getByText('FS Guide')).toBeInTheDocument()
   })
 })

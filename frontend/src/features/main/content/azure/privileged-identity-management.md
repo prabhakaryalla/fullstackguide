@@ -54,23 +54,8 @@ This gives centralized lifecycle control for privileged identities.
 
 ## Typical PIM Activation Flow
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant PIM as Azure PIM
-    participant Policy as PIM Policy Engine
-    participant Approver
-    participant Resource as Entra or Azure Resource
-
-    User->>PIM: Request role activation
-    PIM->>Policy: Evaluate rules (MFA, reason, ticket, duration)
-    alt Approval required
-      PIM->>Approver: Send approval request
-      Approver-->>PIM: Approve or deny
-    end
-    PIM-->>User: Activate role (time-bound)
-    User->>Resource: Perform privileged action
-    PIM-->>User: Auto-expire role after duration
+```archify
+diagrams/azure-pim-activation.html
 ```
 
 ## PIM Policy Controls

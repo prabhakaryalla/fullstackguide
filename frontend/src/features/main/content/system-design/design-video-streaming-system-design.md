@@ -28,38 +28,14 @@ Design a system like YouTube that supports:
 
 ## 4. High-Level Architecture
 
-```mermaid
-flowchart LR
-    U[Uploader] --> UploadSvc[Upload Service]
-    UploadSvc --> Raw[(Raw Video Storage)]
-    UploadSvc --> Queue[[Transcoding Queue]]
-    Queue --> Workers[Transcoding Workers]
-    Workers --> Processed[(Processed Segments +<br/>Manifest Storage)]
-    Processed --> CDN[CDN Edge Nodes]
-    Viewer[Viewer] --> CDN
-    CDN -->|cache miss| Processed
+```archify
+diagrams/sd-videostreaming-architecture.html
 ```
 
 ## 5. Upload & Transcoding Flow
 
-```mermaid
-sequenceDiagram
-    participant Up as Uploader
-    participant US as Upload Service
-    participant Raw as Raw Storage
-    participant Q as Transcoding Queue
-    participant TW as Transcoding Worker
-    participant PS as Processed Storage
-
-    Up->>US: Upload raw video file
-    US->>Raw: Store raw file
-    US->>Q: Enqueue transcoding job
-    Q->>TW: Assign job
-    TW->>Raw: Read raw video
-    TW->>TW: Encode into multiple resolutions (e.g., 240p-4K)
-    TW->>TW: Split into small chunks (2-10s segments)
-    TW->>PS: Store segments + generate manifest (HLS/DASH)
-    TW-->>US: Mark video "ready to stream"
+```archify
+diagrams/sd-videostreaming-upload-sequence.html
 ```
 
 Transcoding is asynchronous and CPU-intensive, so it runs on a separate worker pool that scales independently from the upload/playback path.
@@ -68,38 +44,16 @@ Transcoding is asynchronous and CPU-intensive, so it runs on a separate worker p
 
 Instead of one fixed-quality file, the video is encoded into multiple bitrate/resolution variants, split into small chunks, and described by a manifest file (HLS `.m3u8` or DASH `.mpd`):
 
-```mermaid
-flowchart TB
-    Manifest["Manifest file<br/>(lists available qualities)"] --> Q1["240p chunks"]
-    Manifest --> Q2["480p chunks"]
-    Manifest --> Q3["1080p chunks"]
-    Manifest --> Q4["4K chunks"]
-    Player["Video Player"] -->|measures bandwidth<br/>each chunk| Manifest
-    Player -->|switches quality<br/>chunk by chunk| Q2
+```archify
+diagrams/sd-videostreaming-abr.html
 ```
 
 The player continuously measures available bandwidth and switches between quality variants chunk-by-chunk, so playback keeps going smoothly instead of buffering when the network slows down.
 
 ## 7. Playback Flow
 
-```mermaid
-sequenceDiagram
-    participant Player as Video Player
-    participant CDN
-    participant Origin as Processed Storage
-
-    Player->>CDN: GET manifest.m3u8
-    CDN-->>Player: manifest (lists quality variants)
-    loop Every few seconds
-        Player->>CDN: GET next chunk (chosen quality)
-        alt Cached at edge
-            CDN-->>Player: chunk (fast)
-        else Not cached
-            CDN->>Origin: fetch chunk
-            Origin-->>CDN: chunk
-            CDN-->>Player: chunk (cached for next viewer)
-        end
-    end
+```archify
+diagrams/sd-videostreaming-playback-sequence.html
 ```
 
 ## 8. Data Model

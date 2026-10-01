@@ -59,19 +59,8 @@ Implications:
 
 ## 5. High-Level Architecture
 
-```mermaid
-flowchart LR
-    Events[[User Interaction Events]] --> FeatureStore[(Feature Store:<br/>user/item features)]
-    FeatureStore --> CandidateGen[Candidate Generation<br/>offline/batch]
-    CandidateGen --> CandidateCache[(Candidate Sets per User)]
-    FeatureStore --> RankModel[(Trained Ranking Model)]
-    Client[Client Request] --> RecoAPI[Recommendation API]
-    RecoAPI --> CandidateCache
-    RecoAPI --> RankService[Online Ranking Service]
-    RankService --> RankModel
-    RankService -->|ranked list| Client
-    Events --> StreamAgg[Streaming Aggregator<br/>recent activity signals]
-    StreamAgg --> RankService
+```archify
+diagrams/sd-reco-architecture.html
 ```
 
 ## 6. Database Schema
@@ -100,12 +89,8 @@ flowchart LR
 
 Scoring millions of items per user request is infeasible, so recommendation systems split the problem into two stages with very different cost profiles.
 
-```mermaid
-flowchart LR
-    Catalog[Full catalog<br/>millions of items] --> CandidateGen["Stage 1: Candidate Generation<br/>(cheap, high recall)<br/>collaborative filtering, embeddings, popularity"]
-    CandidateGen --> Candidates[Few hundred candidates]
-    Candidates --> Ranker["Stage 2: Ranking<br/>(expensive, high precision)<br/>ML model scores each candidate"]
-    Ranker --> TopN[Final Top-N list]
+```archify
+diagrams/sd-reco-two-stage-pipeline.html
 ```
 
 - **Stage 1 (candidate generation)**: cheaply narrows millions of items down to a few hundred plausible candidates per user, using techniques like collaborative filtering ("users similar to you liked...") or nearest-neighbor search over learned embeddings. Optimized for recall (don't miss good candidates).
@@ -126,39 +111,16 @@ Real systems typically blend several candidate sources together before ranking, 
 
 ## 9. Offline Training / Online Serving Pipeline
 
-```mermaid
-flowchart LR
-    Log[[Interaction Event Log]] --> Batch[Offline Batch Training<br/>e.g. nightly/hourly]
-    Batch --> ModelStore[(Trained Model Artifacts)]
-    ModelStore --> Deploy[Deploy to online ranking service]
-    Log --> StreamFeatures[Streaming feature updates<br/>e.g. 'watched in last hour']
-    StreamFeatures --> FeatureStore[(Feature Store)]
-    Deploy --> RankService[Online Ranking Service]
-    FeatureStore --> RankService
+```archify
+diagrams/sd-reco-training-serving-pipeline.html
 ```
 
 Model **training** (expensive, computed over the full historical dataset) happens offline on a schedule, while **inference** (scoring a small candidate set for one user) happens online with low latency, reading precomputed features rather than recomputing them from raw logs per request.
 
 ## 10. Flow: Serving a Recommendation Request
 
-```mermaid
-sequenceDiagram
-    participant Client
-    participant API as Recommendation API
-    participant Cache as Candidate/Reco Cache
-    participant Ranker as Online Ranking Service
-
-    Client->>API: GET /recommendations?context=homepage
-    API->>Cache: Fetch precomputed candidates for user
-    alt Candidates fresh enough
-        Cache-->>API: Candidate set
-        API->>Ranker: Rank candidates (using latest features)
-        Ranker-->>API: Ranked top-N
-        API-->>Client: Recommendations
-    else Cache miss / new user
-        API->>API: Fall back to popularity/cold-start strategy
-        API-->>Client: Fallback recommendations
-    end
+```archify
+diagrams/sd-reco-serving-sequence.html
 ```
 
 ## 11. Cold-Start Handling

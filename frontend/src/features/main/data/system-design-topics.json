@@ -252,6 +252,20 @@
       "title": "System Design Big Picture (Architecture Overview)",
       "markdownPath": "system-design/system-design-big-picture-overview.md",
       "complexity": "Hard"
+    },
+    {
+      "id": "consistent-hashing-system-design",
+      "slug": "consistent-hashing-system-design",
+      "title": "Consistent Hashing",
+      "markdownPath": "system-design/consistent-hashing-system-design.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "cap-theorem-system-design",
+      "slug": "cap-theorem-system-design",
+      "title": "CAP Theorem",
+      "markdownPath": "system-design/cap-theorem-system-design.md",
+      "complexity": "Medium"
     }
   ]
 }

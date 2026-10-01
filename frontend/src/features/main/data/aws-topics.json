@@ -1,0 +1,208 @@
+{
+  "menuId": "aws",
+  "topics": [
+    {
+      "id": "s3-prevent-accidental-deletion",
+      "slug": "s3-prevent-accidental-deletion",
+      "title": "How to Prevent Accidental Deletion of Files in an S3 Bucket",
+      "markdownPath": "aws/s3-prevent-accidental-deletion.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "aws-dynamodb-fundamentals",
+      "slug": "aws-dynamodb-fundamentals",
+      "title": "Amazon DynamoDB Fundamentals",
+      "markdownPath": "aws/aws-dynamodb-fundamentals.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "ec2-vs-lambda-compute-choices",
+      "slug": "ec2-vs-lambda-compute-choices",
+      "title": "EC2 vs Lambda: Choosing Compute",
+      "markdownPath": "aws/ec2-vs-lambda-compute-choices.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "s3-storage-classes-lifecycle-policies",
+      "slug": "s3-storage-classes-lifecycle-policies",
+      "title": "S3 Storage Classes and Lifecycle Policies",
+      "markdownPath": "aws/s3-storage-classes-lifecycle-policies.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "iam-users-groups-roles-policies",
+      "slug": "iam-users-groups-roles-policies",
+      "title": "IAM: Users, Groups, Roles, and Policies",
+      "markdownPath": "aws/iam-users-groups-roles-policies.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "security-groups-vs-network-acls",
+      "slug": "security-groups-vs-network-acls",
+      "title": "Security Groups vs Network ACLs",
+      "markdownPath": "aws/security-groups-vs-network-acls.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "vpc-fundamentals-subnets-routing",
+      "slug": "vpc-fundamentals-subnets-routing",
+      "title": "VPC Fundamentals: Subnets, Route Tables, IGW, NAT Gateway",
+      "markdownPath": "aws/vpc-fundamentals-subnets-routing.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "auto-scaling-load-balancer-types",
+      "slug": "auto-scaling-load-balancer-types",
+      "title": "Auto Scaling Groups and Load Balancer Types",
+      "markdownPath": "aws/auto-scaling-load-balancer-types.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "rds-multi-az-vs-read-replicas",
+      "slug": "rds-multi-az-vs-read-replicas",
+      "title": "RDS Multi-AZ vs Read Replicas",
+      "markdownPath": "aws/rds-multi-az-vs-read-replicas.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "sqs-vs-sns-messaging",
+      "slug": "sqs-vs-sns-messaging",
+      "title": "SQS vs SNS: Queue vs Pub/Sub Messaging",
+      "markdownPath": "aws/sqs-vs-sns-messaging.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "lambda-cold-starts",
+      "slug": "lambda-cold-starts",
+      "title": "Lambda Cold Starts",
+      "markdownPath": "aws/lambda-cold-starts.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "cloudfront-cdn-caching-strategies",
+      "slug": "cloudfront-cdn-caching-strategies",
+      "title": "CloudFront and CDN Caching Strategies",
+      "markdownPath": "aws/cloudfront-cdn-caching-strategies.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "route53-routing-policies",
+      "slug": "route53-routing-policies",
+      "title": "Route 53 Routing Policies",
+      "markdownPath": "aws/route53-routing-policies.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "cloudformation-vs-terraform",
+      "slug": "cloudformation-vs-terraform",
+      "title": "Infrastructure as Code: CloudFormation vs Terraform",
+      "markdownPath": "aws/cloudformation-vs-terraform.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "aws-well-architected-framework",
+      "slug": "aws-well-architected-framework",
+      "title": "AWS Well-Architected Framework: The 6 Pillars",
+      "markdownPath": "aws/aws-well-architected-framework.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "shared-responsibility-model",
+      "slug": "shared-responsibility-model",
+      "title": "Shared Responsibility Model",
+      "markdownPath": "aws/shared-responsibility-model.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "kms-encryption-at-rest-in-transit",
+      "slug": "kms-encryption-at-rest-in-transit",
+      "title": "KMS and Encryption at Rest / In Transit",
+      "markdownPath": "aws/kms-encryption-at-rest-in-transit.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "cloudwatch-metrics-logs-alarms",
+      "slug": "cloudwatch-metrics-logs-alarms",
+      "title": "CloudWatch: Metrics, Logs, and Alarms",
+      "markdownPath": "aws/cloudwatch-metrics-logs-alarms.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "ecs-vs-eks-vs-fargate",
+      "slug": "ecs-vs-eks-vs-fargate",
+      "title": "ECS vs EKS vs Fargate",
+      "markdownPath": "aws/ecs-vs-eks-vs-fargate.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "api-gateway-throttling-caching-authorizers",
+      "slug": "api-gateway-throttling-caching-authorizers",
+      "title": "API Gateway: Throttling, Caching, and Authorizers",
+      "markdownPath": "aws/api-gateway-throttling-caching-authorizers.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "cost-optimization-reserved-spot-savings-plans",
+      "slug": "cost-optimization-reserved-spot-savings-plans",
+      "title": "Cost Optimization: Reserved Instances, Spot Instances, Savings Plans",
+      "markdownPath": "aws/cost-optimization-reserved-spot-savings-plans.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "disaster-recovery-strategies-aws",
+      "slug": "disaster-recovery-strategies-aws",
+      "title": "Disaster Recovery Strategies in AWS",
+      "markdownPath": "aws/disaster-recovery-strategies-aws.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "s3-consistency-model-versioning",
+      "slug": "s3-consistency-model-versioning",
+      "title": "S3 Consistency Model and Versioning",
+      "markdownPath": "aws/s3-consistency-model-versioning.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "elastic-beanstalk-vs-manual-ec2",
+      "slug": "elastic-beanstalk-vs-manual-ec2",
+      "title": "Elastic Beanstalk vs Manually Managing EC2/ASG/ALB",
+      "markdownPath": "aws/elastic-beanstalk-vs-manual-ec2.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "cross-account-access-organizations-scps",
+      "slug": "cross-account-access-organizations-scps",
+      "title": "Cross-Account Access, AWS Organizations, and SCPs",
+      "markdownPath": "aws/cross-account-access-organizations-scps.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "lambda-static-variable-warm-container-reuse",
+      "slug": "lambda-static-variable-warm-container-reuse",
+      "title": "Static/Global Variables and \"Warm\" Lambda Container Reuse",
+      "markdownPath": "aws/lambda-static-variable-warm-container-reuse.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "iam-explicit-deny-always-wins",
+      "slug": "iam-explicit-deny-always-wins",
+      "title": "IAM: An Explicit Deny Always Wins",
+      "markdownPath": "aws/iam-explicit-deny-always-wins.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "sqs-visibility-timeout-duplicate-delivery",
+      "slug": "sqs-visibility-timeout-duplicate-delivery",
+      "title": "SQS Visibility Timeout and Duplicate Message Delivery",
+      "markdownPath": "aws/sqs-visibility-timeout-duplicate-delivery.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "dynamodb-hot-partition-trap",
+      "slug": "dynamodb-hot-partition-trap",
+      "title": "DynamoDB Hot Partitions Despite Sufficient Total Throughput",
+      "markdownPath": "aws/dynamodb-hot-partition-trap.md",
+      "complexity": "Hard"
+    }
+  ]
+}

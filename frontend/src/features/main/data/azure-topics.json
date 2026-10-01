@@ -140,6 +140,174 @@
       "title": "Privileged Identity Management (PIM)",
       "markdownPath": "azure/privileged-identity-management.md",
       "complexity": "Medium"
+    },
+    {
+      "id": "redis-cache-vs-azure-blob-storage",
+      "slug": "redis-cache-vs-azure-blob-storage-azure",
+      "title": "Redis Cache vs Azure Blob Storage: When to Use Each?",
+      "markdownPath": "azure/redis-cache-vs-azure-blob-storage.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "redis-cache-update-strategy-high-traffic",
+      "slug": "redis-cache-update-strategy-high-traffic-azure",
+      "title": "How to Efficiently Update Redis Cache in a High-Traffic Application",
+      "markdownPath": "azure/redis-cache-update-strategy-high-traffic.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "azure-app-service",
+      "slug": "azure-app-service",
+      "title": "Azure App Service",
+      "markdownPath": "azure/azure-app-service.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "docker-kubernetes-aks-fundamentals",
+      "slug": "docker-kubernetes-aks-fundamentals",
+      "title": "Docker and Kubernetes (AKS) Fundamentals",
+      "markdownPath": "azure/docker-kubernetes-aks-fundamentals.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "azure-devops-pipelines-ci-cd",
+      "slug": "azure-devops-pipelines-ci-cd",
+      "title": "Azure DevOps Pipelines and CI/CD (Build Agents)",
+      "markdownPath": "azure/azure-devops-pipelines-ci-cd.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "azure-ad-entra-id-fundamentals",
+      "slug": "azure-ad-entra-id-fundamentals",
+      "title": "Azure AD, ADDS, and AADDS: Identity Fundamentals and AD Connect",
+      "markdownPath": "azure/azure-ad-entra-id-fundamentals.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "azure-conditional-access-sspr-passwordless",
+      "slug": "azure-conditional-access-sspr-passwordless",
+      "title": "Conditional Access, SSPR, and Passwordless Authentication in Azure AD",
+      "markdownPath": "azure/azure-conditional-access-sspr-passwordless.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "azure-ad-device-identity",
+      "slug": "azure-ad-device-identity",
+      "title": "Azure AD Device Identity and B2B Collaboration",
+      "markdownPath": "azure/azure-ad-device-identity.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "azure-governance-management-groups-resource-locks-blueprints",
+      "slug": "azure-governance-management-groups-resource-locks-blueprints",
+      "title": "Azure Governance: Management Groups, Resource Locks, Tagging, and Blueprints",
+      "markdownPath": "azure/azure-governance-management-groups-resource-locks-blueprints.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "azure-virtual-network-fundamentals",
+      "slug": "azure-virtual-network-fundamentals",
+      "title": "Azure Virtual Network Fundamentals: Subnets, Peering, and Endpoints",
+      "markdownPath": "azure/azure-virtual-network-fundamentals.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "azure-rbac-built-in-custom-roles",
+      "slug": "azure-rbac-built-in-custom-roles",
+      "title": "Azure RBAC: Built-In and Custom Roles",
+      "markdownPath": "azure/azure-rbac-built-in-custom-roles.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "azure-vm-availability-scaling-options",
+      "slug": "azure-vm-availability-scaling-options",
+      "title": "Azure VM Availability and Scaling Options",
+      "markdownPath": "azure/azure-vm-availability-scaling-options.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "azure-sql-database-overview",
+      "slug": "azure-sql-database-overview",
+      "title": "Azure SQL Database Overview",
+      "markdownPath": "azure/azure-sql-database-overview.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "azure-key-vault-fundamentals",
+      "slug": "azure-key-vault-fundamentals",
+      "title": "Key Vault Fundamentals: Soft Delete, Purge Protection, Access Policies vs RBAC",
+      "markdownPath": "azure/azure-key-vault-fundamentals.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "azure-storage-redundancy-lrs-zrs-grs",
+      "slug": "azure-storage-redundancy-lrs-zrs-grs",
+      "title": "Azure Storage Redundancy: LRS vs ZRS vs GRS vs RA-GRS",
+      "markdownPath": "azure/azure-storage-redundancy-lrs-zrs-grs.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "azure-api-management-fundamentals",
+      "slug": "azure-api-management-fundamentals",
+      "title": "Azure API Management (APIM)",
+      "markdownPath": "azure/azure-api-management-fundamentals.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "azure-monitor-application-insights",
+      "slug": "azure-monitor-application-insights",
+      "title": "Azure Monitor and Application Insights",
+      "markdownPath": "azure/azure-monitor-application-insights.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "bicep-vs-arm-templates",
+      "slug": "bicep-vs-arm-templates",
+      "title": "Infrastructure as Code: Bicep vs ARM Templates",
+      "markdownPath": "azure/bicep-vs-arm-templates.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "vpn-gateway-vs-expressroute",
+      "slug": "vpn-gateway-vs-expressroute",
+      "title": "Hybrid Connectivity: VPN Gateway vs ExpressRoute",
+      "markdownPath": "azure/vpn-gateway-vs-expressroute.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "azure-well-architected-shared-responsibility",
+      "slug": "azure-well-architected-shared-responsibility",
+      "title": "Azure Well-Architected Framework and the Shared Responsibility Model",
+      "markdownPath": "azure/azure-well-architected-shared-responsibility.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "cosmos-db-consistency-partitioning",
+      "slug": "cosmos-db-consistency-partitioning",
+      "title": "Cosmos DB: Consistency Levels and Partitioning",
+      "markdownPath": "azure/cosmos-db-consistency-partitioning.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "azure-functions-static-field-warm-instance-reuse",
+      "slug": "azure-functions-static-field-warm-instance-reuse",
+      "title": "Static Fields and \"Warm\" Instance Reuse in Azure Functions",
+      "markdownPath": "azure/azure-functions-static-field-warm-instance-reuse.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "azure-logic-apps-split-on-behavior",
+      "slug": "azure-logic-apps-split-on-behavior",
+      "title": "Logic Apps \"Split On\" Behavior",
+      "markdownPath": "azure/azure-logic-apps-split-on-behavior.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "azure-functions-fire-and-forget-background-work",
+      "slug": "azure-functions-fire-and-forget-background-work",
+      "title": "Fire-and-Forget Background Work Getting Killed in Azure Functions",
+      "markdownPath": "azure/azure-functions-fire-and-forget-background-work.md",
+      "complexity": "Medium"
     }
   ]
 }

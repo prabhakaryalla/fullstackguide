@@ -67,18 +67,8 @@ Most traffic runs over a persistent connection (WebSocket/custom TCP), not plain
 
 ## 5. High-Level Architecture
 
-```mermaid
-flowchart LR
-    SenderApp[Sender App] --> GW1[Connection Gateway<br/>WebSocket]
-    ReceiverApp[Receiver App] --> GW2[Connection Gateway<br/>WebSocket]
-    GW1 --> Router[Message Router]
-    Router --> SessionStore[(Session Store<br/>user_id -> gateway node)]
-    Router --> MsgQueue[(Per-User Offline Queue)]
-    Router --> GW2
-    Router --> MsgStore[(Message Store<br/>durable history)]
-    Router --> PushSvc[Push Notification Service<br/>APNs/FCM]
-    MediaUpload[Media Upload] --> ObjStore[(Object Storage)]
-    ObjStore --> CDN[CDN]
+```archify
+diagrams/sd-whatsapp-architecture.html
 ```
 
 ## 6. Database Schema
@@ -111,44 +101,14 @@ flowchart LR
 
 ## 8. Flow: Sending a Message (Online Recipient)
 
-```mermaid
-sequenceDiagram
-    participant Sender
-    participant GW as Gateway (Sender)
-    participant Router
-    participant Session as Session Store
-    participant GW2 as Gateway (Receiver)
-    participant Receiver
-
-    Sender->>GW: send(clientMsgId, toUser, content)
-    GW->>Router: Route message
-    Router->>Session: Lookup receiver's gateway node
-    alt Receiver is online
-        Session-->>Router: gateway_node = GW2
-        Router->>GW2: Deliver message
-        GW2->>Receiver: Push message
-        Receiver-->>GW2: Ack (delivered)
-        GW2-->>Router: Delivered
-        Router-->>GW: Ack to sender (sent + delivered)
-    else Receiver is offline
-        Session-->>Router: No active session
-        Router->>Router: Enqueue in receiver's offline queue
-        Router-->>GW: Ack to sender (sent only)
-    end
+```archify
+diagrams/sd-whatsapp-online-sequence.html
 ```
 
 ## 9. Offline Delivery & Multi-Device Sync Pipeline
 
-```mermaid
-flowchart LR
-    Reconnect[Client reconnects] --> GW[Connection Gateway]
-    GW --> Session[(Session Store: register new connection)]
-    GW --> Sync[Sync Service]
-    Sync --> Queue[(Offline Queue for this user)]
-    Queue --> Deliver[Deliver queued messages in order]
-    Deliver --> Client[Client renders + dedups by clientMsgId]
-    Client --> AckBack[Client acks each message]
-    AckBack --> Queue
+```archify
+diagrams/sd-whatsapp-offline-sync.html
 ```
 
 For multi-device accounts, each device maintains its own sync cursor against the durable message store, so a message is fanned out to every registered device, not just the "primary" one.

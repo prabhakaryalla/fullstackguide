@@ -69,20 +69,8 @@ Implications:
 
 ## 5. High-Level Architecture
 
-```mermaid
-flowchart LR
-    Driver[Driver App] -->|location pings| LocGW[Location Gateway]
-    LocGW --> GeoIndex[(In-Memory Geospatial Index<br/>geohash/quadtree, e.g. Redis)]
-    Rider[Rider App] -->|request ride| API[Trip API]
-    API --> Matcher[Matching Service]
-    Matcher --> GeoIndex
-    Matcher --> TripDB[(Trip DB)]
-    Matcher -->|offer| Driver
-    API --> Pricing[Pricing/Surge Service]
-    Pricing --> DemandStream[[Demand/Supply Event Stream]]
-    API --> NotifSvc[Notification Service]
-    NotifSvc --> Driver
-    NotifSvc --> Rider
+```archify
+diagrams/sd-uber-architecture.html
 ```
 
 ## 6. Database Schema
@@ -120,41 +108,16 @@ Redis's `GEOADD`/`GEOSEARCH` (backed by geohash + sorted sets) is a common pract
 
 ## 8. Matching Flow
 
-```mermaid
-sequenceDiagram
-    participant Rider
-    participant API
-    participant Matcher
-    participant GeoIndex as Geo Index
-    participant Driver
-
-    Rider->>API: Request ride (pickup location)
-    API->>Matcher: Find match
-    Matcher->>GeoIndex: Nearby available drivers within radius
-    GeoIndex-->>Matcher: Candidate driver list
-    Matcher->>Matcher: Rank candidates (distance, ETA, rating)
-    Matcher->>Driver: Offer trip (with timeout, e.g. 10s)
-    alt Driver accepts within timeout
-        Driver-->>Matcher: Accept
-        Matcher->>API: Trip matched
-        API-->>Rider: Driver assigned, ETA
-    else Driver declines or times out
-        Matcher->>Driver: Offer to next candidate
-    end
+```archify
+diagrams/sd-uber-matching-sequence.html
 ```
 
 If no driver accepts after several candidates, the rider sees "no drivers available" or the search radius expands.
 
 ## 9. Real-Time Location Pipeline
 
-```mermaid
-flowchart LR
-    Driver[Driver App] --> WS[WebSocket/MQTT Gateway]
-    WS --> GeoIndex[(Geo Index Update)]
-    WS --> Stream[[Location Event Stream]]
-    Stream --> TripETA[Trip ETA Recalculation]
-    Stream --> RiderPush[Push live location to rider's app]
-    Stream --> HistoryStore[(Trip Location History,<br/>async write)]
+```archify
+diagrams/sd-uber-location-pipeline.html
 ```
 
 Location pings update the in-memory index synchronously (so matching sees fresh data) while fanning out asynchronously to riders currently tracking a trip and to durable history storage for auditing/ETA modeling.

@@ -7,6 +7,174 @@
       "title": "React Diffing Algorithm in Detail",
       "markdownPath": "react-js/react-diffing-algorithm.md",
       "complexity": "Hard"
+    },
+    {
+      "id": "usestate-vs-useeffect",
+      "slug": "usestate-vs-useeffect",
+      "title": "useState vs useEffect",
+      "markdownPath": "react-js/usestate-vs-useeffect.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "usememo-vs-usecallback",
+      "slug": "usememo-vs-usecallback",
+      "title": "useMemo vs useCallback",
+      "markdownPath": "react-js/usememo-vs-usecallback.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "props-vs-state-react",
+      "slug": "props-vs-state-react",
+      "title": "Props vs State",
+      "markdownPath": "react-js/props-vs-state.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "react-context-api-when-to-use",
+      "slug": "react-context-api-when-to-use",
+      "title": "Context API - When to Use?",
+      "markdownPath": "react-js/react-context-api-when-to-use.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "prevent-unnecessary-rerenders-react",
+      "slug": "prevent-unnecessary-rerenders-react",
+      "title": "How to Prevent Unnecessary Re-renders",
+      "markdownPath": "react-js/prevent-unnecessary-rerenders-react.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "code-splitting-lazy-loading-react",
+      "slug": "code-splitting-lazy-loading-react",
+      "title": "Code Splitting and Lazy Loading",
+      "markdownPath": "react-js/code-splitting-lazy-loading-react.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "optimize-slow-react-application",
+      "slug": "optimize-slow-react-application",
+      "title": "How to Optimize a Slow React Application",
+      "markdownPath": "react-js/optimize-slow-react-application.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "react-api-integration-best-practices",
+      "slug": "react-api-integration-best-practices",
+      "title": "How to Handle API Integration",
+      "markdownPath": "react-js/react-api-integration-best-practices.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "react-component-design-best-practices",
+      "slug": "react-component-design-best-practices",
+      "title": "Component Design Best Practices",
+      "markdownPath": "react-js/react-component-design-best-practices.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "typescript-fundamentals-in-react",
+      "slug": "typescript-fundamentals-in-react",
+      "title": "TypeScript Fundamentals in React",
+      "markdownPath": "react-js/typescript-fundamentals-in-react.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "react-error-boundaries",
+      "slug": "react-error-boundaries",
+      "title": "React Error Boundaries",
+      "markdownPath": "react-js/react-error-boundaries.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "react-controlled-vs-uncontrolled-components",
+      "slug": "react-controlled-vs-uncontrolled-components",
+      "title": "Controlled vs Uncontrolled Components in React",
+      "markdownPath": "react-js/react-controlled-vs-uncontrolled-components.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "react-refs-createref-forwardref-callback-refs",
+      "slug": "react-refs-createref-forwardref-callback-refs",
+      "title": "React Refs: createRef, forwardRef, and Callback Refs",
+      "markdownPath": "react-js/react-refs-createref-forwardref-callback-refs.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "react-class-component-lifecycle-methods",
+      "slug": "react-class-component-lifecycle-methods",
+      "title": "React Class Component Lifecycle Methods",
+      "markdownPath": "react-js/react-class-component-lifecycle-methods.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "react-building-custom-hooks",
+      "slug": "react-building-custom-hooks",
+      "title": "Building Custom Hooks in React",
+      "markdownPath": "react-js/react-building-custom-hooks.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "usereducer-vs-usestate",
+      "slug": "usereducer-vs-usestate",
+      "title": "useReducer vs useState",
+      "markdownPath": "react-js/usereducer-vs-usestate.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "uselayouteffect-vs-useeffect",
+      "slug": "uselayouteffect-vs-useeffect",
+      "title": "useLayoutEffect vs useEffect",
+      "markdownPath": "react-js/uselayouteffect-vs-useeffect.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "react-18-concurrent-rendering-transitions",
+      "slug": "react-18-concurrent-rendering-transitions",
+      "title": "React 18 Concurrent Rendering: useTransition, startTransition, useDeferredValue",
+      "markdownPath": "react-js/react-18-concurrent-rendering-transitions.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "react-strict-mode-double-invoke",
+      "slug": "react-strict-mode-double-invoke",
+      "title": "React Strict Mode: Why Effects and Renders Double-Invoke",
+      "markdownPath": "react-js/react-strict-mode-double-invoke.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "react-portals",
+      "slug": "react-portals",
+      "title": "React Portals",
+      "markdownPath": "react-js/react-portals.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "state-management-context-vs-redux-vs-zustand",
+      "slug": "state-management-context-vs-redux-vs-zustand",
+      "title": "State Management: Context vs Redux vs Zustand",
+      "markdownPath": "react-js/state-management-context-vs-redux-vs-zustand.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "hoc-vs-render-props-vs-hooks",
+      "slug": "hoc-vs-render-props-vs-hooks",
+      "title": "HOCs vs Render Props vs Custom Hooks",
+      "markdownPath": "react-js/hoc-vs-render-props-vs-hooks.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "compound-components-pattern",
+      "slug": "compound-components-pattern",
+      "title": "Compound Components Pattern",
+      "markdownPath": "react-js/compound-components-pattern.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "ssr-hydration-mismatches",
+      "slug": "ssr-hydration-mismatches",
+      "title": "SSR and Hydration Mismatches",
+      "markdownPath": "react-js/ssr-hydration-mismatches.md",
+      "complexity": "Hard"
     }
   ]
 }

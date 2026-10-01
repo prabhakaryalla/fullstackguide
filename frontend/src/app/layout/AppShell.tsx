@@ -2,6 +2,7 @@ import { useMemo } from 'react'
 import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import Box from '@mui/material/Box'
 import LandingNavigationBar from '../../features/landing/components/LandingNavigationBar'
+import ActiveInterviewBanner from '../../features/interview-builder/components/ActiveInterviewBanner'
 import { getSortedMenuItems } from '../../features/landing/data/getSortedMenuItems'
 import { getTopNavigationTree } from '../../features/landing/data/getTopNavigationTree'
 import { resolveSelectedMenuId, resolveActiveTopNavigationGroupId } from './resolveSelectedMenuId'
@@ -30,6 +31,7 @@ export default function AppShell() {
           ...theme.mixins.toolbar,
         })}
       />
+      <ActiveInterviewBanner />
       <Box component="main" sx={{ flex: 1 }}>
         <Outlet />
       </Box>

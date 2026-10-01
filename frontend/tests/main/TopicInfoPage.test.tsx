@@ -1,10 +1,25 @@
-import { describe, it, expect, vi } from 'vitest'
+import { describe, it, expect, vi, afterEach, beforeAll, afterAll } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import type { Topic } from '../../src/features/main/model/types'
 import { resolveAdjacentTopicSlugs } from '../../src/features/main/data/resolveAdjacentTopicSlugs'
 import TopicInfoPage from '../../src/features/main/pages/TopicInfoPage'
+import TopicProgressProvider from '../../src/features/progress/context/TopicProgressContext'
+import BookmarkProvider from '../../src/features/bookmarks/context/BookmarkContext'
+import { stubContentIndexFetch } from '../testUtils/stubContentIndexFetch'
+
+afterEach(() => {
+  window.localStorage.clear()
+})
+
+beforeAll(() => {
+  stubContentIndexFetch()
+})
+
+afterAll(() => {
+  vi.unstubAllGlobals()
+})
 
 vi.mock('mermaid', () => ({
   default: { initialize: vi.fn(), render: vi.fn().mockResolvedValue({ svg: '<svg />' }) },
@@ -12,12 +27,17 @@ vi.mock('mermaid', () => ({
 
 function renderAtRoute(path: string) {
   return render(
-    <MemoryRouter initialEntries={[path]}>
-      <Routes>
-        <Route path="/:menuSlug/:topicSlug" element={<TopicInfoPage />} />
-        <Route path="/:menuSlug" element={<div data-testid="main-page" />} />
-      </Routes>
-    </MemoryRouter>,
+    <TopicProgressProvider>
+      <BookmarkProvider>
+        <MemoryRouter initialEntries={[path]}>
+          <Routes>
+            <Route path="/:menuSlug/:topicSlug" element={<TopicInfoPage />} />
+            <Route path="/:menuSlug" element={<div data-testid="main-page" />} />
+            <Route path="/tags/:tagId" element={<div data-testid="tag-page" />} />
+          </Routes>
+        </MemoryRouter>
+      </BookmarkProvider>
+    </TopicProgressProvider>,
   )
 }
 
@@ -188,5 +208,91 @@ describe('TopicInfoPage navigation', () => {
     await user.click(backButton)
 
     expect(screen.getByTestId('main-page')).toBeInTheDocument()
+  })
+
+  it('marks a topic complete, toggles it back, and persists across remount', async () => {
+    const user = userEvent.setup()
+
+    const { unmount } = renderAtRoute('/azure/azure-event-hubs')
+
+    const markButton = await screen.findByRole('button', { name: 'Mark as complete' })
+    expect(markButton).toHaveAttribute('aria-pressed', 'false')
+
+    await user.click(markButton)
+    const completedButton = await screen.findByRole('button', { name: 'Mark as not complete' })
+    expect(completedButton).toHaveAttribute('aria-pressed', 'true')
+    expect(completedButton).toHaveTextContent('Completed')
+
+    unmount()
+    renderAtRoute('/azure/azure-event-hubs')
+    expect(await screen.findByRole('button', { name: 'Mark as not complete' })).toHaveAttribute('aria-pressed', 'true')
+
+    await user.click(screen.getByRole('button', { name: 'Mark as not complete' }))
+    expect(await screen.findByRole('button', { name: 'Mark as complete' })).toHaveAttribute('aria-pressed', 'false')
+  })
+
+  it('does not affect another topic\'s completion state', async () => {
+    const user = userEvent.setup()
+
+    renderAtRoute('/azure/azure-event-hubs')
+    await user.click(await screen.findByRole('button', { name: 'Mark as complete' }))
+    expect(await screen.findByRole('button', { name: 'Mark as not complete' })).toBeInTheDocument()
+
+    renderAtRoute('/azure/azure-service-bus')
+    expect(await screen.findByRole('button', { name: 'Mark as complete' })).toHaveAttribute('aria-pressed', 'false')
+  })
+
+  it('bookmarks a topic, toggles it back, and persists across remount', async () => {
+    const user = userEvent.setup()
+
+    const { unmount } = renderAtRoute('/azure/azure-event-hubs')
+
+    const bookmarkButton = await screen.findByRole('button', { name: 'Bookmark this topic' })
+    expect(bookmarkButton).toHaveAttribute('aria-pressed', 'false')
+
+    await user.click(bookmarkButton)
+    const bookmarkedButton = await screen.findByRole('button', { name: 'Remove bookmark' })
+    expect(bookmarkedButton).toHaveAttribute('aria-pressed', 'true')
+    expect(bookmarkedButton).toHaveTextContent('Bookmarked')
+
+    unmount()
+    renderAtRoute('/azure/azure-event-hubs')
+    expect(await screen.findByRole('button', { name: 'Remove bookmark' })).toHaveAttribute('aria-pressed', 'true')
+
+    await user.click(screen.getByRole('button', { name: 'Remove bookmark' }))
+    expect(await screen.findByRole('button', { name: 'Bookmark this topic' })).toHaveAttribute('aria-pressed', 'false')
+  })
+
+  it('tracks bookmark and completion state independently', async () => {
+    const user = userEvent.setup()
+
+    renderAtRoute('/azure/azure-event-hubs')
+
+    await user.click(await screen.findByRole('button', { name: 'Bookmark this topic' }))
+    expect(await screen.findByRole('button', { name: 'Remove bookmark' })).toHaveAttribute('aria-pressed', 'true')
+    expect(screen.getByRole('button', { name: 'Mark as complete' })).toHaveAttribute('aria-pressed', 'false')
+
+    await user.click(screen.getByRole('button', { name: 'Mark as complete' }))
+    expect(await screen.findByRole('button', { name: 'Mark as not complete' })).toHaveAttribute('aria-pressed', 'true')
+    expect(screen.getByRole('button', { name: 'Remove bookmark' })).toHaveAttribute('aria-pressed', 'true')
+  })
+
+  it('renders the Related Topics section below the main content without delaying it', async () => {
+    renderAtRoute('/azure/azure-event-hubs')
+
+    // Main content renders immediately, independent of the Related Topics section's own loading state.
+    await waitFor(() => expect(screen.getByText('Azure Event Hubs')).toBeInTheDocument())
+    expect(screen.getByRole('heading', { name: 'Related Topics' })).toBeInTheDocument()
+  })
+
+  it('shows selectable tag chips for a topic that matches at least one tag, and navigates to /tags/:tagId when selected', async () => {
+    const user = userEvent.setup()
+
+    renderAtRoute('/design-patterns/singleton-pattern-implementation')
+
+    const tagChip = await screen.findByRole('button', { name: 'Design Patterns' })
+    await user.click(tagChip)
+
+    expect(screen.getByTestId('tag-page')).toBeInTheDocument()
   })
 })

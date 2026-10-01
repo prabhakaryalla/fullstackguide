@@ -16,20 +16,8 @@ React instead:
 
 ## Architecture Diagram
 
-```mermaid
-flowchart TD
-	A[State or Props Change] --> B[Render Phase Starts]
-	B --> C[Build New Virtual Tree]
-	C --> D[Reconciliation and Diffing]
-	D --> E{Type and Key Heuristics}
-	E -->|Same type and stable key| F[Reuse Fiber and Update Props]
-	E -->|Different type or unstable key| G[Replace or Remount Subtree]
-	F --> H[Compute Effect List]
-	G --> H
-	H --> I[Scheduler Prioritizes Work]
-	I --> J[Commit Phase]
-	J --> K[Apply DOM Mutations]
-	K --> L[Layout and Paint by Browser]
+```archify
+diagrams/react-diffing-pipeline.html
 ```
 
 ## Core Heuristics React Uses

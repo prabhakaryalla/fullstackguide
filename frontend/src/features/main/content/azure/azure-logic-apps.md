@@ -55,16 +55,8 @@ Examples:
 
 ## Architecture Overview
 
-```mermaid
-flowchart LR
-    T[Trigger] --> W[Workflow Engine]
-    W --> A1[Action 1]
-    A1 --> A2[Action 2]
-    A2 --> A3[Action 3]
-    A3 --> O[Outcome]
-    W --> C[Connector Runtime]
-    C --> S1[SaaS or Azure Service]
-    C --> S2[On-Prem via Gateway]
+```archify
+diagrams/azure-logic-apps.html
 ```
 
 ## Logic Apps Types
@@ -80,6 +72,17 @@ flowchart LR
 - single-tenant runtime
 - better performance control and local development experience
 - useful for enterprise integration with predictable throughput needs
+
+## Execution Limits and Pricing
+
+| | Consumption | Standard |
+|---|---|---|
+| **Pricing model** | Pay per action/connector execution — no traffic, no cost | Pay for allocated App Service Plan capacity, regardless of execution volume |
+| **Run duration limit** | Default 90 days max run duration, but individual actions have their own timeouts (many connectors default to ~2-5 minutes per call unless configured otherwise) | More configurable; runs as part of your own hosting plan's limits |
+| **Best for** | Spiky, infrequent, cost-sensitive integrations | High-throughput, latency-sensitive, or workloads needing VNet integration/predictable cost |
+
+- **State/history retention**: run history (inputs/outputs of each step, useful for debugging failed runs) is retained for a limited, configurable period — long-running audit requirements may need to export this to separate storage rather than relying on Logic Apps' built-in history alone.
+- **Throttling**: managed connectors have per-connector rate limits (calls per minute/hour) — a common production issue is a workflow hitting a connector's throttle limit under high volume, which shows up as retries/delays rather than an outright failure; design for this with batching or a queue in front of high-volume connector calls.
 
 ## Common Workflow Patterns
 

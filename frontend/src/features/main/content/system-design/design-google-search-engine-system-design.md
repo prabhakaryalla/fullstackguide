@@ -61,19 +61,8 @@ Implications:
 
 ## 5. High-Level Architecture
 
-```mermaid
-flowchart LR
-    Seeds[Seed URLs] --> Frontier[[Crawl Frontier Queue]]
-    Frontier --> Crawlers[Distributed Crawlers]
-    Crawlers --> PageStore[(Raw Page Store)]
-    Crawlers --> Frontier
-    PageStore --> Indexer[Indexing Pipeline]
-    Indexer --> InvertedIndex[(Sharded Inverted Index)]
-    Indexer --> RankSignals[(Precomputed Rank Signals,<br/>e.g. PageRank)]
-    Client[User Query] --> QueryAPI[Query Service]
-    QueryAPI --> InvertedIndex
-    QueryAPI --> RankSignals
-    QueryAPI --> Cache[(Query Result Cache)]
+```archify
+diagrams/sd-google-search-architecture.html
 ```
 
 ## 6. Database Schema
@@ -100,16 +89,8 @@ flowchart LR
 
 ## 7. Crawling Pipeline
 
-```mermaid
-flowchart LR
-    Frontier[[Crawl Frontier<br/>priority queue of URLs]] --> Fetch[Fetch page]
-    Fetch --> Parse[Parse HTML, extract text + links]
-    Parse --> Dedup{Content hash<br/>changed since<br/>last crawl?}
-    Dedup -->|Unchanged| Skip[Skip re-indexing]
-    Dedup -->|Changed/new| Store[Store raw content]
-    Parse --> NewLinks[Extract outbound links]
-    NewLinks --> Frontier
-    Store --> Indexer[Send to indexing pipeline]
+```archify
+diagrams/sd-google-search-crawling-pipeline.html
 ```
 
 - The frontier is a priority queue balancing crawl freshness (how often a site changes) against politeness (rate-limiting requests per domain to avoid overloading any single site).
@@ -148,21 +129,8 @@ The index is sharded across many machines (e.g., by term hash or document range)
 
 ## 9. Query Flow
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant QueryAPI as Query Service
-    participant Shards as Index Shards
-    participant RankSvc as Ranking Service
-
-    User->>QueryAPI: GET /search?q="best hiking trails"
-    QueryAPI->>QueryAPI: Tokenize + normalize query
-    QueryAPI->>Shards: Fan out term lookups to relevant shards (parallel)
-    Shards-->>QueryAPI: Partial posting-list matches
-    QueryAPI->>QueryAPI: Merge/intersect results across shards
-    QueryAPI->>RankSvc: Score candidates (relevance + precomputed rank signals)
-    RankSvc-->>QueryAPI: Ranked results
-    QueryAPI-->>User: Top-N results + snippets
+```archify
+diagrams/sd-google-search-query-flow.html
 ```
 
 ## 10. Ranking: Relevance + Authority
@@ -185,12 +153,8 @@ Precomputing the expensive, link-graph-wide signal (PageRank) offline means quer
 
 ## 11. Autocomplete Pipeline
 
-```mermaid
-flowchart LR
-    QueryLog[[Historical Query Log]] --> Aggregate[Aggregate query frequency<br/>by prefix]
-    Aggregate --> Trie[(Trie / prefix index<br/>of popular queries)]
-    UserTyping["User types 'best hik'"] --> Trie
-    Trie --> Suggestions[Ranked completions by<br/>historical popularity]
+```archify
+diagrams/sd-google-search-autocomplete.html
 ```
 
 A prefix trie (or similarly structured index) built from aggregated historical query popularity lets autocomplete return suggestions in constant/near-constant time per keystroke.

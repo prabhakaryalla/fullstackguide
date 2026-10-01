@@ -1,0 +1,117 @@
+{
+  "menuId": "angular",
+  "topics": [
+    {
+      "id": "angular-authentication-vs-authorization",
+      "slug": "angular-authentication-vs-authorization",
+      "title": "Authentication vs Authorization in Angular Applications",
+      "markdownPath": "angular/angular-authentication-vs-authorization.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "angular-jwt-oauth2-oidc",
+      "slug": "angular-jwt-oauth2-oidc",
+      "title": "JWT, OAuth 2.0 and OpenID Connect in Angular Apps",
+      "markdownPath": "angular/angular-jwt-oauth2-oidc.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "angular-route-guards",
+      "slug": "angular-route-guards",
+      "title": "Angular Route Guards",
+      "markdownPath": "angular/angular-route-guards.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "angular-http-interceptors-auth",
+      "slug": "angular-http-interceptors-auth",
+      "title": "Angular HTTP Interceptors for Authentication",
+      "markdownPath": "angular/angular-http-interceptors-auth.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "angular-token-storage-strategies",
+      "slug": "angular-token-storage-strategies",
+      "title": "Token Storage in Angular: Local Storage vs Session Storage vs Cookies",
+      "markdownPath": "angular/angular-token-storage-strategies.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "angular-refresh-token-implementation",
+      "slug": "angular-refresh-token-implementation",
+      "title": "Implementing Refresh Token Flow in Angular",
+      "markdownPath": "angular/angular-refresh-token-implementation.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "angular-auth-services-and-net-backend-flow",
+      "slug": "angular-auth-services-and-net-backend-flow",
+      "title": "Authentication Services: Angular Client and .NET Backend End-to-End Flow",
+      "markdownPath": "angular/angular-auth-services-and-net-backend-flow.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "angular-azure-ad-entra-id-integration",
+      "slug": "angular-azure-ad-entra-id-integration",
+      "title": "Integrating Azure AD / Microsoft Entra ID in Angular (MSAL)",
+      "markdownPath": "angular/angular-azure-ad-entra-id-integration.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "angular-architecture-fundamentals",
+      "slug": "angular-architecture-fundamentals",
+      "title": "Angular Architecture Fundamentals: Modules, Components, Services, DI, Routing, Directives, Pipes",
+      "markdownPath": "angular/angular-architecture-fundamentals.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "angular-lazy-loading-standalone-ngrx",
+      "slug": "angular-lazy-loading-standalone-ngrx",
+      "title": "Lazy Loading, Standalone Components, and NgRx State Management",
+      "markdownPath": "angular/angular-lazy-loading-standalone-ngrx.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "angular-templates-inline-vs-external",
+      "slug": "angular-templates-inline-vs-external",
+      "title": "Angular Templates: Inline Template vs templateUrl and Best Practices",
+      "markdownPath": "angular/angular-templates-inline-vs-external.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "rxjs-switchmap-mergemap-concatmap-exhaustmap",
+      "slug": "rxjs-switchmap-mergemap-concatmap-exhaustmap",
+      "title": "RxJS Operators: switchMap vs mergeMap vs concatMap vs exhaustMap",
+      "markdownPath": "angular/rxjs-switchmap-mergemap-concatmap-exhaustmap.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "angular-change-detection-onpush",
+      "slug": "angular-change-detection-onpush",
+      "title": "Angular Change Detection and OnPush Strategy",
+      "markdownPath": "angular/angular-change-detection-onpush.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "angular-signals",
+      "slug": "angular-signals",
+      "title": "Angular Signals",
+      "markdownPath": "angular/angular-signals.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "angular-universal-ssr",
+      "slug": "angular-universal-ssr",
+      "title": "Angular Universal / Server-Side Rendering (SSR)",
+      "markdownPath": "angular/angular-universal-ssr.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "angular-hierarchical-dependency-injection",
+      "slug": "angular-hierarchical-dependency-injection",
+      "title": "Hierarchical Dependency Injection in Angular",
+      "markdownPath": "angular/angular-hierarchical-dependency-injection.md",
+      "complexity": "Hard"
+    }
+  ]
+}

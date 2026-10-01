@@ -53,25 +53,8 @@ This is useful for:
 
 ### Event Hubs Architecture (Simple)
 
-```mermaid
-flowchart LR
-	P1[Producer App A] --> EH[(Event Hub)]
-	P2[Producer App B] --> EH
-	P3[IoT / Device Gateway] --> EH
-
-	subgraph NS[Event Hubs Namespace]
-		EH
-		PT[Partitions: 0..N]
-		CG1[Consumer Group: analytics]
-		CG2[Consumer Group: billing]
-	end
-
-	EH --> PT
-	PT --> CG1
-	PT --> CG2
-
-	CG1 --> C1[Stream Processing / Data Lake]
-	CG2 --> C2[Downstream Business Apps]
+```archify
+diagrams/azure-event-hubs.html
 ```
 
 ---

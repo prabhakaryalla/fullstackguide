@@ -67,21 +67,8 @@ Implications:
 
 ## 5. High-Level Architecture
 
-```mermaid
-flowchart LR
-    Uploader[Uploader] --> UploadSvc[Upload Service]
-    UploadSvc --> RawStore[(Raw Upload Storage)]
-    UploadSvc --> Queue[[Transcoding Queue]]
-    Queue --> Workers[Transcoding Workers]
-    Workers --> ProcessedStore[(Processed Renditions +<br/>Manifests)]
-    ProcessedStore --> CDN[CDN]
-    Viewer[Viewer] --> CDN
-    Viewer --> API[Metadata/Engagement API]
-    API --> MetaDB[(Video Metadata DB)]
-    API --> ViewEventQueue[[View Event Stream]]
-    ViewEventQueue --> CounterAgg[View Counter Aggregator]
-    CounterAgg --> CounterStore[(Approximate View Counts)]
-    API --> RecoSvc[Recommendation Service]
+```archify
+diagrams/sd-youtube-architecture.html
 ```
 
 ## 6. Database Schema
@@ -108,15 +95,8 @@ flowchart LR
 
 ## 7. Upload & Transcoding Pipeline
 
-```mermaid
-flowchart LR
-    Upload[Chunked resumable upload] --> RawStore[(Raw Storage)]
-    RawStore --> Validate[Validate format/scan for abuse]
-    Validate --> Split[Split into chunks]
-    Split --> Parallel[Parallel transcode across<br/>many renditions/workers]
-    Parallel --> Package[Package into HLS/DASH segments]
-    Package --> Publish[Publish to processed storage]
-    Publish --> Notify[Mark video 'ready',<br/>notify uploader]
+```archify
+diagrams/sd-youtube-upload-pipeline.html
 ```
 
 This mirrors the general video-transcoding pattern (see Design Netflix), with the key difference that input here is untrusted, highly variable user-generated content, so an extra validation/moderation step is needed before/alongside transcoding.
@@ -148,35 +128,16 @@ This makes the displayed count an eventually-consistent approximation (matching 
 
 ## 9. Playback Flow (Adaptive Bitrate)
 
-```mermaid
-sequenceDiagram
-    participant Player
-    participant CDN
-    participant API
-
-    Player->>API: GET /videos/{id}/manifest
-    API-->>Player: Manifest (available renditions)
-    Player->>API: POST /videos/{id}/view (fire-and-forget)
-    loop Playback
-        Player->>CDN: GET next segment at chosen bitrate
-        CDN-->>Player: Segment
-        Player->>Player: Adjust bitrate based on buffer/throughput
-    end
+```archify
+diagrams/sd-youtube-playback-sequence.html
 ```
 
 Playback itself is identical in shape to Netflix's ABR streaming (see Design Netflix) — the distinguishing complexity in YouTube is upstream (ingestion at user-generated scale) and downstream (comments/recommendations), not the playback protocol itself.
 
 ## 10. Recommendation & Comments Pipeline
 
-```mermaid
-flowchart LR
-    WatchEvents[[Watch History Events]] --> Batch[Batch/streaming ML training]
-    Batch --> Model[(Ranking Model)]
-    Model --> Precompute[Precompute per-user<br/>home feed + up-next candidates]
-    Precompute --> RecoCache[(Recommendation Cache)]
-    NewComment[New comment] --> CommentQueue[[Comment Ingestion Queue]]
-    CommentQueue --> CommentStore[(Partitioned Comment Store)]
-    CommentStore --> ModerationSvc[Async spam/abuse moderation]
+```archify
+diagrams/sd-youtube-reco-comments-pipeline.html
 ```
 
 Comments are partitioned by `video_id` so a single viral video's comment volume doesn't bottleneck the whole comment store, and moderation runs asynchronously so posting a comment stays fast even if spam detection is relatively slow.

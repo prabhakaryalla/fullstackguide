@@ -39,6 +39,11 @@ export default function MermaidBlock({ code }: MermaidBlockProps) {
 
   useEffect(() => {
     if (!containerRef.current || !code.trim()) return
+    // React StrictMode (dev only) invokes this effect twice in a row — without
+    // this guard, the first render's async result can land AFTER the second
+    // invocation has already redrawn the diagram, replacing it a beat later
+    // and reading as a flicker every time the answer is revealed.
+    let cancelled = false
     // Re-initialise per render so the diagram theme follows the current light/dark mode
     mermaid.initialize({ startOnLoad: false, theme: isDark ? 'dark' : 'default' })
     const id = `mermaid-diagram-${++diagramIdCounter}`
@@ -46,12 +51,17 @@ export default function MermaidBlock({ code }: MermaidBlockProps) {
     mermaid
       .render(id, code)
       .then(({ svg }) => {
-        if (!containerRef.current) return
+        if (cancelled || !containerRef.current) return
         containerRef.current.innerHTML = svg
         const svgEl = containerRef.current.querySelector('svg')
         if (svgEl) addTravelingDots(svgEl, theme.palette.primary.main)
       })
-      .catch(() => setError(true))
+      .catch(() => {
+        if (!cancelled) setError(true)
+      })
+    return () => {
+      cancelled = true
+    }
   }, [code, isDark, theme.palette.primary.main])
 
   if (error) {

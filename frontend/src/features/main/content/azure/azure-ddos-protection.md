@@ -42,13 +42,8 @@ At a high level:
 
 ## Architecture Diagram
 
-```mermaid
-flowchart LR
-    A[Internet Traffic] --> B[Azure Edge]
-    B --> C[DDoS Detection and Mitigation]
-    C -->|Legitimate Traffic| D[Public IP / Load Balancer]
-    C -->|Malicious Traffic| E[Drop or Scrub]
-    D --> F[Virtual Network Workload]
+```archify
+diagrams/azure-ddos-protection.html
 ```
 
 ## What Resources It Protects
@@ -64,9 +59,9 @@ DDoS Network Protection is typically associated with VNets and protects public I
 
 Azure protection is designed for common network-layer and transport-layer volumetric attacks, including:
 
-- SYN flood
-- UDP flood
-- reflection/amplification patterns
+- **SYN flood** — the attacker sends a flood of TCP `SYN` (connection-start) packets, often with spoofed source addresses, and never completes the handshake with the final `ACK`. Each half-open connection consumes server resources waiting for a response that never comes; enough of them exhaust the server's connection table and legitimate connections can no longer be accepted.
+- **UDP flood** — the attacker sends a high volume of UDP packets to random or specific ports; since UDP is connectionless, the target spends CPU responding (often with "port unreachable" ICMP messages) to packets that were never a real request, consuming bandwidth and processing capacity.
+- **DNS/NTP reflection and amplification** — the attacker sends a small, spoofed-source-IP request to a public DNS/NTP server (spoofing the victim's IP as the sender), and the server sends its much larger response to the victim instead of the real requester. A small attacker request can be "amplified" into a response tens of times larger, letting a modest amount of attacker bandwidth generate a much bigger flood at the victim.
 
 The goal is availability preservation during high-volume attack events.
 

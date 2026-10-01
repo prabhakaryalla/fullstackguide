@@ -126,19 +126,8 @@ If the `code_verifier` doesn't hash to the original `code_challenge`, the token 
 
 ## End-to-End Flow
 
-```mermaid
-sequenceDiagram
-    participant App as Client App
-    participant Auth as Authorization Endpoint
-    participant Token as Token Endpoint
-
-    App->>App: Generate code_verifier + code_challenge (SHA-256)
-    App->>Auth: Redirect with code_challenge, state, client_id
-    Auth-->>App: Redirect back with code + state
-    App->>App: Validate state matches
-    App->>Token: POST code + code_verifier
-    Token->>Token: Verify SHA256(code_verifier) == code_challenge
-    Token-->>App: access_token, id_token, refresh_token
+```archify
+diagrams/dotnet-oauth-pkce.html
 ```
 
 ## Common Mistakes to Avoid

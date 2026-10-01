@@ -29,16 +29,8 @@ Design a system like Stripe's payment processing pipeline that:
 
 ## 4. High-Level Architecture
 
-```mermaid
-flowchart LR
-    Client[Client / Merchant] --> API[Payment API]
-    API --> Idem[(Idempotency Key Store)]
-    API --> Orch[Payment Orchestrator]
-    Orch --> Processor[External Payment Processor<br/>card network/bank]
-    Orch --> Ledger[(Double-Entry Ledger DB)]
-    Orch --> MQ[[Event Queue]]
-    MQ --> Notify[Notification Service]
-    MQ --> Reconcile[Reconciliation Job]
+```archify
+diagrams/sd-payment-architecture.html
 ```
 
 ## 5. Idempotency
@@ -49,25 +41,8 @@ Clients send a unique `idempotency_key` with every charge request (often generat
 - If yes, it returns the **original** result instead of processing the charge again.
 - This makes retries (due to network timeouts, client crashes, etc.) safe by design.
 
-```mermaid
-sequenceDiagram
-    participant Client
-    participant API as Payment API
-    participant IdemStore as Idempotency Store
-    participant Orch as Orchestrator
-
-    Client->>API: POST /charge (idempotency_key=abc123)
-    API->>IdemStore: Have we seen abc123?
-    alt Already processed
-        IdemStore-->>API: Yes - return stored result
-        API-->>Client: Original response (no new charge)
-    else New request
-        IdemStore-->>API: No
-        API->>Orch: Process charge
-        Orch-->>API: Result
-        API->>IdemStore: Store result under abc123
-        API-->>Client: Response
-    end
+```archify
+diagrams/sd-payment-idempotency-sequence.html
 ```
 
 ## 6. Distributed Transaction: Saga Pattern vs. Two-Phase Commit
@@ -81,40 +56,16 @@ Charging a customer usually spans multiple systems (reserve funds, call external
 
 Real payment systems use the **Saga pattern**, since you cannot force an external bank/card network into a two-phase commit protocol.
 
-```mermaid
-flowchart LR
-    S1[1. Reserve order<br/>status=pending] --> S2[2. Call external processor]
-    S2 -->|success| S3[3. Record ledger entry<br/>status=completed]
-    S2 -->|failure| C2[Compensate:<br/>release reservation]
-    S3 --> S4[4. Notify customer]
+```archify
+diagrams/sd-payment-saga-pattern.html
 ```
 
 If step 2 fails, the compensating action (releasing the reservation) undoes step 1 — no manual cleanup needed and no funds are left in limbo.
 
 ## 7. Payment Flow (End-to-End)
 
-```mermaid
-sequenceDiagram
-    participant Client
-    participant API as Payment API
-    participant Orch as Orchestrator
-    participant Ext as External Processor
-    participant Ledger
-
-    Client->>API: Charge request (idempotency_key)
-    API->>Orch: Start payment saga
-    Orch->>Ledger: Create pending ledger entry
-    Orch->>Ext: Authorize + capture charge
-    alt Processor approves
-        Ext-->>Orch: Success
-        Orch->>Ledger: Mark entry completed (double-entry: debit+credit)
-        Orch-->>API: Success
-    else Processor declines/fails
-        Ext-->>Orch: Failure
-        Orch->>Ledger: Mark entry failed / reverse pending entry
-        Orch-->>API: Failure
-    end
-    API-->>Client: Final result
+```archify
+diagrams/sd-payment-flow-sequence.html
 ```
 
 ## 8. Double-Entry Ledger

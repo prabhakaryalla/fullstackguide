@@ -51,17 +51,8 @@ Small stateful actors for key-based state operations.
 
 ## Runtime Architecture
 
-```mermaid
-flowchart LR
-    C[Client Trigger HTTP Queue Timer] --> O[Orchestrator Function]
-    O --> A1[Activity Function 1]
-    O --> A2[Activity Function 2]
-    O --> T[Durable Timer]
-    O --> E[Wait for External Event]
-    A1 --> H[Durable Task Hub Storage]
-    A2 --> H
-    O --> H
-    H --> O
+```archify
+diagrams/azure-durable-functions-orchestration.html
 ```
 
 The Task Hub storage backend tracks orchestration history, work items, and checkpoints.
@@ -90,6 +81,26 @@ Use durable context APIs instead:
 - context.CurrentUtcDateTime
 - deterministic ID generation helpers
 - move external calls into activity functions
+
+### A Concrete Example of the Bug
+
+```csharp
+[FunctionName("BadOrchestrator")]
+public static async Task<bool> Run([OrchestrationTrigger] IDurableOrchestrationContext context)
+{
+    var deadline = DateTime.UtcNow.AddMinutes(5); // BUG: non-deterministic direct call
+    await context.CallActivityAsync("DoWork", null);
+    return DateTime.UtcNow < deadline; // this comparison can give a DIFFERENT answer on replay!
+}
+```
+
+- The first time this runs, `DateTime.UtcNow` captures the real current time, and the function proceeds normally.
+- After `CallActivityAsync` awaits, the orchestrator may be unloaded from memory and later **replayed** from the beginning to rebuild its state — and on replay, `DateTime.UtcNow` is called again, at whatever the *actual current wall-clock time* is at replay time, which is **later** than the original call. The deadline comparison can now evaluate to a different result than it did the first time through, even though nothing about the business logic changed.
+- The fix is exactly what the rules above say: use `context.CurrentUtcDateTime` instead, which returns the **recorded** timestamp from orchestration history — the same value every single time this line replays, guaranteeing the deadline comparison is always consistent.
+
+```csharp
+var deadline = context.CurrentUtcDateTime.AddMinutes(5); // deterministic - same value on every replay
+```
 
 ## Common Durable Patterns
 
@@ -130,23 +141,8 @@ Pause and wait for approval/rejection external event.
 
 ## Example Flow
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant API as HTTP Starter
-    participant Orch as Orchestrator
-    participant Act as Activity
-    participant Store as Task Hub
-
-    User->>API: Start workflow
-    API->>Orch: Start new instance
-    Orch->>Act: Step 1 process order
-    Act-->>Orch: Result
-    Orch->>Store: Checkpoint state
-    Orch->>Act: Step 2 reserve inventory
-    Act-->>Orch: Result
-    Orch->>Store: Checkpoint state
-    Orch-->>User: Status endpoint shows running/completed
+```archify
+diagrams/azure-durable-functions-sequence.html
 ```
 
 ## Reliability and Recovery

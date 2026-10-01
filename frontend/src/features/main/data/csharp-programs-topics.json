@@ -1,0 +1,215 @@
+{
+  "menuId": "csharp-programs",
+  "topics": [
+    {
+      "id": "csharp-access-modifiers-output-questions",
+      "slug": "csharp-access-modifiers-output-questions",
+      "title": "Access Modifiers",
+      "markdownPath": "csharp-programs/csharp-access-modifiers-output-questions.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "csharp-catch-block-ordering",
+      "slug": "csharp-catch-block-ordering",
+      "title": "Catch Block Ordering",
+      "markdownPath": "csharp-programs/csharp-catch-block-ordering.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "csharp-finally-execution-with-unhandled-exceptions",
+      "slug": "csharp-finally-execution-with-unhandled-exceptions",
+      "title": "Finally Block Execution",
+      "markdownPath": "csharp-programs/csharp-finally-execution-with-unhandled-exceptions.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "csharp-method-overload-resolution-null-argument",
+      "slug": "csharp-method-overload-resolution-null-argument",
+      "title": "Method Overload Resolution with Null",
+      "markdownPath": "csharp-programs/csharp-method-overload-resolution-null-argument.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "csharp-boxed-value-reference-equality",
+      "slug": "csharp-boxed-value-reference-equality",
+      "title": "Boxing and Equality (==)",
+      "markdownPath": "csharp-programs/csharp-boxed-value-reference-equality.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "csharp-nullable-null-coalescing-operator",
+      "slug": "csharp-nullable-null-coalescing-operator",
+      "title": "Nullable Types and Null-Coalescing (??)",
+      "markdownPath": "csharp-programs/csharp-nullable-null-coalescing-operator.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "csharp-struct-vs-class-copy-behavior",
+      "slug": "csharp-struct-vs-class-copy-behavior",
+      "title": "Struct vs Class Copy Behavior",
+      "markdownPath": "csharp-programs/csharp-struct-vs-class-copy-behavior.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "csharp-params-array-null-argument",
+      "slug": "csharp-params-array-null-argument",
+      "title": "Params Keyword Quirk",
+      "markdownPath": "csharp-programs/csharp-params-array-null-argument.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "csharp-readonly-reference-type-mutability",
+      "slug": "csharp-readonly-reference-type-mutability",
+      "title": "Readonly with Reference Types",
+      "markdownPath": "csharp-programs/csharp-readonly-reference-type-mutability.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "csharp-string-literal-interning",
+      "slug": "csharp-string-literal-interning",
+      "title": "String Literal Interning",
+      "markdownPath": "csharp-programs/csharp-string-literal-interning.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "csharp-null-comparison-string-safety",
+      "slug": "csharp-null-comparison-string-safety",
+      "title": "Null Comparison on Strings",
+      "markdownPath": "csharp-programs/csharp-null-comparison-string-safety.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "csharp-static-constructor-execution-once",
+      "slug": "csharp-static-constructor-execution-once",
+      "title": "Static Constructor Execution",
+      "markdownPath": "csharp-programs/csharp-static-constructor-execution-once.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "csharp-stringbuilder-vs-string-concatenation",
+      "slug": "csharp-stringbuilder-vs-string-concatenation",
+      "title": "StringBuilder vs String Concatenation",
+      "markdownPath": "csharp-programs/csharp-stringbuilder-vs-string-concatenation.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "csharp-static-vs-instance-members",
+      "slug": "csharp-static-vs-instance-members",
+      "title": "Static vs Instance Members",
+      "markdownPath": "csharp-programs/csharp-static-vs-instance-members.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "csharp-locking-on-this-anti-pattern",
+      "slug": "csharp-locking-on-this-anti-pattern",
+      "title": "Locking on this",
+      "markdownPath": "csharp-programs/csharp-locking-on-this-anti-pattern.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "csharp-var-requires-initializer-with-type",
+      "slug": "csharp-var-requires-initializer-with-type",
+      "title": "Implicit Typing with Null (var)",
+      "markdownPath": "csharp-programs/csharp-var-requires-initializer-with-type.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "csharp-implicit-explicit-cast-truncation",
+      "slug": "csharp-implicit-explicit-cast-truncation",
+      "title": "Implicit vs Explicit Casting",
+      "markdownPath": "csharp-programs/csharp-implicit-explicit-cast-truncation.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "csharp-iterator-deferred-execution-start",
+      "slug": "csharp-iterator-deferred-execution-start",
+      "title": "Iterator Execution Timing",
+      "markdownPath": "csharp-programs/csharp-iterator-deferred-execution-start.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "csharp-sequential-await-vs-taskwhenall-timing",
+      "slug": "csharp-sequential-await-vs-taskwhenall-timing",
+      "title": "Sequential Await vs Task.WhenAll Timing",
+      "markdownPath": "csharp-programs/csharp-sequential-await-vs-taskwhenall-timing.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "csharp-parallel-invoke-timing",
+      "slug": "csharp-parallel-invoke-timing",
+      "title": "Parallel.Invoke Timing",
+      "markdownPath": "csharp-programs/csharp-parallel-invoke-timing.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "csharp-locking-on-value-type",
+      "slug": "csharp-locking-on-value-type",
+      "title": "Locking on a Value Type",
+      "markdownPath": "csharp-programs/csharp-locking-on-value-type.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "csharp-concurrentdictionary-getoradd-factory",
+      "slug": "csharp-concurrentdictionary-getoradd-factory",
+      "title": "ConcurrentDictionary GetOrAdd Factory Calls",
+      "markdownPath": "csharp-programs/csharp-concurrentdictionary-getoradd-factory.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "csharp-concurrentbag-no-ordering",
+      "slug": "csharp-concurrentbag-no-ordering",
+      "title": "ConcurrentBag Has No Guaranteed Order",
+      "markdownPath": "csharp-programs/csharp-concurrentbag-no-ordering.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "csharp-extension-method-on-null",
+      "slug": "csharp-extension-method-on-null",
+      "title": "Extension Methods on null",
+      "markdownPath": "csharp-programs/csharp-extension-method-on-null.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "csharp-virtual-call-from-constructor",
+      "slug": "csharp-virtual-call-from-constructor",
+      "title": "Virtual Call From a Constructor",
+      "markdownPath": "csharp-programs/csharp-virtual-call-from-constructor.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "csharp-turkish-i-culture-bug",
+      "slug": "csharp-turkish-i-culture-bug",
+      "title": "The Turkish I Culture Bug",
+      "markdownPath": "csharp-programs/csharp-turkish-i-culture-bug.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "csharp-nan-equality-boxing",
+      "slug": "csharp-nan-equality-boxing",
+      "title": "NaN Equality and Boxing",
+      "markdownPath": "csharp-programs/csharp-nan-equality-boxing.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "csharp-multicast-delegate-return-value",
+      "slug": "csharp-multicast-delegate-return-value",
+      "title": "Multicast Delegate Return Value",
+      "markdownPath": "csharp-programs/csharp-multicast-delegate-return-value.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "csharp-invalid-enum-cast",
+      "slug": "csharp-invalid-enum-cast",
+      "title": "Casting Invalid Values to an Enum",
+      "markdownPath": "csharp-programs/csharp-invalid-enum-cast.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "csharp-hasflag-boxing",
+      "slug": "csharp-hasflag-boxing",
+      "title": "Enum.HasFlag Boxes Its Argument",
+      "markdownPath": "csharp-programs/csharp-hasflag-boxing.md",
+      "complexity": "Medium"
+    }
+  ]
+}

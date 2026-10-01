@@ -1,13 +1,9 @@
 import { useEffect, useState } from 'react'
-import type { ReactNode } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { oneDark, oneLight } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import Fab from '@mui/material/Fab'
+import ToggleButton from '@mui/material/ToggleButton'
 import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
 import CircularProgress from '@mui/material/CircularProgress'
@@ -15,42 +11,59 @@ import { useTheme } from '@mui/material/styles'
 import useMediaQuery from '@mui/material/useMediaQuery'
 import WestRoundedIcon from '@mui/icons-material/WestRounded'
 import EastRoundedIcon from '@mui/icons-material/EastRounded'
-import MermaidBlock from '../components/MermaidBlock'
+import CheckCircleRoundedIcon from '@mui/icons-material/CheckCircleRounded'
+import RadioButtonUncheckedRoundedIcon from '@mui/icons-material/RadioButtonUncheckedRounded'
+import BookmarkRoundedIcon from '@mui/icons-material/BookmarkRounded'
+import BookmarkBorderRoundedIcon from '@mui/icons-material/BookmarkBorderRounded'
+import TopicMarkdownContent from '../components/TopicMarkdownContent'
+import { loadTopicMarkdown } from '../data/loadTopicMarkdown'
 import { resolveAdjacentTopicSlugs } from '../data/resolveAdjacentTopicSlugs'
+import { useTopicProgress } from '../../progress/hooks/useTopicProgress'
+import { useBookmarks } from '../../bookmarks/hooks/useBookmarks'
+import RelatedTopicsSection from '../../related-topics/components/RelatedTopicsSection'
+import TagChipList from '../../tags/components/TagChipList'
+import { useTopicTags } from '../../tags/hooks/useTopicTags'
 import type { NavigationControlState, TopicConfig } from '../model/types'
+import awsTopics from '../data/aws-topics.json'
 import azureTopics from '../data/azure-topics.json'
 import dotnetTopics from '../data/dotnet-topics.json'
 import csharpTopics from '../data/csharp-topics.json'
+import csharpProgramsTopics from '../data/csharp-programs-topics.json'
 import databaseTopics from '../data/database-topics.json'
 import aiTopics from '../data/ai-topics.json'
+import angularTopics from '../data/angular-topics.json'
+import designPatternsTopics from '../data/design-patterns-topics.json'
 import javascriptTopics from '../data/javascript-topics.json'
+import javascriptProgramsTopics from '../data/javascript-programs-topics.json'
 import reactJsTopics from '../data/react-js-topics.json'
 import sqlTopics from '../data/sql-topics.json'
+import sqlProgramsTopics from '../data/sql-programs-topics.json'
 import microservicesTopics from '../data/microservices-topics.json'
 import systemDesignTopics from '../data/system-design-topics.json'
 import leetCodeTopics from '../data/leet-code-topics.json'
 
 // Static lookup — mirrors MainPage; Vite requires literal import paths
 const topicConfigMap: Record<string, TopicConfig> = {
+  aws: awsTopics as TopicConfig,
   azure: azureTopics as TopicConfig,
   dotnet: dotnetTopics as TopicConfig,
   csharp: csharpTopics as TopicConfig,
+  'csharp-programs': csharpProgramsTopics as TopicConfig,
   cosmos: databaseTopics as TopicConfig,
   ai: aiTopics as TopicConfig,
+  angular: angularTopics as TopicConfig,
+  'design-patterns': designPatternsTopics as TopicConfig,
   javascript: javascriptTopics as TopicConfig,
+  'javascript-programs': javascriptProgramsTopics as TopicConfig,
   'react-js': reactJsTopics as TopicConfig,
   sql: sqlTopics as TopicConfig,
+  'sql-programs': sqlProgramsTopics as TopicConfig,
   microservices: microservicesTopics as TopicConfig,
   'system-design': systemDesignTopics as TopicConfig,
   'leet-code': leetCodeTopics as TopicConfig,
 }
 
 // Glob all markdown files as raw strings — must be a static literal pattern
-const markdownModules = import.meta.glob('../content/**/*.md', {
-  query: '?raw',
-  import: 'default',
-})
-
 type Status = 'loading' | 'ready' | 'unavailable'
 
 export default function TopicInfoPage() {
@@ -65,6 +78,11 @@ export default function TopicInfoPage() {
   const topics = config?.topics ?? []
   const topic = config?.topics.find((t) => t.slug === topicSlug)
   const { previousTopicSlug, nextTopicSlug } = resolveAdjacentTopicSlugs(topics, topicSlug)
+  const { isCompleted, toggleCompletion } = useTopicProgress()
+  const completed = Boolean(topic) && isCompleted(menuSlug, topicSlug)
+  const { isBookmarked, toggleBookmark } = useBookmarks()
+  const bookmarked = Boolean(topic) && isBookmarked(menuSlug, topicSlug)
+  const { tagIds } = useTopicTags(topic?.id ?? '')
 
   const navigationState: NavigationControlState = {
     previousEnabled: Boolean(previousTopicSlug) && status !== 'unavailable',
@@ -82,25 +100,19 @@ export default function TopicInfoPage() {
       return
     }
 
-    const key = `../content/${topic.markdownPath}`
-    const loader = markdownModules[key]
-    if (!loader) {
-      if (active) {
-        setStatus('unavailable')
-      }
-      return
-    }
-
     setStatus('loading')
-    loader()
+    loadTopicMarkdown(topic)
       .then((raw) => {
         if (!active) {
           return
         }
-        setContent(raw as string)
+        if (raw === null) {
+          setStatus('unavailable')
+          return
+        }
+        setContent(raw)
         setStatus('ready')
       })
-
       .catch(() => {
         if (active) {
           setStatus('unavailable')
@@ -151,7 +163,7 @@ export default function TopicInfoPage() {
   ])
 
   return (
-    <Box sx={{ p: 3, pb: 3, maxWidth: 900, mx: 'auto', minHeight: '100%' }}>
+    <Box sx={{ p: 3, pb: 3, maxWidth: 1200, mx: 'auto', minHeight: '100%' }}>
       <Button
         onClick={() => navigate(`/${menuSlug}`)}
         sx={{ mb: 2 }}
@@ -251,55 +263,42 @@ export default function TopicInfoPage() {
         </>
       )}
 
-      {status === 'ready' && content && (
-        <ReactMarkdown
-          remarkPlugins={[remarkGfm]}
-          components={{
-            // Delegate mermaid fences; render fenced code with language highlighting.
-            // react-markdown v9+ no longer passes an `inline` flag, so detect it via the
-            // absence of the `language-*` className that only fenced code blocks receive.
-            code({ className, children }: { className?: string; children?: ReactNode }) {
-              const langMatch = /language-(\w+)/.exec(className ?? '')
-
-              if (!langMatch) {
-                return <code className={className}>{children}</code>
-              }
-
-              const lang = langMatch[1]
-              const code = String(children).trimEnd()
-
-              if (lang === 'mermaid') {
-                return <MermaidBlock code={code} />
-              }
-
-              const normalizedLang = lang === 'cs' ? 'csharp' : lang
-
-              return (
-                <Box
-                  sx={{
-                    border: '1px solid',
-                    borderColor: 'divider',
-                    borderRadius: 1,
-                    overflow: 'hidden',
-                    '& pre': { margin: 0 },
-                  }}
-                >
-                  <SyntaxHighlighter
-                    language={normalizedLang || 'text'}
-                    style={theme.palette.mode === 'dark' ? oneDark : oneLight}
-                    showLineNumbers
-                    customStyle={{ margin: 0, borderRadius: 0, padding: '1rem' }}
-                  >
-                    {code}
-                  </SyntaxHighlighter>
-                </Box>
-              )
-            },
-          }}
-        >
-          {content}
-        </ReactMarkdown>
+      {Boolean(topic) && (
+        <Box sx={{ display: 'flex', justifyContent: 'flex-end', gap: 1, mb: 2 }}>
+          <ToggleButton
+            value="bookmarked"
+            selected={bookmarked}
+            onChange={() => toggleBookmark(menuSlug, topicSlug)}
+            size="small"
+            color="primary"
+            aria-label={bookmarked ? 'Remove bookmark' : 'Bookmark this topic'}
+          >
+            {bookmarked ? <BookmarkRoundedIcon fontSize="small" sx={{ mr: 1 }} /> : <BookmarkBorderRoundedIcon fontSize="small" sx={{ mr: 1 }} />}
+            {bookmarked ? 'Bookmarked' : 'Bookmark'}
+          </ToggleButton>
+          <ToggleButton
+            value="completed"
+            selected={completed}
+            onChange={() => toggleCompletion(menuSlug, topicSlug)}
+            size="small"
+            color="success"
+            aria-label={completed ? 'Mark as not complete' : 'Mark as complete'}
+          >
+            {completed ? <CheckCircleRoundedIcon fontSize="small" sx={{ mr: 1 }} /> : <RadioButtonUncheckedRoundedIcon fontSize="small" sx={{ mr: 1 }} />}
+            {completed ? 'Completed' : 'Mark as complete'}
+          </ToggleButton>
+        </Box>
       )}
+
+      {topic && tagIds.length > 0 && (
+        <Box sx={{ mb: 2 }}>
+          <TagChipList tagIds={tagIds} onTagClick={(tagId) => navigate(`/tags/${tagId}`)} />
+        </Box>
+      )}
+
+      {status === 'ready' && content && <TopicMarkdownContent content={content} />}
+
+      {topic && <RelatedTopicsSection topic={topic} />}
     </Box>
   )
 }

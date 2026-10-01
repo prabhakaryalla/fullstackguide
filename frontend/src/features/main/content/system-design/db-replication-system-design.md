@@ -22,13 +22,8 @@ The most common design is primary-replica:
 - Primary: accepts writes
 - Replicas: receive data changes and typically serve reads
 
-```mermaid
-flowchart LR
-    APP[Application] -->|Write| P[(Primary DB)]
-    P -->|Replicate changes| R1[(Read Replica 1)]
-    P -->|Replicate changes| R2[(Read Replica 2)]
-    APP -->|Read| R1
-    APP -->|Read| R2
+```archify
+diagrams/sd-db-replication.html
 ```
 
 ## Replication Types
@@ -98,18 +93,8 @@ If primary fails:
 3. Redirect application writes to new primary.
 4. Rebuild old primary as replica when recovered.
 
-```mermaid
-sequenceDiagram
-    participant App
-    participant P as Primary
-    participant R as Replica
-    participant Orchestrator
-
-    App->>P: Write requests
-    P--xApp: Primary failure
-    Orchestrator->>R: Promote to primary
-    Orchestrator-->>App: Update DB endpoint
-    App->>R: Resume write requests
+```archify
+diagrams/sd-db-replication-failover.html
 ```
 
 ## Topologies

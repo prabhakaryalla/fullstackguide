@@ -26,13 +26,8 @@ Basic flow:
 3. Server processes request.
 4. Server returns HTTP response (status, headers, body).
 
-```mermaid
-sequenceDiagram
-    participant Client
-    participant API as HTTP Server/API
-
-    Client->>API: GET /products?page=1
-    API-->>Client: 200 OK + JSON payload
+```archify
+diagrams/sd-http-request-sequence.html
 ```
 
 ## HTTP Message Structure
@@ -91,12 +86,8 @@ HTTP has built-in caching support:
 
 Caching reduces backend load and latency.
 
-```mermaid
-flowchart LR
-    U[User] --> CDN[CDN Cache]
-    CDN -->|Cache miss| API[Origin API]
-    API --> CDN
-    CDN -->|Cache hit| U
+```archify
+diagrams/sd-http-caching.html
 ```
 
 ## Timeouts, Retries, and Idempotency

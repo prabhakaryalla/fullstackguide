@@ -39,14 +39,8 @@ Snowflake-style generation is the standard interview answer because it eliminate
 
 A 64-bit id is split into fixed-width fields:
 
-```mermaid
-flowchart LR
-    subgraph ID["64-bit ID"]
-        direction LR
-        Sign["1 bit<br/>unused (sign)"] --> TS["41 bits<br/>timestamp (ms since epoch)"]
-        TS --> Worker["10 bits<br/>worker/machine id"]
-        Worker --> Seq["12 bits<br/>sequence number"]
-    end
+```archify
+diagrams/sd-idgen-snowflake-layout.html
 ```
 
 - **Timestamp (41 bits)**: milliseconds since a custom epoch — gives ~69 years of range and makes ids roughly time-sortable.
@@ -55,35 +49,16 @@ flowchart LR
 
 ## 6. High-Level Architecture
 
-```mermaid
-flowchart LR
-    App1[App Server 1<br/>worker_id=1] -->|generates locally| ID1[Unique ID]
-    App2[App Server 2<br/>worker_id=2] -->|generates locally| ID2[Unique ID]
-    App3[App Server 3<br/>worker_id=3] -->|generates locally| ID3[Unique ID]
-    Coord[Coordination Service<br/>Zookeeper/etcd] -.assigns worker_id at startup.-> App1
-    Coord -.-> App2
-    Coord -.-> App3
+```archify
+diagrams/sd-idgen-architecture.html
 ```
 
 Each application node only talks to the coordination service once, at startup, to claim a unique worker id — after that, id generation is entirely local and coordination-free.
 
 ## 7. ID Generation Flow
 
-```mermaid
-sequenceDiagram
-    participant App as Application Node
-    participant Clock as System Clock
-
-    App->>Clock: Read current timestamp
-    alt Same millisecond as last id
-        App->>App: Increment sequence number
-        alt Sequence overflow (>4095)
-            App->>Clock: Busy-wait for next millisecond
-        end
-    else New millisecond
-        App->>App: Reset sequence to 0
-    end
-    App->>App: Pack (timestamp, worker_id, sequence) into 64-bit id
+```archify
+diagrams/sd-idgen-sequence.html
 ```
 
 ## 8. Handling Clock Drift

@@ -61,5 +61,8 @@
     ,{ "id": "sql-change-data-capture", "slug": "change-data-capture", "title": "Change Data Capture and Change Tracking", "markdownPath": "sql/change-data-capture.md", "complexity": "Hard" }
     ,{ "id": "sql-row-level-security", "slug": "row-level-security", "title": "Row-Level Security", "markdownPath": "sql/row-level-security.md", "complexity": "Hard" }
     ,{ "id": "sql-backup-disaster-recovery", "slug": "backup-disaster-recovery", "title": "Backup and Disaster Recovery", "markdownPath": "sql/backup-disaster-recovery.md", "complexity": "Hard" }
+    ,{ "id": "sql-stored-procedures-fundamentals", "slug": "sql-stored-procedures-fundamentals", "title": "SQL Server Stored Procedures: Fundamentals, Output Parameters, and Deferred Name Resolution", "markdownPath": "sql/sql-stored-procedures-fundamentals.md", "complexity": "Medium" }
+    ,{ "id": "sql-views-fundamentals", "slug": "sql-views-fundamentals", "title": "SQL Views: Simple, Updatable, and Their Limitations", "markdownPath": "sql/sql-views-fundamentals.md", "complexity": "Medium" }
+    ,{ "id": "sql-table-valued-functions-and-cursors", "slug": "sql-table-valued-functions-and-cursors", "title": "Table-Valued Functions and Cursors in SQL Server", "markdownPath": "sql/sql-table-valued-functions-and-cursors.md", "complexity": "Hard" }
   ]
 }

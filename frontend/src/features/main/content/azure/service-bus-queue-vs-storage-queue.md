@@ -149,14 +149,8 @@ Choose Service Bus Queue if your need is:
 
 ## Architecture Snapshot
 
-```mermaid
-flowchart LR
-    P[Producer] --> Q{Queue Choice}
-    Q --> SQ[Azure Storage Queue]
-    Q --> SBQ[Azure Service Bus Queue]
-    SQ --> W1[Worker]
-    SBQ --> W2[Worker]
-    SBQ --> DLQ[Dead-Letter Queue]
+```archify
+diagrams/azure-service-bus-vs-storage-queue.html
 ```
 
 ## Common Mistakes

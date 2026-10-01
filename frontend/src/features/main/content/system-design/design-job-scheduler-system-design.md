@@ -28,17 +28,8 @@ Design a system that lets users schedule jobs like:
 
 ## 4. High-Level Architecture
 
-```mermaid
-flowchart LR
-    UI[Client / API] --> API[Scheduler API]
-    API --> Store[(Job Store - jobs + next_run_time)]
-    Sched1[Scheduler Node 1] --> Store
-    Sched2[Scheduler Node 2] --> Store
-    Sched1 -.leader election.-> Coord[Coordination Service<br/>Zookeeper/etcd]
-    Sched2 -.leader election.-> Coord
-    Sched1 -->|due jobs| Queue[[Execution Queue]]
-    Queue --> Workers[Worker Pool]
-    Workers --> Target[Target Service / Task]
+```archify
+diagrams/sd-job-scheduler-architecture.html
 ```
 
 Multiple scheduler nodes run for high availability, but only the elected **leader** actively scans for due jobs and enqueues them — avoiding duplicate dispatch.
@@ -49,17 +40,8 @@ Multiple scheduler nodes run for high availability, but only the elected **leade
 - Only the leader polls the job store for due jobs and pushes them to the execution queue.
 - If the leader crashes, its lock lease expires and another node takes over within seconds — no jobs are missed because due-jobs live in durable storage, not in the leader's memory.
 
-```mermaid
-sequenceDiagram
-    participant S1 as Scheduler Node 1 (leader)
-    participant S2 as Scheduler Node 2 (standby)
-    participant Coord as Coordination Service
-
-    S1->>Coord: Renew leader lease (heartbeat)
-    Note over S1: S1 crashes
-    S2->>Coord: Attempt to acquire lease
-    Coord-->>S2: Lease granted (lease expired)
-    S2->>S2: Becomes new leader, resumes scanning job store
+```archify
+diagrams/sd-job-scheduler-leader-election.html
 ```
 
 ## 6. Job Store & Scanning
@@ -70,26 +52,8 @@ sequenceDiagram
 
 ## 7. Execution Flow
 
-```mermaid
-sequenceDiagram
-    participant Leader as Scheduler Leader
-    participant Store as Job Store
-    participant Queue as Execution Queue
-    participant Worker
-    participant Target as Target Service
-
-    Leader->>Store: Find due jobs
-    Store-->>Leader: List of due jobs
-    Leader->>Queue: Enqueue job with idempotency_key
-    Queue->>Worker: Deliver job
-    Worker->>Target: Execute task (idempotency_key)
-    alt Success
-        Target-->>Worker: OK
-        Worker->>Store: Mark job completed / compute next run
-    else Failure
-        Target-->>Worker: Error
-        Worker->>Queue: Retry with backoff (up to max attempts)
-    end
+```archify
+diagrams/sd-job-scheduler-execution-flow.html
 ```
 
 ## 8. Idempotency for Retried Jobs

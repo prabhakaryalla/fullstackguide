@@ -80,17 +80,16 @@ Policy evaluation happens:
 
 This gives both preventive and detective governance.
 
+## Performance and Scale Considerations
+
+- **Evaluation is not instantaneous everywhere**: enforcement (Deny) at create/update time is synchronous and blocks the request, but the **compliance scan** of already-existing resources runs periodically (roughly every 24 hours, or triggered on-demand) — a resource that becomes non-compliant due to an out-of-band change (e.g. someone manually removed a required tag) won't show as non-compliant in the dashboard instantly; there's an inherent evaluation lag to be aware of when relying on the compliance view for real-time enforcement decisions.
+- **Complex policies at large scale**: initiatives with many policies (a large security baseline) evaluated across thousands of resources in a big enterprise tenant can meaningfully add to resource deployment latency, since each Deny-effect policy must evaluate before the resource operation completes — keep individual policy rule logic simple, and prefer Audit over Deny for governance decisions where synchronous blocking isn't strictly required, to keep deployment pipelines fast.
+- **Scope limits**: there are subscription/tenant-level limits on the number of policy definitions, initiatives, and assignments — very large organizations should organize policies with management-group-level inheritance rather than duplicating near-identical assignments across many subscriptions.
+
 ## Architecture View
 
-```mermaid
-flowchart LR
-    A[User or Pipeline Request] --> B[Azure Resource Manager]
-    B --> C[Azure Policy Engine]
-    C --> D{Policy Evaluation}
-    D -->|Compliant| E[Allow Deployment]
-    D -->|Non-compliant and Deny| F[Reject Deployment]
-    D -->|Audit or Modify| G[Allow with Compliance Record or Mutation]
-    C --> H[Compliance Dashboard and Reports]
+```archify
+diagrams/azure-policy.html
 ```
 
 ## Common Use Cases

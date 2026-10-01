@@ -70,6 +70,160 @@
       "title": "Common Cryptography Methods in .NET",
       "markdownPath": "dotnet/dotnet-common-cryptography-methods.md",
       "complexity": "Medium"
+    },
+    {
+      "id": "dotnet-caching-strategies",
+      "slug": "dotnet-caching-strategies",
+      "title": "Caching Strategies in .NET (Cache-Aside, Read/Write-Through, Write-Around, Write-Back)",
+      "markdownPath": "dotnet/dotnet-caching-strategies.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "dotnet-new-service-layer-design-considerations",
+      "slug": "dotnet-new-service-layer-design-considerations",
+      "title": "Design and Setup Considerations When Adding a New Service Layer to an Existing .NET Application",
+      "markdownPath": "dotnet/dotnet-new-service-layer-design-considerations.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "dotnet-replicate-existing-database-data-model",
+      "slug": "dotnet-replicate-existing-database-data-model",
+      "title": "Implementing a Similar Data Model From an Existing Database in Your .NET Application",
+      "markdownPath": "dotnet/dotnet-replicate-existing-database-data-model.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "dotnet-large-scale-data-migration-strategy",
+      "slug": "dotnet-large-scale-data-migration-strategy",
+      "title": "Designing and Executing an Efficient Data Migration for Millions of Records",
+      "markdownPath": "dotnet/dotnet-large-scale-data-migration-strategy.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "ef-core-vs-dapper",
+      "slug": "ef-core-vs-dapper",
+      "title": "EF Core vs Dapper",
+      "markdownPath": "dotnet/ef-core-vs-dapper.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "debugging-slow-linq-queries",
+      "slug": "debugging-slow-linq-queries",
+      "title": "Debugging Slow LINQ Queries",
+      "markdownPath": "dotnet/debugging-slow-linq-queries.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "aspnet-core-middleware-pipeline",
+      "slug": "aspnet-core-middleware-pipeline",
+      "title": "ASP.NET Core Middleware Pipeline: Use, Run, and Map",
+      "markdownPath": "dotnet/aspnet-core-middleware-pipeline.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "aspnet-core-routing",
+      "slug": "aspnet-core-routing",
+      "title": "ASP.NET Core Routing: Convention-Based vs Attribute Routing",
+      "markdownPath": "dotnet/aspnet-core-routing.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "aspnet-core-global-exception-handling-middleware",
+      "slug": "aspnet-core-global-exception-handling-middleware",
+      "title": "Global Exception Handling Middleware in ASP.NET Core",
+      "markdownPath": "dotnet/aspnet-core-global-exception-handling-middleware.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "dotnet-unit-testing-xunit-moq",
+      "slug": "dotnet-unit-testing-xunit-moq",
+      "title": ".NET Unit Testing: xUnit, Moq, and the AAA Pattern",
+      "markdownPath": "dotnet/dotnet-unit-testing-xunit-moq.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "ihttpclientfactory-deep-dive",
+      "slug": "ihttpclientfactory-deep-dive",
+      "title": "IHttpClientFactory Deep Dive: Solving HttpClient Socket Exhaustion",
+      "markdownPath": "dotnet/ihttpclientfactory-deep-dive.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "http-idempotent-safe-methods-status-codes",
+      "slug": "http-idempotent-safe-methods-status-codes",
+      "title": "HTTP Idempotent & Safe Methods, and Status Code Reference",
+      "markdownPath": "dotnet/http-idempotent-safe-methods-status-codes.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "ef-core-include-theninclude-and-shadow-properties",
+      "slug": "ef-core-include-theninclude-and-shadow-properties",
+      "title": "EF Core: Include/ThenInclude and Shadow Properties",
+      "markdownPath": "dotnet/ef-core-include-theninclude-and-shadow-properties.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "ef-core-concurrency-conflicts-and-query-splitting",
+      "slug": "ef-core-concurrency-conflicts-and-query-splitting",
+      "title": "EF Core: Optimistic Concurrency Conflicts and Query Splitting",
+      "markdownPath": "dotnet/ef-core-concurrency-conflicts-and-query-splitting.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "ef-core-soft-delete-and-stored-procedures",
+      "slug": "ef-core-soft-delete-and-stored-procedures",
+      "title": "EF Core: Soft Delete with Global Query Filters, and Stored Procedures with Multiple Result Sets",
+      "markdownPath": "dotnet/ef-core-soft-delete-and-stored-procedures.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "aspnet-core-rate-limiting-middleware",
+      "slug": "aspnet-core-rate-limiting-middleware",
+      "title": "ASP.NET Core Rate Limiting Middleware",
+      "markdownPath": "dotnet/aspnet-core-rate-limiting-middleware.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "idempotency-key-pattern-apis",
+      "slug": "idempotency-key-pattern-apis",
+      "title": "Idempotency Keys for Safe API Retries",
+      "markdownPath": "dotnet/idempotency-key-pattern-apis.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "grpc-in-dotnet",
+      "slug": "grpc-in-dotnet",
+      "title": "gRPC in .NET",
+      "markdownPath": "dotnet/grpc-in-dotnet.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "signalr-real-time-communication",
+      "slug": "signalr-real-time-communication",
+      "title": "SignalR: Real-Time Communication in .NET",
+      "markdownPath": "dotnet/signalr-real-time-communication.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "aspnet-core-health-checks",
+      "slug": "aspnet-core-health-checks",
+      "title": "Health Checks in ASP.NET Core",
+      "markdownPath": "dotnet/aspnet-core-health-checks.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "dotnet-gc-server-vs-workstation",
+      "slug": "dotnet-gc-server-vs-workstation",
+      "title": ".NET Garbage Collection Modes: Server GC vs Workstation GC",
+      "markdownPath": "dotnet/dotnet-gc-server-vs-workstation.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "native-aot-dotnet",
+      "slug": "native-aot-dotnet",
+      "title": "Native AOT in .NET",
+      "markdownPath": "dotnet/native-aot-dotnet.md",
+      "complexity": "Hard"
     }
   ]
 }

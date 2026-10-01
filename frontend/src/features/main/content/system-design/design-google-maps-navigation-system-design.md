@@ -65,17 +65,8 @@ Implications:
 
 ## 5. High-Level Architecture
 
-```mermaid
-flowchart LR
-    Client[Client App] --> TileCDN[Tile CDN]
-    TileCDN --> TileStore[(Pre-rendered Tile Storage)]
-    Client --> GeoAPI[Geocoding Service]
-    GeoAPI --> GeoIndex[(Address Index)]
-    Client --> RouteAPI[Routing Service]
-    RouteAPI --> RoadGraph[(Road Graph Store<br/>with precomputed shortcuts)]
-    RouteAPI --> TrafficSvc[Live Traffic Service]
-    TrafficSvc --> TrafficStream[[Live Location/Traffic Event Stream]]
-    TrafficSvc --> EdgeWeights[(Dynamic Edge Weight Cache)]
+```archify
+diagrams/sd-google-maps-architecture.html
 ```
 
 ## 6. Database Schema
@@ -117,12 +108,8 @@ Plain Dijkstra's algorithm on a graph with hundreds of millions of edges is far 
 
 ### Contraction Hierarchies (high level)
 
-```mermaid
-flowchart LR
-    Raw[Raw road graph] --> Contract["Offline: 'contract' nodes in order of<br/>importance, adding shortcut edges<br/>that preserve shortest-path distances"]
-    Contract --> CH[(Contracted graph<br/>with shortcuts)]
-    Query["Online: bidirectional search<br/>using only 'upward' edges"] --> CH
-    CH --> FastPath[Route found by touching<br/>a tiny fraction of the full graph]
+```archify
+diagrams/sd-google-maps-contraction-hierarchies.html
 ```
 
 - Offline, nodes are contracted in order of "unimportance" (e.g., a small side-street intersection is contracted before a highway junction), adding shortcut edges that skip over them while preserving shortest-path distances.
@@ -130,31 +117,16 @@ flowchart LR
 
 ## 9. Routing Flow with Live Traffic
 
-```mermaid
-sequenceDiagram
-    participant Client
-    participant RouteAPI as Routing Service
-    participant Graph as Road Graph (CH)
-    participant Traffic as Traffic Service
-
-    Client->>RouteAPI: GET /directions (origin, destination)
-    RouteAPI->>Traffic: Fetch current edge weight adjustments
-    Traffic-->>RouteAPI: Updated weights for relevant region
-    RouteAPI->>Graph: Bidirectional search over contracted graph<br/>using traffic-adjusted weights
-    Graph-->>RouteAPI: Shortest path (by time)
-    RouteAPI-->>Client: Route + turn-by-turn + ETA
+```archify
+diagrams/sd-google-maps-routing-sequence.html
 ```
 
 Traffic-adjusted weights are applied as a layer on top of the precomputed contracted graph rather than requiring the whole hierarchy to be rebuilt whenever traffic changes.
 
 ## 10. Live Traffic Pipeline
 
-```mermaid
-flowchart LR
-    Phones[Anonymized phone location pings] --> Ingest[[Location Event Stream]]
-    Ingest --> Aggregate[Aggregate speed per road segment]
-    Aggregate --> EdgeWeights[(Edge Weight Cache,<br/>updated every ~1-2 min)]
-    EdgeWeights --> RouteAPI[Routing Service reads<br/>latest weights per query]
+```archify
+diagrams/sd-google-maps-traffic-pipeline.html
 ```
 
 Anonymized, crowdsourced location data from phones running the maps app is aggregated per road segment to estimate current speeds, which are periodically pushed into the edge-weight cache that the routing service reads at query time.

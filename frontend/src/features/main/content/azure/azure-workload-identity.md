@@ -12,30 +12,14 @@ That token is not directly used as an Azure access token. Instead, it becomes th
 
 ## High-Level Architecture
 
-```mermaid
-flowchart LR
-    A[Pod in AKS] --> B[Projected Kubernetes Service Account Token]
-    B --> C[Azure Workload Identity webhook]
-    C --> D[Microsoft Entra ID]
-    D --> E[Azure Access Token]
-    E --> F[Azure Resource such as Key Vault or Storage]
+```archify
+diagrams/azure-workload-identity-overview.html
 ```
 
 ## Token Exchange Flow
 
-```mermaid
-sequenceDiagram
-    participant Pod as Pod
-    participant Kube as Kubernetes API / OIDC issuer
-    participant Entra as Microsoft Entra ID
-    participant Azure as Azure Resource
-
-    Pod->>Kube: Read projected Service Account token
-    Pod->>Entra: Present KSA token + federation metadata
-    Entra->>Entra: Validate issuer, subject, audience, federated credential
-    Entra-->>Pod: Return Azure access token
-    Pod->>Azure: Call resource with Bearer access token
-    Azure-->>Pod: Authorized response or 403
+```archify
+diagrams/azure-workload-identity-exchange.html
 ```
 
 ## What Is Actually Exchanged?
@@ -90,16 +74,8 @@ That means:
 
 ### Pod Interaction Diagram
 
-```mermaid
-flowchart TD
-  P1[Pod A] -->|Read projected SA token| K[Kubernetes OIDC issuer context]
-  P2[Pod B] -->|Read projected SA token| K
-  P1 -->|Federated exchange| E[Microsoft Entra ID]
-  P2 -->|Federated exchange| E
-  E -->|Per-pod access token| P1
-  E -->|Per-pod access token| P2
-  P1 -->|Bearer call| R[Azure Resource]
-  P2 -->|Bearer call| R
+```archify
+diagrams/azure-workload-identity-pods.html
 ```
 
 ## Intra-Pod vs Inter-Pod Concerns
@@ -197,16 +173,8 @@ spec:
 
 ## Architecture Diagram for Portal Registration
 
-```mermaid
-flowchart TD
-    A[Azure Portal] --> B[AKS Cluster]
-    B --> C[Enable OIDC Issuer]
-    B --> D[Enable Workload Identity]
-    A --> E[Entra App Registration or User-Assigned Managed Identity]
-    E --> F[Federated Identity Credential]
-    F --> G[Issuer + Subject + Audience]
-    G --> H[Kubernetes Service Account]
-    H --> I[Annotated Deployment]
+```archify
+diagrams/azure-workload-identity-registration.html
 ```
 
 ## Example of the Subject Mapping

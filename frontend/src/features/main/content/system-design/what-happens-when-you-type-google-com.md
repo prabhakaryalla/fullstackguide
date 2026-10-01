@@ -16,35 +16,8 @@ When you type google.com and press Enter, your system performs:
 
 ## End-to-End Architecture Flow
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant Browser
-    participant OS as OS Resolver Cache
-    participant DNS as Recursive DNS Resolver
-    participant AuthDNS as Authoritative DNS
-    participant Edge as Google Edge/CDN
-    participant LB as Load Balancer
-    participant App as Application Servers
-
-    User->>Browser: Type google.com + Enter
-    Browser->>OS: Check local DNS cache
-    alt Not in cache
-        OS->>DNS: Query A/AAAA for google.com
-        DNS->>AuthDNS: Resolve authoritative records
-        AuthDNS-->>DNS: Return IP records + TTL
-        DNS-->>OS: Resolved IP
-    end
-    OS-->>Browser: IP address
-    Browser->>Edge: TCP handshake
-    Browser->>Edge: TLS handshake + cert validation
-    Browser->>Edge: HTTP GET /
-    Edge->>LB: Route request
-    LB->>App: Forward request
-    App-->>LB: HTML response
-    LB-->>Edge: Response
-    Edge-->>Browser: HTML + headers
-    Browser-->>User: Render page
+```archify
+diagrams/sd-google-com-sequence.html
 ```
 
 ## Step-by-Step Detail

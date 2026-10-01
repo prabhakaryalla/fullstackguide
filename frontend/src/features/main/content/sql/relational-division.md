@@ -47,6 +47,40 @@ WHERE NOT EXISTS (
 
 The inner `NOT EXISTS` finds a required product the customer did not buy. The outer `NOT EXISTS` keeps customers for whom no required product is missing.
 
+## Alternative: COUNT/HAVING Approach
+
+```sql
+SELECT o.customer_id
+FROM orders AS o
+JOIN order_items AS oi ON oi.order_id = o.order_id
+WHERE oi.product_id IN (SELECT product_id FROM required_products)
+GROUP BY o.customer_id
+HAVING COUNT(DISTINCT oi.product_id) = (SELECT COUNT(*) FROM required_products);
+```
+
+This counts how many *distinct* required products each customer actually bought, and keeps only customers whose count equals the total number of required products. It's often more intuitive to read than double-`NOT EXISTS`, but can be less efficient on very large `required_products` sets since it materializes and counts matches rather than short-circuiting on the first missing item.
+
+## Alternative: EXCEPT-Based Approach
+
+```sql
+SELECT c.customer_id
+FROM customers AS c
+WHERE NOT EXISTS (
+  SELECT product_id FROM required_products
+  EXCEPT
+  SELECT oi.product_id
+  FROM orders AS o
+  JOIN order_items AS oi ON oi.order_id = o.order_id
+  WHERE o.customer_id = c.customer_id
+);
+```
+
+`EXCEPT` computes "required products minus this customer's purchased products" — if that difference is empty, the customer bought everything required. This reads closer to the plain-English problem statement than either of the other two approaches.
+
+## Performance Note
+
+For a **large** `required_products` set, the double-`NOT EXISTS` pattern is usually fastest because it can short-circuit as soon as one missing product is found for a customer — it doesn't need to enumerate every required product for every customer the way COUNT/HAVING does. Relational division is rarely a good fit when the "required set" itself is very large and changes per query (e.g. thousands of ad hoc criteria) — at that scale, a bitmap/set-intersection approach outside plain SQL may be more appropriate.
+
 ## Tricky / Follow-up Questions
 
 **Q: Why is this sometimes called the double-`NOT EXISTS` pattern?**

@@ -48,6 +48,14 @@ object data = 30;
 long value = (long)data; // InvalidCastException
 ```
 
+- `data` was boxed as an `int`, so it can only be unboxed directly back to `int` — not to any other numeric type, even one `int` would normally implicitly convert to.
+- To convert a boxed `int` to `long`, unbox to the exact original type first, then apply a second, ordinary numeric cast:
+
+```csharp
+object obj = 123;               // boxed as int
+long l = (long)(int)obj;        // unbox to int first, then widen to long
+```
+
 ## Where Beginners Usually See It
 
 ### 1. Non-generic collections

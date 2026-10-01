@@ -30,39 +30,16 @@ Design a system like WhatsApp that supports:
 
 ## 4. High-Level Architecture
 
-```mermaid
-flowchart LR
-    A[Client A] <--> WS1[WebSocket Gateway 1]
-    B[Client B] <--> WS2[WebSocket Gateway 2]
-    WS1 --> MSvc[Message Service]
-    WS2 --> MSvc
-    MSvc --> MQ[[Message Queue]]
-    MSvc --> DB[(Message Store)]
-    MQ --> Push[Push Notification Service]
-    MSvc --> Presence[Presence Service]
+```archify
+diagrams/sd-chat-architecture.html
 ```
 
 Clients keep a persistent WebSocket connection to a gateway node. Because a sender and recipient may be connected to *different* gateway nodes, the message service (backed by a queue/pub-sub layer) routes messages between gateways.
 
 ## 5. Message Delivery Flow
 
-```mermaid
-sequenceDiagram
-    participant A as Client A
-    participant GW1 as Gateway (A's connection)
-    participant MSvc as Message Service
-    participant DB as Message Store
-    participant GW2 as Gateway (B's connection)
-    participant B as Client B
-
-    A->>GW1: Send message (clientMsgId, text)
-    GW1->>MSvc: Forward message
-    MSvc->>DB: Persist message (status=sent)
-    MSvc->>GW2: Route to B's gateway (if online)
-    GW2->>B: Deliver message
-    B-->>MSvc: Ack (status=delivered)
-    MSvc->>DB: Update status
-    Note over MSvc,DB: If B is offline, message stays queued until reconnect
+```archify
+diagrams/sd-chat-delivery-sequence.html
 ```
 
 ## 6. Message Ordering & Delivery Guarantees

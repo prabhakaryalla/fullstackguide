@@ -19,19 +19,8 @@ Azure IoT Hub is designed specifically for securely connecting, monitoring, and 
 
 ### IoT Hub Architecture (Simple)
 
-```mermaid
-flowchart LR
-    D1[Raspberry Pi Simulator] --> IOT[Azure IoT Hub]
-    D2[Physical Device 1] --> IOT
-    D3[Physical Device 2] --> IOT
-
-    IOT --> R{Message Routing Rules}
-
-    R --> E1[Route 1: Critical Alerts]
-    R --> E2[Route 2: Normal Telemetry]
-
-    E1 --> A1[Azure Function / Alerting]
-    E2 --> A2[Event Hub / Data Storage / Analytics]
+```archify
+diagrams/azure-iot-hub-routing.html
 ```
 
 ---

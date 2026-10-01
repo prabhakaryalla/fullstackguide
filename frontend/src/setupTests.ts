@@ -31,3 +31,23 @@ if (!window.ResizeObserver) {
 
 	window.ResizeObserver = ResizeObserver
 }
+
+if (!window.IntersectionObserver) {
+	class IntersectionObserver {
+		observe() {
+			return
+		}
+		unobserve() {
+			return
+		}
+		disconnect() {
+			return
+		}
+		takeRecords() {
+			return []
+		}
+	}
+
+	// @ts-expect-error jsdom has no native IntersectionObserver; this is a minimal test-only stub
+	window.IntersectionObserver = IntersectionObserver
+}

@@ -7,6 +7,69 @@
       "title": "What Are the Three Different Threats: CORS, CSRF, XSS",
       "markdownPath": "javascript/cors-csrf-xss-threats.md",
       "complexity": "Medium"
+    },
+    {
+      "id": "js-promises-and-callback-hell",
+      "slug": "js-promises-and-callback-hell",
+      "title": "JavaScript Promises and Avoiding Callback Hell",
+      "markdownPath": "javascript/js-promises-and-callback-hell.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "js-closures-and-pure-functions",
+      "slug": "js-closures-and-pure-functions",
+      "title": "JavaScript Closures and Pure Functions",
+      "markdownPath": "javascript/js-closures-and-pure-functions.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "js-this-call-apply-bind",
+      "slug": "js-this-call-apply-bind",
+      "title": "JavaScript this, call, apply, and bind",
+      "markdownPath": "javascript/js-this-call-apply-bind.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "js-event-propagation-capturing-bubbling",
+      "slug": "js-event-propagation-capturing-bubbling",
+      "title": "Event Propagation: Capturing and Bubbling in JavaScript",
+      "markdownPath": "javascript/js-event-propagation-capturing-bubbling.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "js-higher-order-functions-and-array-methods",
+      "slug": "js-higher-order-functions-and-array-methods",
+      "title": "Higher-Order Functions and Array Methods in JavaScript",
+      "markdownPath": "javascript/js-higher-order-functions-and-array-methods.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "js-destructuring-rest-spread-operators",
+      "slug": "js-destructuring-rest-spread-operators",
+      "title": "Destructuring, Rest, and Spread Operators in JavaScript",
+      "markdownPath": "javascript/js-destructuring-rest-spread-operators.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "js-storage-local-session-cookies",
+      "slug": "js-storage-local-session-cookies",
+      "title": "localStorage vs sessionStorage vs Cookies",
+      "markdownPath": "javascript/js-storage-local-session-cookies.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "js-browser-fundamentals-window-dom-timers",
+      "slug": "js-browser-fundamentals-window-dom-timers",
+      "title": "JavaScript Browser Fundamentals: Window, DOM Access, and Timers",
+      "markdownPath": "javascript/js-browser-fundamentals-window-dom-timers.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "js-execution-context-scope-weakmap-weakset",
+      "slug": "js-execution-context-scope-weakmap-weakset",
+      "title": "Execution Context, Scope, and WeakMap/WeakSet in JavaScript",
+      "markdownPath": "javascript/js-execution-context-scope-weakmap-weakset.md",
+      "complexity": "Medium"
     }
   ]
 }

@@ -198,6 +198,17 @@ This keeps client handling uniform across validation, authn, and authz errors.
 
 ## Common Pitfalls
 
+- **Returning 403 for everything, including unauthenticated requests.** If the user never presented credentials at all, that's a 401 — collapsing both cases into 403 breaks clients that rely on the distinction to decide "log in" vs "you don't have access."
+- **Leaking sensitive detail in the response body.** Including the exact policy name, required claim, or internal authorization failure reasons in a public-facing error message helps an attacker map out your authorization rules — log the full detail server-side, return a generic safe message externally.
+- **Forgetting `context.HandleResponse()` in `OnChallenge`.** Without it, ASP.NET Core writes its own default response after your handler runs, silently overriding your custom payload with the framework default.
+- **Registering the custom `IAuthorizationMiddlewareResultHandler` after other authorization services in a way that gets overridden**, or forgetting to register it as a singleton — leading to the default handler still being used and the custom JSON body never appearing.
+- **Inconsistent error shape across authentication, authorization, and validation failures.** If 401/403 responses use one JSON shape and model-validation 400 responses use another, client error-handling code has to special-case each — standardizing on something like RFC 7807 Problem Details for all error responses avoids this.
+
+## Summary
+
+ASP.NET Core distinguishes 401 (not authenticated) from 403 (authenticated but not permitted), and you can customize either at the authentication-scheme level (`OnChallenge`/`OnForbidden`), globally via `IAuthorizationMiddlewareResultHandler`, or per-endpoint via manual `IAuthorizationService` checks with rich domain context. Pick the narrowest level that solves the problem: scheme-level events for a single auth scheme's global behavior, the middleware result handler for consistent behavior across schemes, and manual checks only when the failure response genuinely needs business-specific detail.
+
+
 - Writing a response body without calling `HandleResponse()` in `OnChallenge`.
 - Returning `403` for unauthenticated users.
 - Leaking internal policy names or claim values in error messages.

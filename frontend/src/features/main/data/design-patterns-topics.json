@@ -1,0 +1,117 @@
+{
+  "menuId": "design-patterns",
+  "topics": [
+    {
+      "id": "repository-pattern-dotnet",
+      "slug": "repository-pattern-dotnet",
+      "title": "Repository Pattern in .NET",
+      "markdownPath": "design-patterns/repository-pattern-dotnet.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "unit-of-work-pattern-dotnet",
+      "slug": "unit-of-work-pattern-dotnet",
+      "title": "Unit of Work Pattern in .NET",
+      "markdownPath": "design-patterns/unit-of-work-pattern-dotnet.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "cqrs-pattern",
+      "slug": "cqrs-pattern",
+      "title": "CQRS (Command Query Responsibility Segregation) Pattern",
+      "markdownPath": "design-patterns/cqrs-pattern.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "singleton-pattern-implementation",
+      "slug": "singleton-pattern-implementation",
+      "title": "Singleton Pattern Implementation (Sealed Class, Double-Checked Locking, Lazy<T>)",
+      "markdownPath": "design-patterns/singleton-pattern-implementation.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "factory-method-abstract-factory-pattern",
+      "slug": "factory-method-abstract-factory-pattern",
+      "title": "Factory Method and Abstract Factory Patterns",
+      "markdownPath": "design-patterns/factory-method-abstract-factory-pattern.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "facade-pattern",
+      "slug": "facade-pattern",
+      "title": "Facade Design Pattern",
+      "markdownPath": "design-patterns/facade-pattern.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "clean-architecture-onion-hexagonal",
+      "slug": "clean-architecture-onion-hexagonal",
+      "title": "Clean Architecture (Onion / Hexagonal Architecture)",
+      "markdownPath": "design-patterns/clean-architecture-onion-hexagonal.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "domain-driven-design-bounded-contexts",
+      "slug": "domain-driven-design-bounded-contexts",
+      "title": "Domain-Driven Design: Bounded Contexts and Aggregates",
+      "markdownPath": "design-patterns/domain-driven-design-bounded-contexts.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "strategy-pattern",
+      "slug": "strategy-pattern",
+      "title": "Strategy Pattern",
+      "markdownPath": "design-patterns/strategy-pattern.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "observer-pattern",
+      "slug": "observer-pattern",
+      "title": "Observer Pattern",
+      "markdownPath": "design-patterns/observer-pattern.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "decorator-pattern",
+      "slug": "decorator-pattern",
+      "title": "Decorator Pattern",
+      "markdownPath": "design-patterns/decorator-pattern.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "adapter-pattern",
+      "slug": "adapter-pattern",
+      "title": "Adapter Pattern",
+      "markdownPath": "design-patterns/adapter-pattern.md",
+      "complexity": "Easy"
+    },
+    {
+      "id": "builder-pattern",
+      "slug": "builder-pattern",
+      "title": "Builder Pattern",
+      "markdownPath": "design-patterns/builder-pattern.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "chain-of-responsibility-pattern",
+      "slug": "chain-of-responsibility-pattern",
+      "title": "Chain of Responsibility Pattern",
+      "markdownPath": "design-patterns/chain-of-responsibility-pattern.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "mediator-pattern",
+      "slug": "mediator-pattern",
+      "title": "Mediator Pattern",
+      "markdownPath": "design-patterns/mediator-pattern.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "anti-corruption-layer-pattern",
+      "slug": "anti-corruption-layer-pattern",
+      "title": "Anti-Corruption Layer Pattern",
+      "markdownPath": "design-patterns/anti-corruption-layer-pattern.md",
+      "complexity": "Hard"
+    }
+  ]
+}

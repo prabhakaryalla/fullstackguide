@@ -27,16 +27,8 @@ Design a system like the Facebook or Twitter/X feed that:
 
 ## 4. High-Level Architecture
 
-```mermaid
-flowchart LR
-    U[User] --> API[Feed API]
-    API --> PostSvc[Post Service]
-    PostSvc --> DB[(Posts Store)]
-    PostSvc --> Fanout[Fanout Service]
-    Fanout --> Cache[(Per-User Feed Cache)]
-    API --> FeedSvc[Feed Read Service]
-    FeedSvc --> Cache
-    FeedSvc -->|fallback / celebrities| DB
+```archify
+diagrams/sd-newsfeed-architecture.html
 ```
 
 ## 5. Fan-out Strategies
@@ -60,49 +52,22 @@ Feed is computed at read time by merging recent posts from everyone the user fol
 - Regular users: fan-out-on-write (push to follower feed caches).
 - Celebrity accounts: fan-out-on-read — followers merge celebrity posts in at read time instead of pre-pushing.
 
-```mermaid
-flowchart TB
-    Post[New Post] --> Check{Author has<br/>huge follower count?}
-    Check -->|No| Push[Push to each follower's<br/>precomputed feed cache]
-    Check -->|Yes| Skip[Skip fanout;<br/>store post only]
-    Read[User opens feed] --> Merge[Merge precomputed feed<br/>+ live celebrity posts]
+```archify
+diagrams/sd-newsfeed-hybrid-fanout.html
 ```
 
 ## 6. Post Creation Flow
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant API as Feed API
-    participant PostSvc as Post Service
-    participant DB as Posts Store
-    participant Fanout as Fanout Service
-    participant Cache as Follower Feed Caches
-
-    User->>API: Create post
-    API->>PostSvc: Save post
-    PostSvc->>DB: Persist post
-    PostSvc->>Fanout: Trigger fanout (async)
-    Fanout->>Cache: Push post_id to each follower's feed
-    API-->>User: Post created (ack)
+```archify
+diagrams/sd-newsfeed-post-creation-sequence.html
 ```
 
 Fanout happens asynchronously via a queue so post creation stays fast even if a user has many followers.
 
 ## 7. Feed Read Flow
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant FeedSvc as Feed Read Service
-    participant Cache as Feed Cache
-    participant DB as Posts Store
-
-    User->>FeedSvc: GET /feed
-    FeedSvc->>Cache: Get precomputed post ids
-    FeedSvc->>DB: Fetch live posts from followed celebrities
-    FeedSvc->>FeedSvc: Merge + rank by recency/relevance
-    FeedSvc-->>User: Ranked feed page
+```archify
+diagrams/sd-newsfeed-read-sequence.html
 ```
 
 ## 8. Data Model

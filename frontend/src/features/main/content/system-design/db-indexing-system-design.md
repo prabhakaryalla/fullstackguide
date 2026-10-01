@@ -147,13 +147,8 @@ Low-cardinality columns can still help in composite indexes.
 
 ## Read Path with and without Index
 
-```mermaid
-flowchart LR
-    Q[Query] --> P[Planner]
-    P -->|No useful index| Scan[Full Table Scan]
-    P -->|Useful index found| Seek[Index Seek]
-    Seek --> Rows[Row Fetch]
-    Scan --> Rows
+```archify
+diagrams/sd-db-indexing.html
 ```
 
 ## Design Workflow for Indexing

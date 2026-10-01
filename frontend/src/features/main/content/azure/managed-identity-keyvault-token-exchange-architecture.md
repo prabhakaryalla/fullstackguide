@@ -16,36 +16,14 @@ Main components:
 
 ## Architecture Diagram
 
-```mermaid
-flowchart LR
-    A[App Service App Code] -->|Token request for Key Vault scope| B[Managed Identity Endpoint]
-    B -->|OAuth 2.0 token acquisition| C[Microsoft Entra ID STS]
-    C -->|Access token audience: Key Vault| B
-    B -->|Access token| A
-    A -->|Bearer token call| D[Azure Key Vault Data Plane]
-    D -->|Token validation| C
-    D -->|Permission check| E[RBAC or Access Policy]
-    E --> D
-    D -->|Secret/Key/Cert response| A
+```archify
+diagrams/azure-managed-identity-keyvault.html
 ```
 
 ## End-to-End Flow
 
-```mermaid
-sequenceDiagram
-    participant App as App Service App Code
-    participant MSI as Managed Identity Endpoint
-    participant AAD as Microsoft Entra STS
-    participant KV as Azure Key Vault
-
-    App->>MSI: Request token for resource/scope = Key Vault
-    MSI->>AAD: OAuth 2.0 client credentials style request
-    AAD-->>MSI: Access token (audience = Key Vault)
-    MSI-->>App: Access token
-    App->>KV: HTTPS call with Bearer token
-    KV->>AAD: Validate token signature/issuer/audience
-    KV->>KV: Evaluate RBAC/access policy permissions
-    KV-->>App: Secret/Key/Cert response or 403
+```archify
+diagrams/azure-managed-identity-sequence.html
 ```
 
 ## What Is Being Exchanged?

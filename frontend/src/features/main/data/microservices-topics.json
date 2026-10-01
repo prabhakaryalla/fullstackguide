@@ -7,6 +7,111 @@
       "title": "How Sidecar Pattern Is Used to Access App Config Values in Depth",
       "markdownPath": "microservices/sidecar-pattern-for-app-config.md",
       "complexity": "Hard"
+    },
+    {
+      "id": "async-alternatives-beyond-rabbitmq",
+      "slug": "async-alternatives-beyond-rabbitmq",
+      "title": "Async Alternatives Beyond RabbitMQ",
+      "markdownPath": "microservices/async-alternatives-beyond-rabbitmq.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "kubernetes-objects-deep-dive",
+      "slug": "kubernetes-objects-deep-dive",
+      "title": "Kubernetes Objects Deep Dive: Services, Ingress, ConfigMaps, Secrets, and Workload Controllers",
+      "markdownPath": "microservices/kubernetes-objects-deep-dive.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "microservices-vs-monolith",
+      "slug": "microservices-vs-monolith",
+      "title": "Microservices vs Monolith: How Do You Decide?",
+      "markdownPath": "microservices/microservices-vs-monolith.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "circuit-breaker-retry-bulkhead-resilience",
+      "slug": "circuit-breaker-retry-bulkhead-resilience",
+      "title": "Resilience Patterns: Circuit Breaker, Retry, and Bulkhead (Polly)",
+      "markdownPath": "microservices/circuit-breaker-retry-bulkhead-resilience.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "saga-pattern-distributed-transactions",
+      "slug": "saga-pattern-distributed-transactions",
+      "title": "Saga Pattern for Distributed Transactions",
+      "markdownPath": "microservices/saga-pattern-distributed-transactions.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "api-gateway-bff-pattern",
+      "slug": "api-gateway-bff-pattern",
+      "title": "API Gateway and Backend-for-Frontend (BFF)",
+      "markdownPath": "microservices/api-gateway-bff-pattern.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "multi-tenancy-design-strategies",
+      "slug": "multi-tenancy-design-strategies",
+      "title": "Multi-Tenancy Design Strategies",
+      "markdownPath": "microservices/multi-tenancy-design-strategies.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "observability-distributed-tracing-correlation-ids",
+      "slug": "observability-distributed-tracing-correlation-ids",
+      "title": "Observability: Distributed Tracing, Correlation IDs, and Structured Logging",
+      "markdownPath": "microservices/observability-distributed-tracing-correlation-ids.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "rest-vs-grpc-vs-graphql",
+      "slug": "rest-vs-grpc-vs-graphql",
+      "title": "REST vs gRPC vs GraphQL",
+      "markdownPath": "microservices/rest-vs-grpc-vs-graphql.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "strangler-fig-pattern-legacy-migration",
+      "slug": "strangler-fig-pattern-legacy-migration",
+      "title": "Strangler Fig Pattern for Legacy Migration",
+      "markdownPath": "microservices/strangler-fig-pattern-legacy-migration.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "blue-green-canary-deployment-strategies",
+      "slug": "blue-green-canary-deployment-strategies",
+      "title": "Blue-Green and Canary Deployment Strategies",
+      "markdownPath": "microservices/blue-green-canary-deployment-strategies.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "kubernetes-liveness-readiness-startup-probes",
+      "slug": "kubernetes-liveness-readiness-startup-probes",
+      "title": "Kubernetes Probes: Liveness, Readiness, and Startup",
+      "markdownPath": "microservices/kubernetes-liveness-readiness-startup-probes.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "kubernetes-network-policies",
+      "slug": "kubernetes-network-policies",
+      "title": "Kubernetes Network Policies",
+      "markdownPath": "microservices/kubernetes-network-policies.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "kubernetes-taints-tolerations-affinity",
+      "slug": "kubernetes-taints-tolerations-affinity",
+      "title": "Kubernetes Taints, Tolerations, and Node Affinity",
+      "markdownPath": "microservices/kubernetes-taints-tolerations-affinity.md",
+      "complexity": "Hard"
+    },
+    {
+      "id": "helm-kubernetes-package-manager",
+      "slug": "helm-kubernetes-package-manager",
+      "title": "Helm: Package Management for Kubernetes",
+      "markdownPath": "microservices/helm-kubernetes-package-manager.md",
+      "complexity": "Medium"
     }
   ]
 }

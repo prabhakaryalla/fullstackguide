@@ -19,7 +19,7 @@ describe('App shell navigation visibility', () => {
     async (path) => {
       renderWithFeatureRouter(path)
       await waitFor(() => {
-        expect(screen.getByText('Fullstack Guide')).toBeInTheDocument()
+        expect(screen.getByText('FS Guide')).toBeInTheDocument()
       })
       expect(screen.getByRole('banner')).toHaveClass('MuiAppBar-positionFixed')
       expect(screen.getByRole('button', { name: /switch to (dark|light) theme/i })).toBeInTheDocument()
@@ -31,7 +31,7 @@ describe('App shell navigation visibility', () => {
     const { unmount } = renderWithFeatureRouter('/')
 
     await waitFor(() => {
-      expect(screen.getByText('Fullstack Guide')).toBeInTheDocument()
+      expect(screen.getByText('FS Guide')).toBeInTheDocument()
     })
     expect(screen.getByRole('banner')).toHaveClass('MuiAppBar-positionFixed')
     setScrollY(1200)
@@ -43,7 +43,7 @@ describe('App shell navigation visibility', () => {
     renderWithFeatureRouter('/azure')
 
     await waitFor(() => {
-      expect(screen.getByText('Fullstack Guide')).toBeInTheDocument()
+      expect(screen.getByText('FS Guide')).toBeInTheDocument()
     })
     expect(screen.getByRole('banner')).toHaveClass('MuiAppBar-positionFixed')
     setScrollY(900)
@@ -56,7 +56,7 @@ describe('App shell navigation visibility', () => {
     renderWithFeatureRouter('/csharp')
 
     await waitFor(() => {
-      expect(screen.getByText('Fullstack Guide')).toBeInTheDocument()
+      expect(screen.getByText('FS Guide')).toBeInTheDocument()
     })
 
     const elapsedMs = performance.now() - startedAt

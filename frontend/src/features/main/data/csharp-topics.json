@@ -107,10 +107,24 @@
       "complexity": "Hard"
     },
     {
+      "id": "when-to-use-async-await",
+      "slug": "when-to-use-async-await",
+      "title": "Async and Await - When to Use",
+      "markdownPath": "csharp/when-to-use-async-await.md",
+      "complexity": "Easy"
+    },
+    {
       "id": "parallel-for-vs-task-run",
       "slug": "parallel-for-vs-task-run-csharp",
       "title": "Difference Between Parallel.For and Task.Run",
       "markdownPath": "csharp/parallel-for-vs-task-run.md",
+      "complexity": "Medium"
+    },
+    {
+      "id": "parallel-programming-plinq-tpl",
+      "slug": "parallel-programming-plinq-tpl",
+      "title": "Parallel Programming: Parallel.For, TPL, and PLINQ",
+      "markdownPath": "csharp/parallel-programming-plinq-tpl.md",
       "complexity": "Medium"
     },
     {
@@ -399,6 +413,13 @@
       "title": "float/double vs decimal Precision",
       "markdownPath": "csharp/float-double-vs-decimal-precision.md",
       "complexity": "Easy"
+    },
+    {
+      "id": "garbage-collection-dispose-finalize-idisposable",
+      "slug": "garbage-collection-dispose-finalize-idisposable",
+      "title": "Garbage Collection: Generations, Dispose, Finalize, and IDisposable",
+      "markdownPath": "csharp/garbage-collection-dispose-finalize-idisposable.md",
+      "complexity": "Medium"
     }
   ]
 }

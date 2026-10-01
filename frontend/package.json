@@ -4,7 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "generate:search-index": "node scripts/generate-search-content-index.mjs",
+    "predev": "npm run generate:search-index",
     "dev": "vite",
+    "prebuild": "npm run generate:search-index",
     "build": "tsc -b && vite build",
     "lint": "eslint . --max-warnings 0",
     "format": "prettier --write .",

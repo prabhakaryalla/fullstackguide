@@ -119,44 +119,32 @@ Limitations:
 
 Use Application Gateway in front of regional app services/VMs.
 
-```mermaid
-flowchart LR
-    U[Users] --> AGW[Application Gateway]
-    AGW --> A1[App Backend 1]
-    AGW --> A2[App Backend 2]
+```archify
+diagrams/azure-application-gateway.html
 ```
 
 ## Pattern 2: Global Web App
 
 Use Front Door globally, then route to regional app gateways or app backends.
 
-```mermaid
-flowchart LR
-    U[Global Users] --> FD[Azure Front Door]
-    FD --> R1[Region A Backend]
-    FD --> R2[Region B Backend]
+```archify
+diagrams/azure-front-door.html
 ```
 
 ## Pattern 3: Global DNS Failover
 
 Use Traffic Manager to return active regional endpoint.
 
-```mermaid
-flowchart LR
-    U[DNS Query from Client] --> TM[Traffic Manager]
-    TM --> E1[Endpoint Region A]
-    TM --> E2[Endpoint Region B]
+```archify
+diagrams/azure-traffic-manager.html
 ```
 
 ## Pattern 4: Non-HTTP Workloads
 
 Use Load Balancer for TCP/UDP backend distribution.
 
-```mermaid
-flowchart LR
-    C[Client TCP/UDP Traffic] --> LB[Azure Load Balancer]
-    LB --> V1[VM1]
-    LB --> V2[VM2]
+```archify
+diagrams/azure-load-balancer-basic.html
 ```
 
 ## How to Choose Quickly

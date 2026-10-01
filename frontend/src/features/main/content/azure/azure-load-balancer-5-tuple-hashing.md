@@ -39,13 +39,8 @@ If any tuple value changes (for example source port), a new hash may select a di
 
 ## Architecture View
 
-```mermaid
-flowchart LR
-    C1[Client Flow] --> LB[Azure Load Balancer]
-    LB --> H[5-Tuple Hash]
-    H --> B1[Backend VM 1]
-    H --> B2[Backend VM 2]
-    H --> B3[Backend VM 3]
+```archify
+diagrams/azure-lb-5-tuple-hash.html
 ```
 
 ## Example
@@ -64,9 +59,31 @@ If the same client opens another connection with a different source port, that n
 
 ## Relation to Session Persistence
 
-Azure Load Balancer also offers configurable session persistence behavior (for example based on 2-tuple or 3-tuple affinity modes in some configurations).
+Azure Load Balancer's *default* distribution mode is 5-tuple hashing, but it also exposes a configurable **session persistence** (affinity) setting that deliberately narrows the hash input:
 
-But the default flow mapping logic is based on a tuple hash model, and 5-tuple gives the finest flow granularity.
+| Mode | Hash inputs used | Effect |
+|---|---|---|
+| **None** (default) | Source IP, source port, destination IP, destination port, protocol (5-tuple) | Finest-grained distribution; each new TCP/UDP flow can land on a different backend, even from the same client |
+| **Client IP** (2-tuple) | Source IP, destination IP | All flows from the same client IP stick to the same backend — needed when a backend holds in-memory per-client state (e.g. an in-process session cache) |
+| **Client IP and protocol** (3-tuple) | Source IP, destination IP, protocol | Same as above, but TCP and UDP traffic from the same client can still be pinned independently |
+
+The tradeoff is direct: narrowing the hash input from 5-tuple to 2-tuple/3-tuple **trades distribution quality for stickiness**. A client behind a corporate NAT/proxy shares one source IP with potentially thousands of other users — under 2-tuple affinity, *all* of that traffic hashes to a single backend regardless of how many source ports are in play, creating a hotspot that 5-tuple hashing would have naturally spread out.
+
+## Worked Example: Hash Skew in Practice
+
+Suppose a 4-backend pool serves two very different traffic shapes at the same time:
+
+- **10,000 short-lived API clients**, each opening one connection and closing it (varying source ports every time) → 5-tuple hashing spreads these evenly across all 4 backends, because the source port — one of the five hashed values — changes on almost every new flow.
+- **3 enterprise clients behind NAT gateways**, each pushing sustained, long-lived bulk-upload connections from a small, fixed pool of source ports → because both source IP *and* source port stay fixed for the duration of each upload, all 3 uploads hash to whichever backends their specific 5-tuples land on — potentially all 3 landing on the *same* backend by chance, since there are only 3 flows to distribute across 4 backends.
+
+The lesson: 5-tuple hashing guarantees deterministic, *per-flow* distribution — it does **not** guarantee balanced load when the number of concurrent flows is small or when flow duration varies widely. It statistically balances well only when there are many flows and reasonable diversity in source ports/IPs.
+
+## When 5-Tuple Hashing Becomes a Bottleneck
+
+- **Few, long-lived, heavy connections** (bulk data transfer, persistent WebSocket/gRPC streams): a small number of flows means the "law of large numbers" that makes hashing look balanced doesn't apply — a handful of unlucky hash collisions can concentrate significant sustained load on one backend for the connection's entire lifetime.
+- **NAT/corporate proxy clients**: many real users collapse into very few distinct source IPs, reducing hash diversity exactly where you need it most (high user concurrency).
+- **Session-affinity requirements forcing 2-tuple/3-tuple mode**: as shown above, this intentionally sacrifices distribution quality for stickiness — acceptable only if backend instance count is large enough, or if you move session state out of the backend (e.g. into Redis) so affinity isn't needed at all.
+- **Mitigation**: prefer externalizing session state (distributed cache) so you can run with no affinity (full 5-tuple, best distribution); for long-lived heavy flows, consider Layer 7 (Application Gateway) with more granular routing, or explicitly spread heavy clients across more backend instances than the naive hash count would suggest.
 
 ## What Happens to Existing Sessions When Backend Pool Membership Changes?
 

@@ -6,65 +6,8 @@ This page gives one simple, unified diagram showing where each concept fits, so 
 
 ## 1. The Unified Architecture
 
-```mermaid
-flowchart TB
-    subgraph L1["1. Client Layer"]
-        User[User Device / Browser / App]
-    end
-
-    subgraph L2["2. Edge Layer"]
-        DNS[DNS]
-        CDN[CDN<br/>video chunks, static assets]
-        LB[Load Balancer]
-    end
-
-    subgraph L3["3. Gateway Layer"]
-        RL[Rate Limiter]
-        GW[API Gateway]
-    end
-
-    subgraph L4["4. Core Services Layer"]
-        IDGen[ID Generator<br/>unique ids for every record]
-        Feed[News Feed Service]
-        Chat[Chat / Messaging Service]
-        Search[Autocomplete / Search]
-        Payment[Payment Service]
-        Video[Video Upload / Transcode Service]
-        Scheduler[Job Scheduler]
-    end
-
-    subgraph L5["5. Data Layer"]
-        Cache[(Distributed Cache)]
-        DB[(Sharded + Replicated DB)]
-        Ledger[(Payment Ledger)]
-    end
-
-    subgraph L6["6. Async Layer"]
-        MQ[[Message Queue]]
-        Workers[Background Workers]
-    end
-
-    User --> DNS --> CDN --> LB --> RL --> GW
-    GW --> IDGen
-    GW --> Feed
-    GW --> Chat
-    GW --> Search
-    GW --> Payment
-    GW --> Video
-    GW --> Scheduler
-
-    Feed --> Cache
-    Chat --> Cache
-    Search --> Cache
-    Feed --> DB
-    Chat --> DB
-    Search --> DB
-    Payment --> Ledger
-    Video --> MQ
-    Scheduler --> MQ
-    MQ --> Workers
-    Workers --> DB
-    Workers --> Cache
+```archify
+diagrams/sd-bigpicture-unified-architecture.html
 ```
 
 ## 2. How to Read This Map
@@ -82,27 +25,8 @@ Follow one request through the layers, left to right, top to bottom:
 
 Take "a user posts a video" as an example:
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant Edge as CDN / LB
-    participant GW as API Gateway (Rate Limiter)
-    participant IDGen as ID Generator
-    participant Video as Video Service
-    participant MQ as Queue
-    participant Workers
-    participant Feed as Feed Service
-    participant Cache
-
-    User->>Edge: Upload video
-    Edge->>GW: Forward (after rate limit check)
-    GW->>IDGen: Get unique post id
-    GW->>Video: Store raw video, enqueue transcode job
-    Video->>MQ: Enqueue transcoding + fanout jobs
-    MQ->>Workers: Process jobs asynchronously
-    Workers->>Feed: Fan out new post to followers
-    Feed->>Cache: Update followers' feed cache
-    Workers-->>User: Push notification when ready
+```archify
+diagrams/sd-bigpicture-request-sequence.html
 ```
 
 Every "advanced" system design topic is really just one specialized box in this same overall shape — that's why interviewers can ask about any of them individually, but they all reuse the same building blocks: edge caching, rate limiting, a fast data layer, and an async queue for anything that doesn't need to happen instantly.
