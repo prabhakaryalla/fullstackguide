@@ -14,7 +14,6 @@ import LastCompletedInterviewProvider from '../../src/features/interview-builder
 import { LAST_COMPLETED_INTERVIEW_STORAGE_KEY } from '../../src/features/interview-builder/data/lastCompletedInterviewStorage'
 import CandidateInfoProvider from '../../src/features/interview-builder/context/CandidateInfoContext'
 import InterviewHistoryProvider from '../../src/features/interview-builder/context/InterviewHistoryContext'
-import { INTERVIEW_HISTORY_STORAGE_KEY } from '../../src/features/interview-builder/data/interviewHistoryStorage'
 import { ASKED_TOPICS_STORAGE_KEY } from '../../src/features/interview-notes/data/askedTopicsStorage'
 
 function SessionStub() {
